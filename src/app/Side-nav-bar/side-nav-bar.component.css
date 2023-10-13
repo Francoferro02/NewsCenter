@@ -1,0 +1,97 @@
+.sidenav {
+  background: #d6dfe3;
+  transition: all 0.5s ease;
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  width: 16.5625rem;
+  height: 100vh;
+  box-shadow: 0.063rem 0 1.25rem 0 #8690a3;
+
+
+  .logo-container {
+    display: flex;
+    align-items: center;
+    padding: 0.938rem 0.938rem 0 0.938rem;
+    width: 100%;
+
+    .logo {
+      background: #fff;
+      text-align: center;
+      width: 3rem;
+      min-width: 3rem;
+      border-radius: 0.313rem;
+      padding: 0.4rem;
+      font-size: 24px;
+      font-weight: 900;
+      cursor: pointer;
+      border: none;
+    }
+
+    .logo-text {
+      margin-left: 1.5rem;
+      font-size: 24px;
+      font-weight: 700;
+      color: #161616;
+    }
+
+    .btn-close {
+      margin-left: auto;
+      cursor: pointer;
+      width: 2rem;
+      height: 2rem;
+      border-radius: 50%;
+      background-color: transparent;
+      border: none;
+
+      .fa-times {
+        color: #171616;
+        font-size: 24px;
+      }
+    }
+  }
+}
+
+.sidenav-collapsed {
+  width: 16.5625rem;
+}
+
+.sidenav-nav {
+  list-style: none;
+  padding: 0.938rem;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  height: calc(100% - 3.65rem);
+  cursor: pointer;
+}
+
+.sidenav-nav-item {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  padding: 1rem;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  /* Agregar una transición de color de fondo */
+}
+
+.sidenav-nav-item:hover {
+  background-color: #bccddc;
+  /* Cambia el color de fondo al pasar el mouse */
+}
+
+.sidenav-complexIcon {
+  display: flex;
+  align-items: center;
+}
+
+.icon {
+  margin-right: 0.25rem;
+}
+
+.sidenav-nav-text {
+  font-size: 18px;
+  color: #fff;
+  padding-left: 0.25rem;
+}

@@ -3,20 +3,38 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { NoticiaComponent } from './noticia/noticia.component';
-import { BarraLateralComponent } from './barra-lateral/barra-lateral.component';
 import { NoticiasDestacadasComponent } from './noticias-destacadas/noticias-destacadas.component';
 import { FooterComponent } from './footer/footer.component';
 import { UsuarioComponentComponent } from './usuario-component/usuario-component.component';
+import { UserComentsComponent } from './user-coments/user-coments.component';
+import { SportsComponent } from './components/sports/sports.component';
+import { EntertainmentComponent } from './components/entertainment/entertainment.component';
+import { BusinessComponent } from './components/business/business.component';
+import { GeneralComponent } from './components/general/general.component';
+import { HealthComponent } from './components/health/health.component';
+import { ScienceComponent } from './components/science/science.component';
+import { TechnologyComponent } from './components/technology/technology.component';
+import { SideNavBarComponent } from './Side-nav-bar/side-nav-bar.component';
+import { HomePageComponent } from './home-page/home-page.component';
+import { NavBarComponent } from './nav-bar/nav-bar.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    NoticiaComponent,
-    BarraLateralComponent,
     NoticiasDestacadasComponent,
     FooterComponent,
-    UsuarioComponentComponent
+    UsuarioComponentComponent,
+    UserComentsComponent,
+    SportsComponent,
+    EntertainmentComponent,
+    BusinessComponent,
+    GeneralComponent,
+    HealthComponent,
+    ScienceComponent,
+    TechnologyComponent,
+    SideNavBarComponent,
+    HomePageComponent,
+    NavBarComponent
   ],
   imports: [
     BrowserModule,

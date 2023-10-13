@@ -1,0 +1,30 @@
+.search-bar {
+    display: flex;
+    align-items: center;
+    padding: 1rem 0; /* Ajusta el espaciado vertical según tus preferencias */
+    border-top: 1px solid #37474F;
+    margin-left: 16.5625rem; /* Igual al ancho de la barra lateral */
+  }
+  
+  .search-bar input {
+    width: 70%;
+    padding: 0.5rem;
+    font-size: 18px;
+    border: none;
+  }
+  
+  .search-button {
+    width: auto; /* Usamos el ancho automático para que el botón sea del tamaño del contenido */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #bccddc;
+    border: none;
+    cursor: pointer;
+    padding: 0.5rem 1rem; /* Ajusta el espaciado interno según tus preferencias */
+  }
+  
+  .search-button .material-symbols-outlined {
+    color: #fff;
+    font-size: 24px;
+  }
