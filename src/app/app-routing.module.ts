@@ -1,11 +1,12 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { HomePageComponent } from './home-page/home-page.component';
+import { NoticiasDestacadasComponent } from './noticias-destacadas/noticias-destacadas.component';
+import { BodyComponent } from './body/body.component';
 
 
 const routes: Routes = [
-  { path:'home', component:HomePageComponent},
-  { path:'**', redirectTo: 'home' },
+  {path: '', redirectTo: 'LastNews', pathMatch: 'full'},
+  {path: 'LastNews', component:NoticiasDestacadasComponent},
 ];
 
 @NgModule({

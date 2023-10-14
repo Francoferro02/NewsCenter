@@ -15,8 +15,8 @@ import { HealthComponent } from './components/health/health.component';
 import { ScienceComponent } from './components/science/science.component';
 import { TechnologyComponent } from './components/technology/technology.component';
 import { SideNavBarComponent } from './Side-nav-bar/side-nav-bar.component';
-import { HomePageComponent } from './home-page/home-page.component';
 import { NavBarComponent } from './nav-bar/nav-bar.component';
+import { BodyComponent } from './body/body.component';
 
 @NgModule({
   declarations: [
@@ -33,8 +33,8 @@ import { NavBarComponent } from './nav-bar/nav-bar.component';
     ScienceComponent,
     TechnologyComponent,
     SideNavBarComponent,
-    HomePageComponent,
-    NavBarComponent
+    NavBarComponent,
+    BodyComponent
   ],
   imports: [
     BrowserModule,
