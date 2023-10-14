@@ -1,0 +1,15 @@
+.nav-menu{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 1rem;
+    border-top: 0.1rem solid black;
+    border-bottom : 0.1rem solid gainsboro;
+    
+}
+
+.nav-menu-option{
+    text-decoration: none;
+    font-size: 2rem;
+    font-weight: 600;
+}

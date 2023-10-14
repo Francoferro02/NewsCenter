@@ -3,9 +3,9 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { NoticiasDestacadasComponent } from './noticias-destacadas/noticias-destacadas.component';
+import { NoticiasDestacadasComponent } from './components/noticias-destacadas/noticias-destacadas.component';
 import { FooterComponent } from './footer/footer.component';
-import { UsuarioComponentComponent } from './usuario-component/usuario-component.component';
+import { UsuarioComponentComponent } from './components/usuario-component/usuario-component.component';
 import { UserComentsComponent } from './user-coments/user-coments.component';
 import { SportsComponent } from './components/sports/sports.component';
 import { EntertainmentComponent } from './components/entertainment/entertainment.component';
@@ -17,6 +17,7 @@ import { TechnologyComponent } from './components/technology/technology.componen
 import { SideNavBarComponent } from './Side-nav-bar/side-nav-bar.component';
 import { NavBarComponent } from './nav-bar/nav-bar.component';
 import { BodyComponent } from './body/body.component';
+import { NavMenuComponent } from './nav-menu/nav-menu.component';
 
 @NgModule({
   declarations: [
@@ -34,7 +35,8 @@ import { BodyComponent } from './body/body.component';
     TechnologyComponent,
     SideNavBarComponent,
     NavBarComponent,
-    BodyComponent
+    BodyComponent,
+    NavMenuComponent
   ],
   imports: [
     BrowserModule,

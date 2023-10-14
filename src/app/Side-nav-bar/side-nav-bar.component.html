@@ -1,51 +1,58 @@
 <div class="sidenav" [ngClass]="collapsed ? 'sidenav-collapsed' : ''">
   <div class="logo-container">
-    <button class="logo" (click)="toggleCollapse()">N</button>
-    <div class="logo-text" *ngIf="collapsed" id="titulo">News Center</div>
+    <button class="logo" (click)="toggleCollapse()">
+      <img src="../../assets/Hamburger_icon.svg.png" alt="Hamburger_icon" id="hamb-icon">
+    </button>
+    <div class="logo-text" *ngIf="collapsed" id="titulo">
+      <img src="../../assets/Logo/Recurso 3.png" alt="logo" id="logo-sidebar">
+    </div>
     <button class="btn-close" *ngIf="collapsed" (click)="closeSidenav()">
       <span class="material-symbols-outlined">close</span>
     </button>
   </div>
   <ul class="sidenav-nav">
+    
     <li class="sidenav-nav-item" (click)="navegateTo('LastNews')">
       <a class="sidenav-nav-link" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
         <span class="sidenav-complexIcon" *ngIf="collapsed">
           <img class="icon" src="../../assets/newspaper_FILL0_wght400_GRAD0_opsz24.png">
-          <span class="sidenav-nav-text">NOTICIAS DESTACADAS</span>
+          <span class="sidenav-nav-text">FEATURED NEWS</span>
         </span>
       </a>
     </li>
-    <li class="sidenav-nav-item">
+    <li class="sidenav-nav-item"(click)="navegateTo('Sports')">
       <span class="sidenav-complexIcon"*ngIf="collapsed" >
         <img class="icon" src="../../assets/sports_soccer_FILL0_wght400_GRAD0_opsz24.png">
         <span class="sidenav-nav-text">SPORTS</span>
       </span>
   </li>
-  <li class="sidenav-nav-item">
+  <li class="sidenav-nav-item" (click)="navegateTo('World')">
     <span class="sidenav-complexIcon"*ngIf="collapsed" >
       <img class="icon" src="../../assets/public_FILL0_wght400_GRAD0_opsz24.png">
       <span class="sidenav-nav-text">WORLD</span>
     </span>
 </li>
-<li class="sidenav-nav-item">
-  <span class="sidenav-complexIcon"*ngIf="collapsed" >
-    <img class="icon" src="../../assets/monitoring_FILL0_wght400_GRAD0_opsz24.png">
-    <span class="sidenav-nav-text">BUSSINESS</span>
-  </span>
+<li class="sidenav-nav-item" (click)="navegateTo('Bussiness')" >
+    <span class="sidenav-complexIcon"*ngIf="collapsed" >
+      <img class="icon" src="../../assets/monitoring_FILL0_wght400_GRAD0_opsz24.png">
+      <span class="sidenav-nav-text">BUSSINESS</span>
+    </span>
+
+  
 </li>
-<li class="sidenav-nav-item">
+<li class="sidenav-nav-item" (click)="navegateTo('Tech')">
 <span class="sidenav-complexIcon"*ngIf="collapsed" >
   <img class="icon" src="../../assets/computer_FILL0_wght400_GRAD0_opsz24.png">
   <span class="sidenav-nav-text">TECH</span>
 </span>
 </li>
-<li class="sidenav-nav-item">
+<li class="sidenav-nav-item" (click)="navegateTo('Health')">
 <span class="sidenav-complexIcon"*ngIf="collapsed" >
   <img class="icon" src="../../assets/emergency_FILL0_wght400_GRAD0_opsz24.png">
   <span class="sidenav-nav-text">HEALTH</span>
 </span>
 </li>
-<li class="sidenav-nav-item">
+<li class="sidenav-nav-item"(click)="navegateTo('Profile')">
 <span class="sidenav-complexIcon"*ngIf="collapsed" >
   <img class="icon" src="../../assets/badge_FILL0_wght400_GRAD0_opsz24.png">
   <span class="sidenav-nav-text">PROFILE</span>

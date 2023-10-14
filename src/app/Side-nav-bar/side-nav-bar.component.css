@@ -1,5 +1,5 @@
 .sidenav {
-  background: #d6dfe3;
+  background: #fafafa;
   transition: all 0.5s ease;
   position: fixed;
   z-index: 1;
@@ -16,7 +16,7 @@
     width: 100%;
 
     .logo {
-      background: #fff;
+      background: #ffffff;
       text-align: center;
       width: 3rem;
       min-width: 3rem;
@@ -28,11 +28,11 @@
       border: none;
     }
 
-    .logo-text {
-      margin-left: 1.5rem;
-      font-size: 24px;
-      font-weight: 700;
-      color: #161616;
+  
+    #logo-sidebar{
+      width: 70%;
+      height: 70%;
+      margin-left: 2rem;
     }
 
     .btn-close {
@@ -42,8 +42,9 @@
       height: 2rem;
       border-radius: 50%;
       background-color: transparent;
+      padding: 0 1rem 0 0;
       border: none;
-
+      align-items: center;
       .fa-times {
         color: #171616;
         font-size: 24px;
@@ -53,7 +54,7 @@
 }
 
 .sidenav-collapsed {
-  width: 16.5625rem; /* Ancho expandido de la barra */
+  width: 26.5625rem; /* Ancho expandido de la barra */
   /* Transformación para expandir la barra hacia la derecha */
   transform: translateX(0);
 }
@@ -77,11 +78,12 @@
   padding: 1rem;
   cursor: pointer;
   transition: background-color 0.3s;
+  
   /* Agregar una transición de color de fondo */
 }
 
 .sidenav-nav-item:hover {
-  background-color: #bccddc;
+  background-color: #d3d3d3;
   /* Cambia el color de fondo al pasar el mouse */
 }
 
@@ -95,7 +97,12 @@
 }
 
 .sidenav-nav-text {
-  font-size: 18px;
-  color: #fff;
-  padding-left: 0.25rem;
+  font-size: 2rem;
+  color: #656565;
+  padding: 1rem;
+}
+
+#hamb-icon{
+  width: 100%;
+  height: 100%;
 }
