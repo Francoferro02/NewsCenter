@@ -4,18 +4,21 @@
   position: fixed;
   left:23%;
   z-index: 1;  
+ 
+  width: 57% ;
 }
 
 .search-bar {
     display: flex;
-    border: 0.1rem solid black;
     border-radius: 5rem;
+    border: transparent;
   }
+  
   .search-bar input {
     width: 90%;
     padding: 1rem;
     font-size: 18px;
-    border: none;
+    border: transparent;
     border-radius: 4.5rem;
     margin-left: 1rem;
     margin-right: 1rem; 
