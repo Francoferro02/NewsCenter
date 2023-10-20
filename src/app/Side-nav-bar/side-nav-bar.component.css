@@ -1,23 +1,26 @@
 .sidenav {
-  background: #fafafa;
+  
   transition: all 0.5s ease;
   position: fixed;
   z-index: 1;
   top: 0;
   width: 5rem;
   height: 100vh;
-  box-shadow: 0.063rem 0 1.25rem 0 #8690a3;
+  border-right: 0.05rem solid black;
   transform: translateX(0); /* Establece la posición inicial */
 }
   .logo-container {
     display: flex;
     align-items: center;
+    justify-content: center;
     padding: 0.938rem 0.938rem 0 0.938rem;
     width: 100%;
     height: 2rem;
+    margin-top: 1rem;
+    margin-bottom: 3rem;
   }
     .logo {
-      background: #ffffff;
+      background: none;
       width: 3rem;
       height: 3rem;
       min-width: 1rem;
@@ -31,7 +34,7 @@
       width: 70%;
       height: 70%;
       display: flex;
-      
+      padding-left: 3rem;
     }
 
     .btn-close {
@@ -41,7 +44,7 @@
       height: 2rem;
       border-radius: 50%;
       background-color: transparent;
-      padding: 0 1rem 0 0;
+      padding: 0 3rem 0 0;
       border: none;
       align-items: center;
       .fa-times {
@@ -52,7 +55,7 @@
 
 
 .sidenav-collapsed {
-  width: 26.5625rem; /* Ancho expandido de la barra */
+  width: 28rem; /* Ancho expandido de la barra */
   /* Transformación para expandir la barra hacia la derecha */
   transform: translateX(0);
 }

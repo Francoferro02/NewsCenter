@@ -6,5 +6,5 @@ import { Component } from '@angular/core';
   styleUrls: ['./general.component.css']
 })
 export class GeneralComponent {
-
+  titulo:string = 'WORLD'
 }

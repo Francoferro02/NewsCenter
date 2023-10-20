@@ -6,5 +6,5 @@ import { Component } from '@angular/core';
   styleUrls: ['./health.component.css']
 })
 export class HealthComponent {
-
+  titulo:string = 'HEALTH'
 }

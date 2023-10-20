@@ -6,5 +6,5 @@ import { Component } from '@angular/core';
   styleUrls: ['./business.component.css']
 })
 export class BusinessComponent {
-
+  titulo:string = 'BUSSINESS'
 }
