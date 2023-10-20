@@ -19,6 +19,7 @@ import { NavBarComponent } from './nav-bar/nav-bar.component';
 import { BodyComponent } from './body/body.component';
 import { NavMenuComponent } from './nav-menu/nav-menu.component';
 import { GridDestacadasComponent } from './grid-destacadas/grid-destacadas.component';
+import { GridSeccionComponent } from './components/grid-seccion/grid-seccion.component';
 
 @NgModule({
   declarations: [
@@ -38,7 +39,8 @@ import { GridDestacadasComponent } from './grid-destacadas/grid-destacadas.compo
     NavBarComponent,
     BodyComponent,
     NavMenuComponent,
-    GridDestacadasComponent
+    GridDestacadasComponent,
+    GridSeccionComponent
   ],
   imports: [
     BrowserModule,

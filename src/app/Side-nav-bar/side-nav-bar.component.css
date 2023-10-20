@@ -8,31 +8,30 @@
   height: 100vh;
   box-shadow: 0.063rem 0 1.25rem 0 #8690a3;
   transform: translateX(0); /* Establece la posición inicial */
-
+}
   .logo-container {
     display: flex;
     align-items: center;
     padding: 0.938rem 0.938rem 0 0.938rem;
     width: 100%;
-
+    height: 2rem;
+  }
     .logo {
       background: #ffffff;
-      text-align: center;
       width: 3rem;
-      min-width: 3rem;
-      border-radius: 0.313rem;
+      height: 3rem;
+      min-width: 1rem;
       padding: 0.313rem;
-      font-size: 24px;
-      font-weight: 900;
-      cursor: pointer;
       border: none;
+      z-index: 1;
     }
 
   
     #logo-sidebar{
       width: 70%;
       height: 70%;
-      margin-left: 2rem;
+      display: flex;
+      
     }
 
     .btn-close {
@@ -50,8 +49,7 @@
         font-size: 24px;
       }
     }
-  }
-}
+
 
 .sidenav-collapsed {
   width: 26.5625rem; /* Ancho expandido de la barra */
@@ -106,3 +104,4 @@
   width: 100%;
   height: 100%;
 }
+
