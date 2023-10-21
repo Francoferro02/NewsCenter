@@ -23,4 +23,7 @@ export class NavBarComponent {
     });
   }
 
+  showPopup: boolean = false;
+
+  
 }

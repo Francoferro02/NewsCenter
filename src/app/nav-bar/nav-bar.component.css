@@ -32,6 +32,7 @@
     border-radius: 5rem;
     cursor: pointer;
     padding: 0.5rem 1rem; /* Ajusta el espaciado interno según tus preferencias */
+    cursor: pointer;
   }
   
   .search-button .material-symbols-outlined {
@@ -49,6 +50,7 @@
     border: none;
     border-radius: 2rem;
     padding: 1.3rem 5rem;
+    cursor: pointer;
   }
 
   .register-button{
@@ -61,6 +63,7 @@
     border: none;
     border-radius: 2rem;
     padding: 1.3rem 5rem;
+    cursor: pointer;
   }
 
   

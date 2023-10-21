@@ -20,6 +20,7 @@ import { BodyComponent } from './body/body.component';
 import { NavMenuComponent } from './nav-menu/nav-menu.component';
 import { GridDestacadasComponent } from './grid-destacadas/grid-destacadas.component';
 import { GridSeccionComponent } from './components/grid-seccion/grid-seccion.component';
+import { LoginFormComponent } from './components/login-form/login-form.component';
 
 @NgModule({
   declarations: [
@@ -40,7 +41,8 @@ import { GridSeccionComponent } from './components/grid-seccion/grid-seccion.com
     BodyComponent,
     NavMenuComponent,
     GridDestacadasComponent,
-    GridSeccionComponent
+    GridSeccionComponent,
+    LoginFormComponent
   ],
   imports: [
     BrowserModule,
