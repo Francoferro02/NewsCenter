@@ -1,5 +1,4 @@
-import { Component, EventEmitter, Output } from '@angular/core';
-
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 
 @Component({
   selector: 'app-nav-bar',
@@ -7,6 +6,8 @@ import { Component, EventEmitter, Output } from '@angular/core';
   styleUrls: ['./nav-bar.component.css']
 })
 export class NavBarComponent {
+  
+
   detectarEnter(){
     document.addEventListener("DOMContentLoaded", () => {
       const searchInput = document.getElementById("search-input") as HTMLInputElement;
@@ -25,5 +26,12 @@ export class NavBarComponent {
 
   showPopup: boolean = false;
 
+  togglePopup() {
+    this.showPopup = !this.showPopup;
+  }
+
+  closePopup() {
+    this.showPopup = false;
+  }
   
 }

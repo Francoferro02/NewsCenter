@@ -9,10 +9,10 @@
     </div>
     <div class="button-container">
       <div>
-        <button class="log-in-button" (click)="showPopup = true">Log in</button>
+        <button class="log-in-button">Log in</button>
       </div>
-      <div><button class="register-button">Register</button></div>
+      <div><button class="register-button" (click)="showPopup = true">Register</button></div>
   </div>
   <div *ngIf="showPopup" class="popup-container">
-    <app-login-form></app-login-form>
+    <app-login-form [showPopup]="showPopup" (closePopupEvent)="closePopup()"></app-login-form>
   </div>

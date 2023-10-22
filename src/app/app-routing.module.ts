@@ -1,7 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { NoticiasDestacadasComponent } from './components/noticias-destacadas/noticias-destacadas.component';
-import { BodyComponent } from './body/body.component';
 import { BusinessComponent } from './components/business/business.component';
 import { SportsComponent } from './components/sports/sports.component';
 import { GeneralComponent } from './components/general/general.component';

@@ -21,6 +21,7 @@ import { NavMenuComponent } from './nav-menu/nav-menu.component';
 import { GridDestacadasComponent } from './grid-destacadas/grid-destacadas.component';
 import { GridSeccionComponent } from './components/grid-seccion/grid-seccion.component';
 import { LoginFormComponent } from './components/login-form/login-form.component';
+import {HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -46,7 +47,8 @@ import { LoginFormComponent } from './components/login-form/login-form.component
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]

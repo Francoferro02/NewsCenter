@@ -9,6 +9,12 @@
 .nav-menu-option{
     font-size: 2rem;
     font-weight: 600;
-    cursor: pointer
+    cursor: pointer;
+    padding: 1rem;
+    transition: background-color 0.3s;
 }
 
+.nav-menu-option:hover {
+    background-color: #d3d3d3;
+    /* Cambia el color de fondo al pasar el mouse */
+  }

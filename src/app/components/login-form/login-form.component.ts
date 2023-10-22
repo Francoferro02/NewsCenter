@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 
 @Component({
   selector: 'app-login-form',
@@ -6,11 +6,11 @@ import { Component } from '@angular/core';
   styleUrls: ['./login-form.component.css']
 })
 export class LoginFormComponent {
+  @Input() showPopup: boolean = true;
+  @Output() closePopupEvent = new EventEmitter<void>();
 
-  showPopup:boolean= true;
-
-  closePopup(){
-    return this.showPopup = false;
+  closePopup() {
+    this.closePopupEvent.emit();
   }
 
 }
