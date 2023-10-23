@@ -6,9 +6,11 @@ import { Component, Input } from '@angular/core';
   styleUrls: ['./body.component.css']
 })
 export class BodyComponent {
+  @Input()listaNoticiasSport:any;
 
   @Input() collapsed = false;
   @Input() screenWidth = 0;
+  
 
   getBodyClass(): string{
     let styleClass = '';

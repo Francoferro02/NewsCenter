@@ -5,37 +5,16 @@
     <div class="seccion-nombre-container">
         <h2 class="seccion-nombre">{{titulo}} </h2>
     </div>
-    <div class="lista-noticias">
-            <div class="noticia-ppal">
-                <img src="../../assets/img/LTT6FK6OQZGNPGZPX3PKHZRPRI.jpg" alt="photo-main-news" class="foto-noticia-ppal">
+    <div class="lista-noticias" *ngFor="let noticia of nombreArray">
+            <div class="noticia-ppal" *ngIf="noticia.urlToImage">
+                <img [src]="noticia.urlToImage" alt="photo-main-news" class="foto-noticia-ppal">
                 <div class="texto-noticia-ppal">
-                    <h2>Titulo Noticia Principal</h2>
+                    <h2>{{noticia.title}}</h2>
                     <h3>SUBTITULO : Lorem ipsum dolor sit amet consectetur adipisicing elit.</h3>
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Saepe quo reiciendis enim fugit quidem necessitatibus unde accusantium dolore porro quod, minus, iste doloribus voluptatibus rem. Facere esse amet optio rem!
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Iure dolor et minus quam ab in, sunt delectus cumque maiores. Optio accusamus distinctio amet tempora saepe laborum quod voluptate expedita natus!
+                    <p>{{noticia.content}}
                     </p>
                 </div>
             </div>
-        <div class="noticia">
-            <img src="../../assets/img/210202155812-moderna-covid-vaccine-gillette-stadium-0201.jpg " alt=""
-                class="foto-noticia-secundaria">
-            <div>
-                <h2>titulo noticia secundaria</h2>
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
-            </div>
-        </div>
-       
-        <div class="noticia">
-            <img src="../../assets/img/alex-caniggia-97ad-65181133996e6.jpg" alt="" class="foto-noticia-secundaria">
-            <h2>titulo noticia secundaria</h2>
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
-        </div>
-        <div class="noticia">
-            <img src="../../assets/img/alex-caniggia-97ad-65181133996e6.jpg" alt="" class="foto-noticia-secundaria">
-            <h2>titulo noticia secundaria</h2>
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
-        </div>
     </div>
-
 </section>
 <app-footer></app-footer>

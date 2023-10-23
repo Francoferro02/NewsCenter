@@ -10,7 +10,6 @@ import { UserComentsComponent } from './user-coments/user-coments.component';
 import { SportsComponent } from './components/sports/sports.component';
 import { EntertainmentComponent } from './components/entertainment/entertainment.component';
 import { BusinessComponent } from './components/business/business.component';
-import { GeneralComponent } from './components/general/general.component';
 import { HealthComponent } from './components/health/health.component';
 import { ScienceComponent } from './components/science/science.component';
 import { TechnologyComponent } from './components/technology/technology.component';
@@ -33,7 +32,6 @@ import {HttpClientModule } from '@angular/common/http';
     SportsComponent,
     EntertainmentComponent,
     BusinessComponent,
-    GeneralComponent,
     HealthComponent,
     ScienceComponent,
     TechnologyComponent,

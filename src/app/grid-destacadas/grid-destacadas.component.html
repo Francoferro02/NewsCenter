@@ -1,8 +1,7 @@
 <section class="container-main">
     <div class="lista-noticias" *ngFor="let noticia of listadoNoticiasDestacas">
-    <div class="noticia">
-        <img [src]="noticia.urlToImage" alt=""
-            class="foto-noticia-secundaria">
+    <div class="noticia" *ngIf="noticia.urlToImage">
+        <img [src]="noticia.urlToImage" alt="" (click)="redirectTo()">
         <div>
             <h2>{{noticia.title}}</h2>
             <p>{{noticia.content}}</p>

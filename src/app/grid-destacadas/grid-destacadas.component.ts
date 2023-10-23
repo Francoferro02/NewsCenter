@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 
 
 
+
 @Component({
   selector: 'app-grid-destacadas',
   templateUrl: './grid-destacadas.component.html',
@@ -11,6 +12,8 @@ import { Router } from '@angular/router';
 
 export class GridDestacadasComponent implements OnInit {
   @Input()listadoNoticiasDestacas:any;
+
+
   constructor(private router: Router){
     
   }
@@ -20,5 +23,9 @@ export class GridDestacadasComponent implements OnInit {
   
   navegateTo(route : string){
     this.router.navigate(['/', route])
+  }
+
+  redirectTo(){
+    this.listadoNoticiasDestacas.articles.url;
   }
 }
