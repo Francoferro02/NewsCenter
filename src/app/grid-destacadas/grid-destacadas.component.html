@@ -1,11 +1,15 @@
 <section class="container-main">
-    <div class="lista-noticias" *ngFor="let noticia of listadoNoticiasDestacas">
-    <div class="noticia" *ngIf="noticia.urlToImage">
-        <img [src]="noticia.urlToImage" alt="" (click)="redirectTo()">
-        <div>
-            <h2>{{noticia.title}}</h2>
-            <p>{{noticia.content}}</p>
+    <div class="lista-noticias">
+      <div *ngFor="let noticia of listadoNoticiasDestacas; let first = first">
+        <div class="noticia" [ngClass]="{ 'noticia-ppal': first }">
+          <div *ngIf="noticia.urlToImage">
+            <img [src]="noticia.urlToImage" alt="" (click)="redirectTo()" />
+            <div>
+              <h2>{{ noticia.title }}</h2>
+              <p>{{ noticia.content }}</p>
+            </div>
+          </div>
         </div>
+      </div>
     </div>
-</div>
-</section>
+  </section>

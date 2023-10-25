@@ -17,7 +17,6 @@ export class GridSeccionComponent implements OnInit {
   @Input() listadoNoticiasEntertainment: any;
 
   nombreArray: any[] = [];
-
   constructor(
     private router: Router,
     private componenteApi: componentApiService

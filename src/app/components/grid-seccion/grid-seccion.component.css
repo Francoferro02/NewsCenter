@@ -68,21 +68,22 @@ gap: 1rem;
 
 
 
-.noticia-ppal{
+.lista-noticias .noticia-ppal:first-child {
+    /* Estilos para la primera noticia, con la clase noticia-ppal */
     display: flex;
     flex-direction: row-reverse;
     height: 40rem;
-    grid-column:1/7;
+    grid-column: 1 / 7;
     border-bottom: 0.1rem solid black;
-  
+    /* Agrega aquí cualquier otro estilo específico para la primera noticia */
 }
 
-.noticia-ppal img{
-   padding: 2rem 0;
+.lista-noticias .noticia-ppal:first-child img {
+    padding: 2rem 0;
 }
 
 
-.texto-noticia-ppal{
+.lista-noticias .noticia-ppal .texto-noticia-ppal {
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -90,22 +91,21 @@ gap: 1rem;
     width: 100%;
 }
 
-.texto-noticia-ppal h2{
+.lista-noticias .noticia-ppal .texto-noticia-ppal h2 {
     font-size: xx-large;
     font-weight: 400;
     font-style: italic;
 }
 
-.texto-noticia-ppal h3{
+.lista-noticias .noticia-ppal .texto-noticia-ppal h3 {
     font-size: medium;
     font-weight: 400;
     font-style: italic;
 }
 
-.texto-noticia-ppal p{
-    font-size:small;
+.lista-noticias .noticia-ppal .texto-noticia-ppal p {
+    font-size: small;
     font-weight: 300;
-
 }
 
 .noticia:nth-child(2){
@@ -123,10 +123,9 @@ gap: 1rem;
     grid-column: 5/7;
     padding-left: 1rem;
    
-
 }
 
-.noticia img{
+.noticia-img{
     height: 20rem;
     object-fit: cover;
     width: 100%;

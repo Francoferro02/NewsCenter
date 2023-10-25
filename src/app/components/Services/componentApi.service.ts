@@ -41,22 +41,4 @@ export class componentApiService {
   return this.newsCache.get(categoria)?.asObservable() || new ReplaySubject<any[]>(1).asObservable();
 }
 
-  filtradoArray(category: string) {
-    if (category === "sports") {
-      return this.listaNoticiasSport;
-    } else if (category === "science") {
-      return this.listaNoticiasScience;
-    }else if (category === "business") {
-      return this.listaNoticiasBusiness;
-    }else if (category === "technology") {
-      return this.listadoNoticiasTech;
-    }else if (category === "health") {
-      return this.listadoNoticiasHealth;
-    }else if (category === "entertainment") {
-      return this.listadoNoticiasHealth;
-    } else {
-      return [];
-    }
-  }
-
 }
