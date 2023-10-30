@@ -1,4 +1,5 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-sign-up-form',
@@ -8,6 +9,11 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
 export class SignUpFormComponent {
   @Input() showPopup1: boolean = true;
   @Output() closePopupEvent = new EventEmitter<void>();
+
+  
+
+
+
 
   closePopup1() {
     this.closePopupEvent.emit();

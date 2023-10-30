@@ -22,6 +22,7 @@ import { GridSeccionComponent } from './components/grid-seccion/grid-seccion.com
 import { LoginFormComponent } from './components/login-form/login-form.component';
 import {HttpClientModule } from '@angular/common/http';
 import { SignUpFormComponent } from './components/sign-up-form/sign-up-form.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -48,7 +49,8 @@ import { SignUpFormComponent } from './components/sign-up-form/sign-up-form.comp
   imports: [
     BrowserModule,
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
