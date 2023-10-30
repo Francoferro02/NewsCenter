@@ -18,6 +18,7 @@
     background: rgb(255, 255, 255);
     padding: 3rem;
 }
+
 .body-trimmed{
 width: calc(60% -16.5625rem);
 margin-left: 16.5625rem;

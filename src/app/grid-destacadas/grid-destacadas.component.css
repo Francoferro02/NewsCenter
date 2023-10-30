@@ -1,22 +1,17 @@
-.container-main {
+/* .container-main {
     display: flex;
     flex-direction: column;
     align-items: center;
     padding: 2rem 0;
   }
   
-  .lista-noticias .noticia-ppal {
-    display: grid;
-    grid-template-columns: repeat(6, 1fr);
-    margin: 3rem 0;
-    gap: 1rem;
-  }
-  
-  .lista-noticias .noticia {
+
+   .lista-noticias .noticia {
     margin: 2rem 0;
-  }
+  } 
   
   .lista-noticias .noticia:nth-child(1) {
+    margin: 2rem 0;
     grid-column: 1/7;
     border-bottom: 0.1rem solid black;
   }
@@ -27,15 +22,19 @@
     object-fit: cover;
   }
   
-  .lista-noticias .texto-noticia .noticia-ppal {
+ /*  .lista-noticias .texto-noticia .noticia-ppal {
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     padding: 1rem;
     justify-content: center;
     padding: 2rem;
   }
-  
-  .lista-noticias .noticia:nth-child(2) {
+   
+
+
+
+
+  /* .lista-noticias .noticia:nth-child(2) {
     grid-column: 1/4;
     display: flex;
   }
@@ -95,3 +94,65 @@
     object-fit: cover;
     width: 100%;
   }
+ */
+/* 
+ .noticia-tarjeta {
+  border: 1px solid #ccc;  Borde de la tarjeta 
+  padding: 10px;  Espaciado interno de la tarjeta 
+  margin: 10px;  Espaciado entre tarjetas 
+  display: flex;  Establece la tarjeta como contenedor flex 
+} */ 
+
+.container-main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.lista-noticias {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.noticia {
+  margin: 1rem 0;
+  max-width: 100%; /* Todas las noticias ocupan el 100% del ancho */
+  border-bottom: 0.1rem solid black;
+  
+}
+
+.noticia img {
+  max-width: 100%;
+  height: auto;
+}
+
+.noticia-ppal {
+  margin-top: 3rem;
+  max-width: 100%; /* La noticia principal ocupa el 100% del ancho */
+  border-bottom: 0.1rem solid black;
+}
+
+.noticia-ppal img {
+  width: 100%; /* La imagen de la noticia principal ocupa el 100% del ancho */
+  height: 45rem;
+  object-fit: cover;
+}
+
+/* Estilos para el texto de la noticia */
+.noticia h2 {
+  font-size: 3rem;
+  font-weight: bold;
+}
+
+.noticia p {
+  font-size: 16px;
+}
+
+/* Clase para reducir el tamaño de las noticias secundarias */
+.noticia-chica {
+  display: flex;
+  margin: 1rem;
+  max-width: 50rem; /* Ancho máximo para noticias secundarias */
+ 
+}

@@ -25,13 +25,19 @@ export class NavBarComponent {
   }
 
   showPopup: boolean = false;
+  showPopup1: boolean = false;
 
   togglePopup() {
     this.showPopup = !this.showPopup;
+    this.showPopup1 = !this.showPopup1;
   }
 
   closePopup() {
     this.showPopup = false;
+  }
+
+  closePopup1(){
+    this.showPopup1 = false;
   }
   
 }

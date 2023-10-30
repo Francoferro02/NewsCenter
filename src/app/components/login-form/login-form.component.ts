@@ -12,5 +12,4 @@ export class LoginFormComponent {
   closePopup() {
     this.closePopupEvent.emit();
   }
-
 }

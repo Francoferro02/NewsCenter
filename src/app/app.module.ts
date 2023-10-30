@@ -21,6 +21,7 @@ import { GridDestacadasComponent } from './grid-destacadas/grid-destacadas.compo
 import { GridSeccionComponent } from './components/grid-seccion/grid-seccion.component';
 import { LoginFormComponent } from './components/login-form/login-form.component';
 import {HttpClientModule } from '@angular/common/http';
+import { SignUpFormComponent } from './components/sign-up-form/sign-up-form.component';
 
 @NgModule({
   declarations: [
@@ -41,7 +42,8 @@ import {HttpClientModule } from '@angular/common/http';
     NavMenuComponent,
     GridDestacadasComponent,
     GridSeccionComponent,
-    LoginFormComponent
+    LoginFormComponent,
+    SignUpFormComponent
   ],
   imports: [
     BrowserModule,
