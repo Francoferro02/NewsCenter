@@ -7,18 +7,18 @@
       <img src="../../assets/Logo/Recurso 3.png" alt="logo" id="logo-sidebar">
     </div>
     <button class="btn-close" *ngIf="collapsed" (click)="closeSidenav()">
-      <span class="material-symbols-outlined">close</span>
+      <span class="material-symbols-outlined"></span>
     </button>
   </div>
   <ul class="sidenav-nav">
     
     <li class="sidenav-nav-item" (click)="navegateTo('LastNews')">
-      <a class="sidenav-nav-link" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
+    <!--   <a class="sidenav-nav-link" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}"> -->
         <span class="sidenav-complexIcon" *ngIf="collapsed">
           <img class="icon" src="../../assets/newspaper_FILL0_wght400_GRAD0_opsz24.png">
           <span class="sidenav-nav-text">FEATURED NEWS</span>
         </span>
-      </a>
+    <!--   </a> -->
     </li>
     <li class="sidenav-nav-item"(click)="navegateTo('Sports')">
       <span class="sidenav-complexIcon"*ngIf="collapsed" >

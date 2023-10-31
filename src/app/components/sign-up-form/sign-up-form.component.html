@@ -1,19 +1,43 @@
 <div class="popup-container1">
-    <div class="card-text-center">
-        <button class="close-button" (click)="closePopup1()">X</button>
-        <div class="card-header">
-            <p>LOGIN</p>
+
+    <form [formGroup]="signUpForm" (ngSubmit)="onSubmit()">
+        <div class="card-text-center">
+            <button class="close-button" (click)="closePopup1()">X</button>
+            <div class="card-header">
+                <p>LOGIN</p>
+            </div>
+            <div class="card-body p-4">
+
+
+                <label style="float: left">Email</label>
+                <input class="form-control m-2" type="email" placeholder="Email" name="signUpEmail"
+                    formControlName="signUpEmail" value="" />
+
+                <div class="row" *ngIf="!signUpEmail?.['valid'] && (signUpEmail?.['dirty'])">
+                    <div class="col-lg-12">
+                        <div class="alert alert-danger" role="alert" *ngIf="signUpEmail?.errors?.['required']">
+                            Email is required
+                        </div>
+                    </div>
+                </div>
+
+
+                <label style="float: left">Password</label>
+                <input class="form-control m-2" type="password" placeholder="Password" name="signUpPassword"
+                    formControlName="signUpPassword" value="" />
+
+                <div class="row" *ngIf="!signUpPassword?.['valid'] && (signUpPassword?.['dirty'])">
+                    <div class="col-lg-12">
+                        <div class="alert alert-danger" role="alert" *ngIf="signUpPassword?.errors?.['required']">
+                            Password is required
+                        </div>
+                    </div>
+                </div>
+
+
+                <button class="btn btn-primary btn-block m-2">LOG IN</button>
+
+            </div>
         </div>
-        <div class="card-body p-4">
-
-            <label style="float: left">Email</label>
-            <input class="form-control m-2" type="email" placeholder="Email" />
-
-            <label style="float: left">Password</label>
-            <input class="form-control m-2" type="password" placeholder="Password" />
-
-            <button class="btn btn-primary btn-block m-2">LOG IN</button>
-
-        </div>
-    </div>
+    </form>
 </div>

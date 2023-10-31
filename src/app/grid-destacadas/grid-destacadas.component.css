@@ -128,15 +128,17 @@
 }
 
 .noticia-ppal {
-  margin-top: 3rem;
+  margin-top: 5rem;
   max-width: 100%; /* La noticia principal ocupa el 100% del ancho */
   border-bottom: 0.1rem solid black;
+  margin: 0;
 }
 
 .noticia-ppal img {
   width: 100%; /* La imagen de la noticia principal ocupa el 100% del ancho */
   height: 45rem;
   object-fit: cover;
+  margin: 2rem 0;
 }
 
 /* Estilos para el texto de la noticia */
@@ -155,4 +157,8 @@
   margin: 1rem;
   max-width: 50rem; /* Ancho máximo para noticias secundarias */
  
+}
+
+.noticia-chica img{
+  padding: 2rem 0
 }
