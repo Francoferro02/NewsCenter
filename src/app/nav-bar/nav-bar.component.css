@@ -56,15 +56,10 @@
   }
 
   button:hover{
-    display: flex;
-    font-weight: bold;
-    font-size: medium;
-    justify-content: center;
+    
     background-color: rgb(221, 221, 221);
     color: #312783;
-    border: none;
-    border-radius: 2rem;
-    padding: 1.3rem 5rem;
+    
     cursor: pointer;
     transition: 0.5s ease;
   }

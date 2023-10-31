@@ -7,4 +7,8 @@ import { Component } from '@angular/core';
 })
 export class UsuarioComponentComponent {
 
+
+  editProfile() {
+    // Agrega la lógica para editar el perfil del usuario
+  }
 }
