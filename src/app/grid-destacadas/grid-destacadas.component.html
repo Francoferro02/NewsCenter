@@ -41,16 +41,46 @@
 
 <section class="container-main">
   <div class="lista-noticias">
-    <div *ngFor="let noticia of listadoNoticiasDestacas; let first = first">
-      <div class="noticia" [ngClass]="{ 'noticia-ppal': first,'noticia-chica': !first }">
+    <div *ngFor="let noticia of listadoNoticiasDestacas; let first = first" (click)="openPopup(noticia)">
+      <div class="noticia" [ngClass]="{ 'noticia-ppal': first, 'noticia-chica': !first }">
         <div *ngIf="noticia.urlToImage">
-          <img [src]="noticia.urlToImage" alt="" (click)="redirectTo()" />
+          <img [src]="noticia.urlToImage" alt="" />
           <div class="noticia-content">
-            <h2>{{ noticia.title }}</h2>
-            <p>{{ noticia.content }}</p>
+            <h2 class="noticia-title">{{ noticia.title }}</h2>
+            <p class="noticia-text">{{ noticia.content }}</p>
           </div>
         </div>
       </div>
     </div>
   </div>
 </section>
+
+<!-- Modal para mostrar comentarios -->
+<div *ngIf="selectedNoticia" class="modal">
+  <div class="modal-content">
+    <h2>{{ selectedNoticia.title }}</h2>
+    <img [src]="selectedNoticia.urlToImage" alt="" class="noticia-img" />
+    <p>{{ selectedNoticia.content }}</p>
+    <div class="comentarios">
+      <div *ngFor="let comentario of selectedNoticia.comentario; let i = index">
+        <div class="comentario">
+          <div *ngIf="!comentario.editing">
+            <p>{{ comentario.text }}</p>
+          </div>
+          <div *ngIf="comentario.editing">
+            <input type="text" [(ngModel)]="comentario.text" />
+          </div>
+          <p class="usuario">Usuario: {{ comentario.usuario }}</p>
+          <!-- Botones para editar y eliminar el comentario si está autenticado y coincide el usuario -->
+          <button *ngIf="currentUser === comentario.usuario && !comentario.editing" (click)="comentario.editing = true">Editar</button>
+          <button *ngIf="currentUser === comentario.usuario && !comentario.editing" (click)="eliminarComentario(selectedNoticia, i)">Eliminar</button>
+          <button *ngIf="comentario.editing" (click)="guardarComentario(selectedNoticia, i)">Guardar</button>
+        </div>
+      </div>
+      <!-- Botón para agregar comentario si el usuario está autenticado -->
+      <button *ngIf="currentUser" (click)="agregarComentario(selectedNoticia, 'Nuevo comentario')">Agregar Comentario</button>
+    </div>
+    <button (click)="closePopup()">Cerrar</button>
+  </div>
+</div>
+
