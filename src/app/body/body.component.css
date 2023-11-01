@@ -12,7 +12,7 @@
     width: 60%;
     height: 100vh;
     margin-left: 5rem;
-    z-index: 0;
+    
     top: 0;
     transition: all .5s ease;
     background: rgb(255, 255, 255);

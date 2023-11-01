@@ -43,7 +43,7 @@ export class GridDestacadasComponent implements OnInit {
   agregarComentario(noticia: Noticia, textoComentario: string) {
     // Agregar lógica para agregar un comentario a la noticia
     const comentario: Comentario = {
-      text: textoComentario,
+      text: '',
       usuario: this.currentUser || '',
       editing: false
     };
