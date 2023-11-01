@@ -71,17 +71,17 @@
         <div class="botones">
 
           <button class="btn-save">
-            Guardar
+            Save
           </button>
 
           <!-- Botones de Calificación con estrellas -->
 
           <button class="btn-save">
-            Calificar
+            Rate
           </button>
 
-          <button class="btn-save" (click)="agregarComentario(selectedNoticia, 'Nuevo comentario')" >Agregar
-            Comentario</button>
+          <button class="btn-save" (click)="agregarComentario(selectedNoticia, 'Nuevo comentario')" >
+            Comment</button>
 
         </div>
       </div>
@@ -89,12 +89,12 @@
 
     <div class="comentarios">
       <div class="comentarios-guardados">
-        <h3>Comentarios</h3>
+        <h3>Comments</h3>
         <table>
           <thead>
             <tr>
-              <th>Usuario</th>
-              <th>Comentario</th>
+              <th>User</th>
+              <th>Comment</th>
             </tr>
           </thead>
           <tbody>
@@ -109,12 +109,12 @@
           </div>
              <p class="usuario">Usuario: {{ comentario.usuario }}</p> -->
           <div class="botones-comentarios">
-            <h3>Nuevo comentario</h3>
+            <h3>New Comment</h3>
             <input type="text" [(ngModel)]="comentario.text" id="comment-box" placeholder="Escriba aqui su comentario..."/>
             <div class="botones-nuevo-comentario">
-              <button (click)="comentario.editing = true">Editar</button>
-              <button (click)="eliminarComentario(selectedNoticia, i)">Eliminar</button>
-              <button (click)="guardarComentario(selectedNoticia, i)">Guardar</button>
+              <button (click)="comentario.editing = true">Edit</button>
+              <button (click)="eliminarComentario(selectedNoticia, i)">Delete</button>
+              <button (click)="guardarComentario(selectedNoticia, i)">Save</button>
             </div>
           </div>
          
@@ -123,7 +123,7 @@
       </div>
     </div>
 
-    <button (click)="closePopup()">Cerrar</button>
+    <button (click)="closePopup()">Close</button>
   </div>
 
 </div>

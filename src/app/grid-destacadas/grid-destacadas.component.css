@@ -227,18 +227,19 @@
   justify-content: flex-start;
   font-size: small;
 }
+
 .botones{
   display: flex;
   margin-top: 2rem;
-  justify-content: space-around;
+  justify-content: center;
   align-items: center;
-
 }
+
 .contenido-y-botones{
-  padding: 0 3rem 3rem 3rem;
+  margin: 7rem;
   display: flex;
   flex-direction: column;
-  justify-content: space-around;
+  justify-content: center;
 }
 
 .botones-nuevo-comentario{
