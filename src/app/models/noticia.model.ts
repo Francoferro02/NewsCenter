@@ -8,6 +8,7 @@ export class Noticia {
     title!: string;
     content!: string;
     comentario!: Comentario[];
+    url!: string;
   }
 
  

@@ -207,7 +207,6 @@
 
 .imagen-y-contenido{
   display: flex;
-  
 }
 
 .comentarios-guardados{
@@ -273,22 +272,27 @@ justify-content: center;
 
 
 .modal img{
- 
-  display: flex;
-  max-width: 50%;
+  width: 50rem;
+  height:50vh;
+  object-fit: cover;
 }
 
 .modal h2{
   margin: 2rem;
   font-weight: 800;
   font-size: x-large;
+  cursor: pointer;
 }
 
 
-.noticia-img {
-  max-width: 70%; /* Achicar la imagen para que esté acorde con el texto */
-  height: auto;
-  margin:    0;
+a{
+  text-decoration: none;
+  color: black;
+}
+
+a:hover{
+  color: rgb(30, 49, 126);
+  transition: 0.3s ease;
 }
 
 .noticia-title {

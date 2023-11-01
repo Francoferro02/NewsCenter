@@ -30,6 +30,7 @@ export class GridDestacadasComponent implements OnInit {
 
   redirectTo(){
     this.listadoNoticiasDestacas.articles.url;
+    console.log(this.listadoNoticiasDestacas.articles.url);
   }
 
   openPopup(noticia: Noticia) {

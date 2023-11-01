@@ -38,7 +38,6 @@
     </div>
   </div>
 </section>  -->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
 <section class="container-main">
   <div class="lista-noticias">
     <div *ngFor="let noticia of listadoNoticiasDestacas; let first = first" (click)="openPopup(noticia)">
@@ -59,30 +58,27 @@
 <div *ngIf="selectedNoticia" class="modal">
   <div class="modal-content">
     <!-- titulo y foto -->
-    <h2>{{ selectedNoticia.title }}</h2>
+    <h2  target="_blank">
+     {{ selectedNoticia.title }}
+    </h2>
     <div class="imagen-y-contenido">
-      <img [src]="selectedNoticia.urlToImage" alt="" class="noticia-img" />
-
+      
+        <img [src]="selectedNoticia.urlToImage" alt="" class="noticia-img" />
+        
       <div class="contenido-y-botones">
-
         <p class="resumen-noticia">{{ selectedNoticia.content }}</p>
-
         <h3>Calificacion : 3.4/5</h3>
+        <p>{{ selectedNoticia.url}}asdasdasd</p>
         <div class="botones">
-
           <button class="btn-save">
             Save
           </button>
-
           <!-- Botones de Calificación con estrellas -->
-
           <button class="btn-save">
             Rate
           </button>
-
           <button class="btn-save" (click)="agregarComentario(selectedNoticia, 'Nuevo comentario')" >
             Comment</button>
-
         </div>
       </div>
     </div>
