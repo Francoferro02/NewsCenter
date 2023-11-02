@@ -177,9 +177,7 @@
   height: 100%;
   background: rgba(0, 0, 0, 0.7);
   z-index: 1;
-  
 }
-
 .modal-content {
   background: white;
   padding: 3rem;
@@ -365,4 +363,10 @@ h4{
   justify-content:flex-start;
   margin: 3rem 0 0 5rem;
   font-style: italic;
+}
+
+.modal .noticia-img {
+  width: 60%;
+  height: auto;
+  object-fit: cover;
 }

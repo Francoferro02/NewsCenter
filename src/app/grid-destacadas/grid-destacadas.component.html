@@ -57,84 +57,66 @@
 <!-- Modal para mostrar comentarios -->
 <div *ngIf="selectedNoticia" class="modal">
   <div class="modal-content">
-    <!-- titulo y foto -->
-    <!--  <h2 (click)="redirectTo()" target="_blank">
-      <a  ></a>
-     {{ selectedNoticia.title }}
-    </h2> -->
-
     <h2>
       <a href="{{ selectedNoticia.url }}" target="_blank">{{ selectedNoticia.title }}</a>
     </h2>
     <div class="imagen-y-contenido">
-
       <img [src]="selectedNoticia.urlToImage" alt="" class="noticia-img" (click)="redirectTo()" />
-
       <div class="contenido-y-botones">
         <p class="resumen-noticia">{{ selectedNoticia.content }}</p>
-        <h3>Calificacion : 3.4/5</h3>
-
+        <h3>Calificación: 3.4/5</h3>
         <div class="botones">
-          <button class="btn-save">
-            Save
-          </button>
           <!-- Botones de Calificación con estrellas -->
-          <button class="btn-save">
-            Rate
-          </button>
-          <button class="btn-save" (click)="agregarComentario(selectedNoticia, 'Nuevo comentario')">
-            Comment</button>
+          <button class="btn-save">Rate</button>
+          <div class="btn-save" (click)="mostrarFormularioComentario()" *ngIf="!comentando">
+            <button class="btn-save" (click)="agregarComentario(selectedNoticia, '')"
+              *ngIf="!comentando">Comment</button>
+          </div>
         </div>
         <h4>Share</h4>
         <div class="social-media-icons">
-          
-          <i class="fab fa-twitter"></i>
-          <i class="fab fa-facebook"></i>
-          <i class="fab fa-whatsapp"></i>
+          <i class="fab fa-twitter" (click)="compartirEnTwitter(selectedNoticia.url)"></i>
+          <i class="fab fa-facebook" (click)="compartirEnFacebook(selectedNoticia.url)"></i>
+          <i class="fab fa-whatsapp" (click)="compartirEnWhatsApp(selectedNoticia.url)"></i>
         </div>
       </div>
-    
     </div>
-
     <div class="comentarios">
       <div class="comentarios-guardados">
         <h3>Comments</h3>
         <table>
-          <thead>
-            <tr>
-              <th>User</th>
-              <th>Comment</th>
-            </tr>
-          </thead>
+          <h3>Comentarios</h3>
           <tbody>
-            <!-- generar contenido dinamicamente -->
+            <tr *ngFor="let comentario of selectedNoticia.comentario; let i = index">
+              <td>{{ comentario?.usuario }}</td>
+              <td>
+                <div *ngIf="comentario !== comentarioEnEdicion">
+                  {{ comentario?.text }}
+                </div>
+                <div *ngIf="comentario === comentarioEnEdicion">
+                  <input type="text" [(ngModel)]="comentario.text" />
+                </div>
+              </td>
+              <td>
+                <button (click)="editarComentario(comentario)"
+                  *ngIf="comentario?.usuario === currentUser && !comentarioEnEdicion">Edit</button>
+                <button (click)="eliminarComentario(selectedNoticia, i)"
+                  *ngIf="comentario?.usuario === currentUser && !comentarioEnEdicion">Delete</button>
+                
+                <div *ngIf="comentando">
+                  <form (submit)="agregarComentario(selectedNoticia, nuevoComentario); cerrarFormularioComentario(); $event.preventDefault()">
+                    <textarea [(ngModel)]="nuevoComentario" name="nuevoComentario" placeholder="Escribe tu comentario..."></textarea>
+                    <button type="button" (click)="cerrarFormularioComentario()">Cancel</button>
+                    <button type="submit">Save</button>
+                  </form>
+                </div>
+              </td>
+            </tr>
+
           </tbody>
         </table>
       </div>
-      <div *ngFor="let comentario of selectedNoticia.comentario; let i = index">
-        <div class="comentario">
-          <!--  <div *ngIf="!comentario.editing">
-            <p>{{ comentario.text }}</p>
-          </div>
-             <p class="usuario">Usuario: {{ comentario.usuario }}</p> -->
-          <div class="botones-comentarios">
-            <h3>New Comment</h3>
-            <input type="text" [(ngModel)]="comentario.text" id="comment-box"
-              placeholder="Escriba aqui su comentario..." />
-            <div class="botones-nuevo-comentario">
-              <button (click)="comentario.editing = true">Edit</button>
-              <button (click)="eliminarComentario(selectedNoticia, i)">Delete</button>
-              <button (click)="guardarComentario(selectedNoticia, i)">Save</button>
-            </div>
-          
-          </div>
-
-          <!-- Botones para editar y eliminar el comentario si está autenticado y coincide el usuario -->
-        </div>
-      </div>
     </div>
-
     <button (click)="closePopup()">Close</button>
   </div>
-
 </div>

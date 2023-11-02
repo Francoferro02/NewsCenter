@@ -15,7 +15,9 @@ export class GridDestacadasComponent implements OnInit {
   @Input()listadoNoticiasDestacas:any;
   selectedNoticia: Noticia | null = null;
   currentUser: string | null = null;
-
+  comentando: boolean = false;
+  nuevoComentario: string = '';
+  comentarioEnEdicion: Comentario | null = null;  
 
   constructor(private router: Router){
     
@@ -27,16 +29,6 @@ export class GridDestacadasComponent implements OnInit {
   navegateTo(route : string){
     this.router.navigate(['/', route])
   }
-
-/*   redirectTo(){
-    this.selectedNoticia?.url;
-  } */
-
-/*   redirectTo() {
-    if (this.selectedNoticia) {
-      window.location.href = this.selectedNoticia.url;
-    }
-  } */
 
   redirectTo() {
     if (this.selectedNoticia) {
@@ -53,28 +45,55 @@ export class GridDestacadasComponent implements OnInit {
   }
 
   agregarComentario(noticia: Noticia, textoComentario: string) {
-    // Agregar lógica para agregar un comentario a la noticia
     const comentario: Comentario = {
-      text: '',
+      text: textoComentario,
       usuario: this.currentUser || '',
       editing: false
     };
     noticia.comentario.push(comentario);
+    this.cerrarFormularioComentario(); 
   }
 
-  editarComentario(noticia: Noticia, index: number, textoComentario: string) {
-    // Agregar lógica para editar un comentario en la noticia
-    noticia.comentario[index].text = textoComentario;
+  editarComentario(comentario: Comentario) {
+    this.comentarioEnEdicion = comentario;
   }
 
+  guardarComentario(comentario: Comentario) {
+    this.comentarioEnEdicion = null;
+    // Puedes realizar una llamada al servicio para actualizar el comentario en el servidor si es necesario.
+  }
   eliminarComentario(noticia: Noticia, index: number) {
-    // Agregar lógica para eliminar un comentario en la noticia
     noticia.comentario.splice(index, 1);
   }
-  guardarComentario(noticia: Noticia, index: number) {
-    // Agregar lógica para guardar el comentario editado
-    noticia.comentario[index].editing = false;
-    // Aquí puedes realizar una llamada al servicio para actualizar el comentario en el servidor
+  mostrarFormularioComentario() {
+    this.comentando = true;
   }
+
+  cerrarFormularioComentario() {
+    this.comentando = false;
+    this.nuevoComentario = '';
+  }
+
+  toggleComentarioForm() {
+    this.comentando = !this.comentando;
+    if (this.comentando) {
+      this.nuevoComentario = '';
+    }
+  }
+
+  compartirEnTwitter(url: string) {
+    window.open(`https://twitter.com/share?url=${encodeURIComponent(url)}`, '_blank');
+  }
+  
+  compartirEnFacebook(url: string) {
+    window.open(`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(url)}`, '_blank');
+  }
+  
+  compartirEnWhatsApp(url: string) {
+    window.open(`https://api.whatsapp.com/send?text=${encodeURIComponent(url)}`, '_blank');
+  }
+
+  
+  
 }
 
