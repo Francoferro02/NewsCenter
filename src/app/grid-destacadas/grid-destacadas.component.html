@@ -58,22 +58,22 @@
 <div *ngIf="selectedNoticia" class="modal">
   <div class="modal-content">
     <!-- titulo y foto -->
-   <!--  <h2 (click)="redirectTo()" target="_blank">
+    <!--  <h2 (click)="redirectTo()" target="_blank">
       <a  ></a>
      {{ selectedNoticia.title }}
     </h2> -->
 
-     <h2>
+    <h2>
       <a href="{{ selectedNoticia.url }}" target="_blank">{{ selectedNoticia.title }}</a>
     </h2>
     <div class="imagen-y-contenido">
-      
-        <img [src]="selectedNoticia.urlToImage" alt="" class="noticia-img" (click)="redirectTo()" />
-        
+
+      <img [src]="selectedNoticia.urlToImage" alt="" class="noticia-img" (click)="redirectTo()" />
+
       <div class="contenido-y-botones">
         <p class="resumen-noticia">{{ selectedNoticia.content }}</p>
         <h3>Calificacion : 3.4/5</h3>
-        
+
         <div class="botones">
           <button class="btn-save">
             Save
@@ -82,10 +82,18 @@
           <button class="btn-save">
             Rate
           </button>
-          <button class="btn-save" (click)="agregarComentario(selectedNoticia, 'Nuevo comentario')" >
+          <button class="btn-save" (click)="agregarComentario(selectedNoticia, 'Nuevo comentario')">
             Comment</button>
         </div>
+        <h4>Share</h4>
+        <div class="social-media-icons">
+          
+          <i class="fab fa-twitter"></i>
+          <i class="fab fa-facebook"></i>
+          <i class="fab fa-whatsapp"></i>
+        </div>
       </div>
+    
     </div>
 
     <div class="comentarios">
@@ -105,20 +113,22 @@
       </div>
       <div *ngFor="let comentario of selectedNoticia.comentario; let i = index">
         <div class="comentario">
-         <!--  <div *ngIf="!comentario.editing">
+          <!--  <div *ngIf="!comentario.editing">
             <p>{{ comentario.text }}</p>
           </div>
              <p class="usuario">Usuario: {{ comentario.usuario }}</p> -->
           <div class="botones-comentarios">
             <h3>New Comment</h3>
-            <input type="text" [(ngModel)]="comentario.text" id="comment-box" placeholder="Escriba aqui su comentario..."/>
+            <input type="text" [(ngModel)]="comentario.text" id="comment-box"
+              placeholder="Escriba aqui su comentario..." />
             <div class="botones-nuevo-comentario">
               <button (click)="comentario.editing = true">Edit</button>
               <button (click)="eliminarComentario(selectedNoticia, i)">Delete</button>
               <button (click)="guardarComentario(selectedNoticia, i)">Save</button>
             </div>
+          
           </div>
-         
+
           <!-- Botones para editar y eliminar el comentario si está autenticado y coincide el usuario -->
         </div>
       </div>

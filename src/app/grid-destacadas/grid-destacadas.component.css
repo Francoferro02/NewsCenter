@@ -235,7 +235,7 @@
 }
 
 .contenido-y-botones{
-  margin: 7rem;
+  margin: 1rem;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -276,6 +276,7 @@ justify-content: center;
   width: 50rem;
   height:50vh;
   object-fit: cover;
+  cursor: pointer;
 }
 
 .modal h2{
@@ -335,4 +336,33 @@ button {
     height: 10vh; /* Establece la altura deseada en píxeles */
     font-size: 16px; /* Opcional: ajusta el tamaño de fuente según tus preferencias */
 
+}
+
+.social-media-icons{
+ margin: 2rem 0 0 0;
+ display: flex;
+ justify-content: center;
+ gap: 2rem
+
+}
+
+.social-media-icons i {
+  font-size: 3rem; /* Modifica el tamaño de los iconos */
+  color: black; /* Cambia el color predeterminado de los iconos */
+  transition: color 0.3s; /* Agrega una transición suave al cambiar el color */
+  border: 0.1rem solid rgb(124, 124, 124);
+  border-radius: 50%;
+  padding: 1rem;
+
+}
+
+.social-media-icons i:hover {
+  color: rgb(30, 49, 126); /* Cambia el color a azul cuando se pasa el mouse por encima */
+}
+
+h4{
+  display: flex;
+  justify-content:flex-start;
+  margin: 3rem 0 0 5rem;
+  font-style: italic;
 }
