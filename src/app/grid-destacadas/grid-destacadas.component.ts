@@ -47,7 +47,7 @@ export class GridDestacadasComponent implements OnInit {
   agregarComentario(noticia: Noticia, textoComentario: string) {
     const comentario: Comentario = {
       text: textoComentario,
-      usuario: this.currentUser || '',
+      usuario: this.currentUser || 'anonymous',
       editing: false
     };
     noticia.comentario.push(comentario);
@@ -65,8 +65,10 @@ export class GridDestacadasComponent implements OnInit {
   eliminarComentario(noticia: Noticia, index: number) {
     noticia.comentario.splice(index, 1);
   }
+
   mostrarFormularioComentario() {
-    this.comentando = true;
+    this.toggleComentarioForm()
+    console.log(this.comentando)
   }
 
   cerrarFormularioComentario() {
