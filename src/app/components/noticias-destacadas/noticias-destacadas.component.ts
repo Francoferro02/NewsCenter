@@ -24,6 +24,7 @@ export class NoticiasDestacadasComponent implements OnInit {
           urlToImage: article.urlToImage,
           title: article.title,
           content: article.content,
+          url: article.url,
           comentario: []
         };
       });

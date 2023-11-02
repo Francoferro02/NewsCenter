@@ -248,6 +248,7 @@ justify-content: center;
 .resumen-noticia{
   text-align: left;
   padding: 4rem;
+  font-size: medium;
 }
 
 .modal button{

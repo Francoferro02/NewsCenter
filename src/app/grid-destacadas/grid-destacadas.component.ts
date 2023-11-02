@@ -28,9 +28,20 @@ export class GridDestacadasComponent implements OnInit {
     this.router.navigate(['/', route])
   }
 
-  redirectTo(){
-    this.listadoNoticiasDestacas.articles.url;
-    console.log(this.listadoNoticiasDestacas.articles.url);
+/*   redirectTo(){
+    this.selectedNoticia?.url;
+  } */
+
+/*   redirectTo() {
+    if (this.selectedNoticia) {
+      window.location.href = this.selectedNoticia.url;
+    }
+  } */
+
+  redirectTo() {
+    if (this.selectedNoticia) {
+      window.open(this.selectedNoticia.url, "_blank");
+    }
   }
 
   openPopup(noticia: Noticia) {
