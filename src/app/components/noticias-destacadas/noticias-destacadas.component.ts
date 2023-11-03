@@ -25,7 +25,9 @@ export class NoticiasDestacadasComponent implements OnInit {
           title: article.title,
           content: article.content,
           url: article.url,
-          comentario: []
+          comentario: [],
+          rating: 0,
+          CantidadCalificaciones: 0,
         };
       });
     });

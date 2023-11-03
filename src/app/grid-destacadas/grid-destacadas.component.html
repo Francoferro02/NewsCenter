@@ -1,43 +1,4 @@
-<!-- <section class="container-main">
-    <div class="lista-noticias">
-      <div *ngFor="let noticia of listadoNoticiasDestacas; let first = first">
-        <div class="noticia" [ngClass]="{ 'noticia-ppal': first }">
-          <div *ngIf="noticia.urlToImage">
-            <img [src]="noticia.urlToImage" alt="" (click)="redirectTo()" />
-            <div>
-              <h2>{{ noticia.title }}</h2>
-              <p>{{ noticia.content }}</p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
- -->
-
-<!--  <section class="container-main">
-  <div class="lista-noticias">
-    <div *ngFor="let noticia of listadoNoticiasDestacas; let first = first">
-      <div class="noticia" [ngClass]="{ 'noticia-ppal': first }">
-        <div *ngIf="noticia.urlToImage">
-          <img [src]="noticia.urlToImage" alt="" (click)="redirectTo()" />
-          <div>
-            <h2>{{ noticia.title }}</h2>
-            <p>{{ noticia.content }}</p>
-          </div>
-        </div>
-      </div>
-      <div *ngIf="!first" class="noticia-tarjeta">
-        <!-- Contenido de la noticia en tarjeta 
-        <img [src]="noticia.urlToImage" alt="" />
-        <div>
-          <h2>{{ noticia.title }}</h2>
-          <p>{{ noticia.content }}</p>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>  -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
 <section class="container-main">
   <div class="lista-noticias">
     <div *ngFor="let noticia of listadoNoticiasDestacas; let first = first" (click)="openPopup(noticia)">
@@ -64,14 +25,25 @@
       <img [src]="selectedNoticia.urlToImage"  class="noticia-img" (click)="redirectTo()" />
       <div class="contenido-y-botones">
         <p class="resumen-noticia">{{ selectedNoticia.content }}</p>
-        <h3>Calificación: 3.4/5</h3>
+        <h3>Calificación: {{ selectedNoticia.rating }}</h3>
+        
         <div class="botones">
           <!-- Botones de Calificación con estrellas -->
-          <button class="btn-save">Rate</button>
+          <button class="btn-save" (click)="ratingByStars()">Rate</button>
           
           <button class="btn-save" (click)="mostrarFormularioComentario()">Comment</button>
           
           <button class="btn-save">Save</button>
+        </div>
+        <div class="rating" *ngIf="rated">
+          <div class="rating">
+            <!-- estan al reves porque para que se pinten tuve que darlas vuelta con el flex direction -->
+            <i class="fa fa-star " (click)="rate(5)"></i>
+            <i class="fa fa-star " (click)="rate(4)"></i>
+            <i class="fa fa-star " (click)="rate(3)"></i>
+            <i class="fa fa-star " (click)="rate(2)"></i>
+            <i class="fa fa-star " (click)="rate(1)"></i>
+          </div>
         </div>
         <h4>Share</h4>
         <div class="social-media-icons">

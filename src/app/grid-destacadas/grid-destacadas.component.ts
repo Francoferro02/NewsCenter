@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { clippingParents } from '@popperjs/core';
 import { Comentario, Noticia } from '../models/noticia.model';
 
 
@@ -16,8 +17,10 @@ export class GridDestacadasComponent implements OnInit {
   selectedNoticia: Noticia | null = null;
   currentUser: string | null = null;
   comentando: boolean = false;
+  rated: boolean = false;
   nuevoComentario: string = '';
   comentarioEnEdicion: Comentario | null = null;  
+
 
   constructor(private router: Router){
     
@@ -68,7 +71,7 @@ export class GridDestacadasComponent implements OnInit {
 
   mostrarFormularioComentario() {
     this.toggleComentarioForm()
-    console.log(this.comentando)
+   
   }
 
   cerrarFormularioComentario() {
@@ -82,6 +85,20 @@ export class GridDestacadasComponent implements OnInit {
       this.nuevoComentario = '';
     }
   }
+
+
+  ratingByStars(){
+    this.rated = !this.rated;
+  }
+  rate(ratingStar: number) {
+    if (this.selectedNoticia) {
+      console.log(this.selectedNoticia.rating)
+      this.selectedNoticia.CantidadCalificaciones += 1;
+      this.selectedNoticia.rating = (this.selectedNoticia.rating * (this.selectedNoticia.CantidadCalificaciones - 1) + ratingStar) / this.selectedNoticia.CantidadCalificaciones;
+    }
+    console.log(this.selectedNoticia?.rating);
+  }
+
 
   compartirEnTwitter(url: string) {
     window.open(`https://twitter.com/share?url=${encodeURIComponent(url)}`, '_blank');

@@ -1,107 +1,3 @@
-/* .container-main {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 2rem 0;
-  }
-  
-
-   .lista-noticias .noticia {
-    margin: 2rem 0;
-  } 
-  
-  .lista-noticias .noticia:nth-child(1) {
-    margin: 2rem 0;
-    grid-column: 1/7;
-    border-bottom: 0.1rem solid black;
-  }
-  
-  .lista-noticias .noticia:nth-child(1) img {
-    width: 100%;
-    height: 40rem;
-    object-fit: cover;
-  }
-  
- /*  .lista-noticias .texto-noticia .noticia-ppal {
-    display: flex;
-    flex-direction: row;
-    padding: 1rem;
-    justify-content: center;
-    padding: 2rem;
-  }
-   
-
-
-
-
-  /* .lista-noticias .noticia:nth-child(2) {
-    grid-column: 1/4;
-    display: flex;
-  }
-  
-  .lista-noticias .texto-noticia-ppal .noticia-ppal {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-  }
-  
-  .lista-noticias .texto-noticia-ppal .noticia-ppal h2 {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-size: x-large;
-    font-weight: 900;
-    grid-column: 1/5;
-  }
-  
-  .lista-noticias .texto-noticia-ppal .noticia-ppal h3 {
-    grid-column: 1;
-    font-size: large;
-    font-style: italic;
-  }
-  
-  .lista-noticias .texto-noticia-ppal .noticia-ppal p {
-    grid-column: 2/5;
-    font-size: medium;
-    font-weight: 400;
-  }
-  
-  .lista-noticias .noticia:nth-child(3) {
-    grid-column: 4/7;
-    display: flex;
-  }
-  
-  .lista-noticias .noticia:nth-child(4) {
-    grid-column: 1/3;
-    padding-right: 1rem;
-  }
-  
-  .lista-noticias .noticia:nth-child(5) {
-    grid-column: 3/5;
-    padding-left: 2rem;
-    padding-right: 2rem;
-    border-left: 0.1rem solid black;
-    border-right: 0.1rem solid black;
-  }
-  
-  .lista-noticias .noticia:nth-child(6) {
-    grid-column: 5/7;
-    padding-left: 1rem;
-  }
-  
-  .lista-noticias .noticia img,
-  .lista-noticias .noticia-ppal img {
-    height: 20rem;
-    object-fit: cover;
-    width: 100%;
-  }
- */
-/* 
- .noticia-tarjeta {
-  border: 1px solid #ccc;  Borde de la tarjeta 
-  padding: 10px;  Espaciado interno de la tarjeta 
-  margin: 10px;  Espaciado entre tarjetas 
-  display: flex;  Establece la tarjeta como contenedor flex 
-} */ 
 
 .container-main {
   display: flex;
@@ -401,3 +297,26 @@ font-size: medium;
 border-bottom: 0.1rem solid black;
 padding: 3rem 10rem 0 0;
 }
+
+.rating {
+  font-size: 2rem;
+  display: flex;
+  flex-direction: row-reverse;
+  justify-content: center;
+}
+
+.fa-star {
+  margin-top: 2rem;
+  color: gray;
+  cursor: pointer;
+}
+
+.fa-star:hover  {
+  color: orange;
+}
+
+.rating i:hover,
+.rating i:hover ~ .fa-star {
+  color: orange;
+}
+

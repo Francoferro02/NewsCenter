@@ -9,6 +9,8 @@ export class Noticia {
     content!: string;
     comentario!: Comentario[];
     url!: string;
+    rating: number = 0;
+    CantidadCalificaciones : number = 0 ;
   }
 
  
