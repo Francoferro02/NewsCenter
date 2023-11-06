@@ -39,21 +39,28 @@ export class SignUpFormComponent implements OnInit {
         signUpEmail: this.signUpEmail?.value || '',
         signUpPassword: this.signUpPassword?.value || '',
       };
-      this.userService.loginUser(user.signUpEmail.value, user.signUpPassword.value)
-        .subscribe((user) => {
-          if (user) {
+      this.userService.loginUser(user.signUpEmail, user.signUpPassword)
+        .subscribe(
+          (_loggedInUser) => {
             this.loggedIn = true;
             this.loggedInChange.emit(this.loggedIn);
             this.showSuccessMessage();
             this.closePopup1();
+          },
+          (_error) => {
+            this.showFailMessage();
           }
-        });
+        );
     }
   }
+  
   
 
   showSuccessMessage(){
     alert('Log In Success');
+  }
+  showFailMessage(){
+    alert('Log In Failed');
   }
   
   closePopup1() {

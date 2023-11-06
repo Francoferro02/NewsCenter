@@ -4,4 +4,7 @@ export class User  {
     surname!: String;
     email!: String;
     password!: String;
+    location!: String;
+    rolBio!: String;
+    join!: Date;
 }

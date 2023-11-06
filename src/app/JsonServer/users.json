@@ -1,25 +1,14 @@
 {
   "users": [
     {
-      "name": "Franco",
-      "surname": "Ferro",
+      "name": "Jorgue",
+      "surname": "Gonzales",
       "email": "francoandresferro@gmail.com",
       "password": "1234",
+      "location": "Mar del Plata",
+      "rolbio": "Web Developer",
+      "join": "6/11/2023",
       "id": 1
-    },
-    {
-      "name": "Axel",
-      "surname": "Dominguez",
-      "email": "axeldominguez@gmail.com",
-      "password": "1234",
-      "id": 2
-    },
-    {
-      "name": "gordito",
-      "surname": "forro",
-      "email": "gordiforro@gmail.com",
-      "password": "1234",
-      "id": 3
     }
   ],
   "comentarios": []

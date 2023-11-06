@@ -31,7 +31,29 @@
             </div>
           </div>
         </div>
+        <label style="float: left">Location</label>
 
+        <input class="form-control m-2" type="text" placeholder="Your location" name="location" formControlName="location"
+        value="" />
+        <div class="row" *ngIf="!location?.['valid'] && (location?.['dirty'])">
+          <div class="col-lg-12">
+            <div class="alert alert-danger" role="alert" *ngIf="location?.errors?.['required']">
+              Location is required
+            </div>
+          </div>
+        </div>
+
+        <label style="float: left">Tech Rol</label>
+
+        <input class="form-control m-2" type="text" placeholder="Your rol" name="rolbio" formControlName="rolbio"
+        value="" />
+        <div class="row" *ngIf="!rolbio?.['valid'] && (rolbio?.['dirty'])">
+          <div class="col-lg-12">
+            <div class="alert alert-danger" role="alert" *ngIf="rolbio?.errors?.['required']">
+              Your rol is required
+            </div>
+          </div>
+        </div>
         <label style="float: left">Email</label>
         <input class="form-control m-2" type="email" placeholder="Email" name="email" formControlName="email" value="" />
 

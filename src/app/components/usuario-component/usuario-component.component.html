@@ -4,16 +4,37 @@
 <div class="center-container">
     <div class="user-profile-card">
         <div class="user-avatar">
-            <img src="../../../assets/img/23 1080.jpg" alt="User Avatar">
+            <img src="../../../assets/21104.png" alt="User Avatar">
         </div>
-        <h2 class="user-name">Axel Do</h2>
-        <p class="user-bio">Web Developer</p>
+        <h2 class="user-name">{{editingUser ? (editingUser.name || 'No name') : (user?.name || 'No name')}}</h2>
+        <h2 class="user-surname">{{editingUser ? (editingUser.surname || 'No surname') : (user?.surname  || 'No surname')}}</h2>
+
+        <p class="user-bio">{{editingUser ? (editingUser.rolBio || 'No information') : (user?.rolBio || 'No information')}}</p>
         <div class="user-info">
-            <p><strong>Email:</strong> johndoe@example.com</p>
-            <p><strong>Location:</strong> New York, USA</p>
-            <p><strong>Joined:</strong> April 2022</p>
+            <p><strong>Email:</strong> {{user?.email}}</p>
+            <p><strong>Location:</strong> {{user?.location}}</p>
+            <p><strong>Joined:</strong> {{user?.join}}</p>
         </div>
-        <button class="btn btn-primary" (click)="editProfile()">Edit Profile</button>
+        <button class="btn btn-primary" (click)="openModal()">Edit Profile</button>
+        <div class="modal" *ngIf="showModal">
+            <div class="modal-content">
+                    <form (submit)="updateField('name')">
+                      <input [ngModel]="editingUser?.name" (ngModelChange)="onNameChange($event)" name="name" required>
+                      <button type="submit">Guardar</button>
+                    </form>
+                    <form (submit)="updateField('surname')">
+                        <input [ngModel]="editingUser?.surname" (ngModelChange)="onSurnameChange($event)" name="surname" required>
+                        <button type="submit">Guardar</button>
+                      </form>
+                    <button (click)="closeModal()">Cerrar</button>
+            </div>
+        </div>
+        <ul>
+            <li *ngFor="let user of users">
+              {{user.name}}
+              <button (click)="deleteUser(user.id)">Eliminar</button>
+            </li>
+          </ul>
     </div>
 
     <div class="saved-news">

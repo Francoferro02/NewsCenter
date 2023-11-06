@@ -69,6 +69,5 @@ export class NavBarComponent  implements OnInit{
   updateLoggedInValue(loggedIn: boolean) {
     this.loggedIn = loggedIn;
     console.log(this.loggedIn);
-   
   }
 }

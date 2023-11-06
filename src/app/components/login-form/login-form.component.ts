@@ -11,13 +11,6 @@ export class LoginFormComponent implements OnInit {
   @Input() showPopup: boolean = true;
   @Output() closePopupEvent = new EventEmitter<void>();
 
-
-  /* loginForm = new FormGroup({
-    name : new FormControl('', [Validators.required]),
-    email : new FormControl('', [Validators.required]),
-    password : new FormControl('', [Validators.required]),
-  }) */
-
   loginForm: FormGroup;
 
   constructor(private formBuilder: FormBuilder, private userService: UserService) {
@@ -25,7 +18,10 @@ export class LoginFormComponent implements OnInit {
       name: ['', Validators.required],
       surname: ['', Validators.required],
       email: ['', Validators.required],
-      password: ['', Validators.required]
+      password: ['', Validators.required],
+      location: ['', Validators.required],
+      rolbio: ['', Validators.required],
+      join: Date.now()
     });
   }
 
@@ -37,6 +33,10 @@ export class LoginFormComponent implements OnInit {
   get email(){return this.loginForm.get('email')}
   get password(){return this.loginForm.get('password')}
   get surname(){return this.loginForm.get('surname')}
+  get location(){return this.loginForm.get('location')}
+  get rolbio(){return this.loginForm.get('rolbio')}
+
+
 
 
   onSubmit() {

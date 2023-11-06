@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, Observable, map, tap } from 'rxjs';
+import { BehaviorSubject, Observable, map, of, switchMap, tap, throwError } from 'rxjs';
 import { User } from 'src/app/models/user.model';
 
 @Injectable({
@@ -19,20 +19,26 @@ export class UserService {
   }
 
   createUser(user: any): Observable<any> {
+    user.join = new Date().toLocaleDateString();
     return this.http.post(`${this.url}/users`, user);
   }
 
+  
   loginUser(email: string, password: string): Observable<any> {
-    return this.http.get<any[]>(`http://localhost:3000/users?signUpEmail=${email}&signUpPassword=${password}`)
+    return this.http.get<any[]>(`${this.url}/users?email=${email}&password=${password}`)
       .pipe(
         map(users => users.length > 0 ? users[0] : null),
-        tap(user => {
+        switchMap(user => {
           if (user) {
             this.loggedInUserSubject.next(user);
+            return of(user);
+          } else {
+            return throwError('Credenciales inválidas');
           }
         })
       );
   }
+  
 
   logoutUser(): void {
     this.loggedInUserSubject.next(null);
@@ -40,5 +46,14 @@ export class UserService {
 
   getLoggedInUser(): Observable<any> {
     return this.loggedInUserSubject.asObservable();
+  }
+
+  deleteUser(id:number): Observable<any> {
+     return this.http.delete<any[]>(`${this.url}/users/${id}`);
+  }
+
+  updateUser(user:any): Observable<any>{
+    const userId = user.id; // Asume que el usuario tiene un campo 'id'
+    return this.http.put(`${this.url}/users/${userId}`, user);
   }
 }
