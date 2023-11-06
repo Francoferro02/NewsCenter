@@ -14,7 +14,8 @@
     <div *ngIf="!loggedIn">
       <button class="register-button" (click)="openRegisterPopup()">Register</button>
     </div>
-    <div *ngIf="loggedIn">
+    <div *ngIf="loggedIn" class="boton-y-usuario">
+      <span *ngIf="user" class="span-usuario">Bienvenido , {{user.name}}</span>
       <button class="log-in-button" (click)="logout()">Log Out</button>
     </div>
   </div>

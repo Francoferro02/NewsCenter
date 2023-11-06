@@ -1,5 +1,6 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { UserService } from '../components/Services/user.service';
+import {User} from 'src/app/models/user.model'
 
 
 @Component({
@@ -14,13 +15,17 @@ export class NavBarComponent  implements OnInit{
   @Output() closePopupEvent = new EventEmitter<void>();
   
 
+  user : User |null ;
 
-  constructor(private userService: UserService) {}
+  constructor(private userService: UserService) {
+    this.user = null;
+  }
 
   ngOnInit() {
     this.userService.getLoggedInUser().subscribe((user) => {
+      this.user = user
       this.updateLoggedInValue(!!user);
-      console.log(user); // Update the value of loggedIn
+       // Update the value of loggedIn
     });
    
   }
@@ -64,5 +69,6 @@ export class NavBarComponent  implements OnInit{
   updateLoggedInValue(loggedIn: boolean) {
     this.loggedIn = loggedIn;
     console.log(this.loggedIn);
+   
   }
 }
