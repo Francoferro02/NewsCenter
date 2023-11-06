@@ -33,9 +33,11 @@ export class UserService {
         })
       );
   }
+
   logoutUser(): void {
     this.loggedInUserSubject.next(null);
   }
+
   getLoggedInUser(): Observable<any> {
     return this.loggedInUserSubject.asObservable();
   }

@@ -1,6 +1,7 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { UserService } from '../components/Services/user.service';
 
+
 @Component({
   selector: 'app-nav-bar',
   templateUrl: './nav-bar.component.html',
@@ -8,14 +9,20 @@ import { UserService } from '../components/Services/user.service';
 })
 export class NavBarComponent  implements OnInit{
   @Input() showPopup: boolean = false;
-  @Input() showPopup1: boolean = false;
+  @Input() showPopup1: boolean = false
+  @Input() loggedIn : boolean = false;
   @Output() closePopupEvent = new EventEmitter<void>();
-  loggedIn: boolean = false;
+  
+
+
   constructor(private userService: UserService) {}
+
   ngOnInit() {
     this.userService.getLoggedInUser().subscribe((user) => {
-      this.loggedIn = !!user;
+      this.updateLoggedInValue(!!user);
+      console.log(user); // Update the value of loggedIn
     });
+   
   }
   detectarEnter(){
     document.addEventListener("DOMContentLoaded", () => {
@@ -50,14 +57,12 @@ export class NavBarComponent  implements OnInit{
     this.showPopup1 = false;
   }
 
-  login(email: string, password: string) {
-    const success = this.userService.loginUser(email, password);
-    if (success) {
-      this.showPopup = false;
-    }
-  }
-
   logout() {
     this.userService.logoutUser();
+  }
+
+  updateLoggedInValue(loggedIn: boolean) {
+    this.loggedIn = loggedIn;
+    console.log(this.loggedIn);
   }
 }

@@ -1,6 +1,8 @@
 import { Component, EventEmitter, Input, Output, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators, FormBuilder } from '@angular/forms';
 import { UserService } from '../Services/user.service';
+import { compileNgModule } from '@angular/compiler';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-sign-up-form',
@@ -9,8 +11,9 @@ import { UserService } from '../Services/user.service';
 })
 export class SignUpFormComponent implements OnInit {
   @Input() showPopup1: boolean = true;
+  @Output() loggedInChange = new EventEmitter<boolean>();
   @Output() closePopupEvent = new EventEmitter<void>();
-
+  loggedIn: boolean = false;
   
   signUpForm: FormGroup
 
@@ -23,7 +26,7 @@ export class SignUpFormComponent implements OnInit {
 
 
   ngOnInit(){
-
+  
   }
 
  
@@ -36,11 +39,18 @@ export class SignUpFormComponent implements OnInit {
         signUpEmail: this.signUpEmail?.value || '',
         signUpPassword: this.signUpPassword?.value || '',
       };
-      this.userService.loginUser(user.signUpEmail.value, user.signUpPassword.value);
-      this.showSuccessMessage()
-      this.closePopup1()
+      this.userService.loginUser(user.signUpEmail.value, user.signUpPassword.value)
+        .subscribe((user) => {
+          if (user) {
+            this.loggedIn = true;
+            this.loggedInChange.emit(this.loggedIn);
+            this.showSuccessMessage();
+            this.closePopup1();
+          }
+        });
     }
   }
+  
 
   showSuccessMessage(){
     alert('Log In Success');
