@@ -1,0 +1,26 @@
+{
+  "users": [
+    {
+      "name": "Franco",
+      "surname": "Ferro",
+      "email": "francoandresferro@gmail.com",
+      "password": "1234",
+      "id": 1
+    },
+    {
+      "name": "Axel",
+      "surname": "Dominguez",
+      "email": "axeldominguez@gmail.com",
+      "password": "1234",
+      "id": 2
+    },
+    {
+      "name": "gordito",
+      "surname": "forro",
+      "email": "gordiforro@gmail.com",
+      "password": "1234",
+      "id": 3
+    }
+  ],
+  "comentarios": []
+}

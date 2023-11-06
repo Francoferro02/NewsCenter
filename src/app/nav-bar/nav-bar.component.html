@@ -8,10 +8,15 @@
     </div>
   </div>
   <div class="button-container">
-    <div>
-      <button class="log-in-button" (click)="showPopup1 = true">Log in</button>
+    <div *ngIf="!loggedIn">
+      <button class="log-in-button" (click)="openLoginPopup()">Log in</button>
     </div>
-    <div><button class="register-button" (click)="showPopup = true">Register</button></div>
+    <div *ngIf="!loggedIn">
+      <button class="register-button" (click)="openRegisterPopup()">Register</button>
+    </div>
+    <div *ngIf="loggedIn">
+      <button class="log-out-button" (click)="logout()">Log Out</button>
+    </div>
   </div>
   <div *ngIf="showPopup1" class="popup-container1">
     <app-sign-up-form [showPopup1]="showPopup1" (closePopupEvent)="closePopup1()"></app-sign-up-form>

@@ -19,6 +19,18 @@
             </div>
           </div>
         </div>
+        <label style="float: left">Surname</label>
+
+        <input class="form-control m-2" type="text" placeholder="Your surname" name="surname" formControlName="surname"
+          value="" />
+          
+        <div class="row" *ngIf="!surname?.['valid'] && (surname?.['dirty'])">
+          <div class="col-lg-12">
+            <div class="alert alert-danger" role="alert" *ngIf="surname?.errors?.['required']">
+              Surname is required
+            </div>
+          </div>
+        </div>
 
         <label style="float: left">Email</label>
         <input class="form-control m-2" type="email" placeholder="Email" name="email" formControlName="email" value="" />
