@@ -22,7 +22,7 @@ export class GridDestacadasComponent implements OnInit {
   nuevoComentario: string = '';
   comentarioEnEdicion: Comentario | null = null;  
   user : User |null  ;
-
+  nextCommentId: number = 1;
   constructor(private router: Router, private userService: UserService, private http: HttpClient){
     this.user = null;
   }
@@ -62,34 +62,50 @@ export class GridDestacadasComponent implements OnInit {
     this.selectedNoticia = null;
   }
 
+ 
   agregarComentario(noticia: Noticia, textoComentario: string) {
-    const comentario: Comentario = {
-      text: textoComentario,
-      usuario: (this.user?.name as string) || 'anonymous',
-      editing: false,
-      urlNoticia: noticia.url
-    };
-
-    noticia.comentario.push(comentario);
-    
-    fetch('http://localhost:3000/comentarios', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify(comentario)
-    })
-    .then((response) => response.json())
-    .then((data) => {
-      console.log('Comentario guardado en el servidor JSON:', data);
-    })
-    .catch((error) => {
-      console.error('Error al guardar el comentario en el servidor JSON:', error);
-    });
-
-
+    fetch('http://localhost:3000/contador')
+      .then((response) => response.json())
+      .then((contadorData) => {
+        const contador = contadorData.valor; 
+        
+        const comentario: Comentario = {
+          idComentario: contador,
+          text: textoComentario,
+          usuario: (this.user?.name as string) || 'anonymous',
+          editing: false,
+          urlNoticia: noticia.url,
+        };
+                contadorData.valor = contador + 1;
+        fetch('http://localhost:3000/comentarios', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(comentario),
+        })
+        .then((response) => response.json())
+        .then((data) => {
+          console.log('Comentario guardado en el servidor JSON:', data);
+          
+          fetch('http://localhost:3000/contador', {
+            method: 'PUT',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(contadorData),
+          });
+        })
+        .catch((error) => {
+          console.error('Error al guardar el comentario en el servidor JSON:', error);
+        });
+      })
+      .catch((error) => {
+        console.error('Error al obtener el valor del contador desde el servidor JSON:', error);
+      });
+  
     this.cerrarFormularioComentario();
-}
+  }
 
 
 
@@ -131,7 +147,32 @@ guardarNoticiaEnPerfil() {
 
 
   eliminarComentario(noticia: Noticia, index: number) {
-    noticia.comentario.splice(index, 1);
+    const comentario = noticia.comentario[index];
+  
+    if (!comentario) {
+      console.error('El comentario no existe en la posición especificada.');
+      return;
+    }
+  
+    fetch(`http://localhost:3000/comentarios/${comentario.idComentario}`, {
+      method: 'DELETE',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    })
+      .then((response) => {
+        if (response.status === 204) {
+          // Éxito: el comentario se eliminó correctamente.
+          console.log('Comentario eliminado en el servidor JSON.');
+          // Ahora, también deberías eliminar el comentario localmente de la noticia.
+          noticia.comentario.splice(index, 1);
+        } else {
+          console.error('No se pudo eliminar el comentario en el servidor JSON.');
+        }
+      })
+      .catch((error) => {
+        console.error('Error al eliminar el comentario en el servidor JSON:', error);
+      });
   }
 
   mostrarFormularioComentario() {

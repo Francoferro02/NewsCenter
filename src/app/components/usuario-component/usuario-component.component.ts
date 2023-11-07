@@ -19,6 +19,10 @@ export class UsuarioComponentComponent implements OnInit {
 
   showModal: boolean = false;
 
+  selectedImageURL: string | null = null;
+
+  editedUser: User | null = null;
+
   constructor(private userService: UserService){
     this.user = null;
   }
@@ -27,6 +31,7 @@ export class UsuarioComponentComponent implements OnInit {
       this.user = user
       this.users = this.users;
       this.editingUser = { ...user };
+      this.editedUser = { ...user };
   })}
   
   deleteUser(userId: number) {
@@ -58,9 +63,15 @@ export class UsuarioComponentComponent implements OnInit {
     if (this.editingUser) {
       this.userService.updateUser(this.editingUser).subscribe(() => {
         this.user = this.editingUser;
-        this.editedField = null;
       });
     }
+    if (this.editedUser) {
+      this.user = { ...this.editedUser };
+      if (field === 'image' && this.selectedImageURL) {
+        this.user.img = this.selectedImageURL;
+      }
+    }
+    this.editedField = null;
   }
 
   onNameChange(newName: string) {
@@ -73,12 +84,55 @@ export class UsuarioComponentComponent implements OnInit {
       this.editingUser.surname = newSurname;
     }
   }
+  onEmailChange(newEmail: string) {
+    if (this.editingUser) {
+      this.editingUser.email = newEmail;
+    }
+  }
+  onLocationChange(newLocation: string) {
+    if (this.editingUser) {
+      this.editingUser.location = newLocation;
+    }
+  }
+  onInfoBioChange(newInfoBio: string) {
+    if (this.editingUser) {
+      this.editingUser.rolBio = newInfoBio;
+    }
+  }
+  onPasswordChange(newPassword: string) {
+    if (this.editingUser) {
+      this.editingUser.password = newPassword;
+    }
+  }
+
+  onImageChange(event: any) {
+    const fileList: FileList = event.target.files;
+    if (fileList.length > 0) {
+      const selectedImage = fileList[0];
+      this.selectedImageURL = URL.createObjectURL(selectedImage);
+    }
+  }
+
   openModal() {
     this.showModal = true;
   }
 
   closeModal() {
     this.showModal = false;
+    if (this.editedUser) {
+      this.user = {
+        id: this.editedUser.id || 0, 
+        name: this.editedUser.name || '',
+        surname: this.editedUser.surname || '',
+        email: this.editedUser.email || '',
+        password: this.editedUser.password || '',
+        location: this.editedUser.location || '',
+        join: this.editedUser.join || new Date(),
+        rolBio: this.editedUser.rolBio || '',
+        savedNews: this.editedUser.savedNews || [],
+        img: this.editedUser.img || ''
+      };
+    }
   }
 
 }

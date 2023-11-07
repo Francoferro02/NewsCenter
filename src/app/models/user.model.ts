@@ -8,4 +8,5 @@ export class User  {
     join!: Date;
     rolBio! : string;
     savedNews! :string[];
+    img!: String;
 }

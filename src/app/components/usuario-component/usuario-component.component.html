@@ -4,8 +4,8 @@
 <div class="center-container">
     <div class="user-profile-card">
         <div class="user-avatar">
-            <img src="../../../assets/21104.png" alt="User Avatar">
-        </div>
+            <img [src]="selectedImageURL || '../../../assets/21104.png'" alt="User Avatar">
+          </div>
         <h2 class="user-name">{{editingUser ? (editingUser.name || 'No name') : (user?.name || 'No name')}}</h2>
         <h2 class="user-surname">{{editingUser ? (editingUser.surname || 'No surname') : (user?.surname  || 'No surname')}}</h2>
 
@@ -19,15 +19,35 @@
         <div class="modal" *ngIf="showModal">
             <div class="modal-content">
                 <h2 class="edit-profile-title">Edit Profile Data</h2>
+                <form class="modal-submit" (submit)="updateField('image')">
+                    <label for="name">Avatar Image</label>
+                    <span class="button-space"></span> 
+                    <label for="imageInput" class="custom-image-button">Select Image</label>
+                    <input type="file" id="imageInput" (change)="onImageChange($event)" class="image-input" accept="image/*">
+                    <span class="button-space"></span> 
+                  </form>
                     <form class="modal-submit" (submit)="updateField('name')">
                      <label for="name">Name</label>
                       <input class="input-edit" [ngModel]="editingUser?.name" (ngModelChange)="onNameChange($event)" name="name" required>
-                      <button class="btn btn-primary" type="submit">Save</button>
                     </form>
                     <form class="modal-submit" (submit)="updateField('surname')">
                         <label for="surname">Surname</label>
                         <input class="input-edit"  [ngModel]="editingUser?.surname" (ngModelChange)="onSurnameChange($event)" name="surname" required>
-                        <button class="btn btn-primary" type="submit">Save</button>
+                      </form>
+                      <form class="modal-submit" (submit)="updateField('email')">
+                        <label for="email">Email</label>
+                        <input class="input-edit"  [ngModel]="editingUser?.email" (ngModelChange)="onEmailChange($event)" name="email" required>
+                      </form>
+                      <form class="modal-submit" (submit)="updateField('location')">
+                        <label for="location">Location</label>
+                        <input class="input-edit"  [ngModel]="editingUser?.location" (ngModelChange)="onLocationChange($event)" name="location" required>
+                      </form>
+                      <form class="modal-submit" (submit)="updateField('rolBio')">
+                        <label for="rolBio">Tech Rol</label>
+                        <input class="input-edit"  [ngModel]="editingUser?.rolBio" (ngModelChange)="onInfoBioChange($event)" name="rolBio" required>
+                      </form><form class="modal-submit" (submit)="updateField('password')">
+                        <label for="password">Password</label>
+                        <input class="input-edit"  [ngModel]="editingUser?.password" (ngModelChange)="onPasswordChange($event)" name="password" required>
                       </form>
                     <button class="btn btn-primary" (click)="closeModal()">Close</button>
             </div>

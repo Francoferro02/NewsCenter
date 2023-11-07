@@ -20,6 +20,7 @@ export class UserService {
 
   createUser(user: any): Observable<any> {
     user.join = new Date().toLocaleDateString();
+    user.img = new String
     return this.http.post(`${this.url}/users`, user);
   }
 

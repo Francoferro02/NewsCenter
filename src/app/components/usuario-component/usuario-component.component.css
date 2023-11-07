@@ -176,3 +176,24 @@ label{
   font-size: medium;
   font-weight: 800;
 }
+
+.image-input {
+  display: none; /* Esto ocultará el botón de selección de archivo */
+}
+
+/* Estilo para el botón de imagen personalizado */
+.custom-image-button {
+  background-color: #312783;
+  color: white;
+  padding: 20px 30px;
+  border: none;
+  cursor: pointer;
+}
+
+.custom-image-button:hover {
+  background-color: #555; /* Cambia el color cuando se pasa el mouse por encima */
+}
+
+.button-space {
+  margin-right: 10px; /* Ajusta el valor según el espacio deseado */
+}
