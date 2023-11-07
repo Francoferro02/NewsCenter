@@ -9,7 +9,39 @@
       "rolbio": "Web Developer",
       "join": "6/11/2023",
       "id": 1
+    },
+    {
+      "name": "Axel",
+      "surname": "Dominguez",
+      "email": "axeldominguez@gmail.com",
+      "password": "1234",
+      "location": "Mar del Plata",
+      "rolbio": "Developer",
+      "join": "6/11/2023",
+      "id": 2
     }
   ],
-  "comentarios": []
+  "comentarios": [
+    {
+      "text": "BBBBBBBBBBBBBBBBBBBB",
+      "usuario": "Axel",
+      "editing": false,
+      "urlNoticia": "https://www.cbssports.com/nfl/news/eagles-vs-cowboys-score-philadelphia-holds-off-dallas-to-build-comfortable-cushion-in-nfc-east/live/",
+      "id": 1
+    },
+    {
+      "text": "ssssssssssssss",
+      "usuario": "anonymous",
+      "editing": false,
+      "urlNoticia": "https://www.cbssports.com/nfl/news/eagles-vs-cowboys-score-philadelphia-holds-off-dallas-to-build-comfortable-cushion-in-nfc-east/live/",
+      "id": 2
+    },
+    {
+      "text": "asdfsadfsadfasdf",
+      "usuario": "anonymous",
+      "editing": false,
+      "urlNoticia": "https://www.cbssports.com/nfl/news/eagles-vs-cowboys-score-philadelphia-holds-off-dallas-to-build-comfortable-cushion-in-nfc-east/live/",
+      "id": 3
+    }
+  ]
 }

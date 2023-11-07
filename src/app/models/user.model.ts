@@ -1,10 +1,10 @@
 export class User  {
     id!: number;
-    name!:  String;
-    surname!: String;
-    email!: String;
-    password!: String;
-    location!: String;
-    rolBio!: String;
+    name!:  string;
+    surname!: string;
+    email!: string;
+    password!: string;
+    location!: string;
     join!: Date;
+    rolBio! : string;
 }

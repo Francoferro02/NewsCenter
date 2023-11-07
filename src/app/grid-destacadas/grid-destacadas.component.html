@@ -81,21 +81,18 @@
             <tr *ngFor="let comentario of selectedNoticia.comentario; let i = index">
               <td>{{ comentario?.usuario }}</td>
               <td>
-                <div *ngIf="comentario !== comentarioEnEdicion">
+                <div *ngIf="!comentario.editing">
                   {{ comentario?.text }}
                 </div>
-                <div *ngIf="comentario === comentarioEnEdicion">
+                <div *ngIf="comentario.editing">
                   <input type="text" [(ngModel)]="comentario.text" />
                 </div>
               </td>
-
-              <td>
+              <td class="botones-editar-coment">
                 <button (click)="editarComentario(comentario)"
-                  *ngIf="comentario?.usuario === currentUser && !comentarioEnEdicion">Edit</button>
+                  *ngIf="comentario?.usuario === user?.name">Edit</button>
                 <button (click)="eliminarComentario(selectedNoticia, i)"
-                  *ngIf="comentario?.usuario === currentUser && !comentarioEnEdicion">Delete</button>
-                
-                  
+                  *ngIf="comentario?.usuario === user?.name">Delete</button>
               </td>
             </tr>
 

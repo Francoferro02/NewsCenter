@@ -2,7 +2,9 @@ import { Component, Input, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { clippingParents } from '@popperjs/core';
 import { Comentario, Noticia } from '../models/noticia.model';
-
+import {User} from 'src/app/models/user.model'
+import { UserService } from '../components/Services/user.service';
+import { HttpClient } from '@angular/common/http';
 
 
 
@@ -15,18 +17,23 @@ import { Comentario, Noticia } from '../models/noticia.model';
 export class GridDestacadasComponent implements OnInit {
   @Input()listadoNoticiasDestacas:any;
   selectedNoticia: Noticia | null = null;
-  currentUser: string | null = null;
   comentando: boolean = false;
   rated: boolean = false;
   nuevoComentario: string = '';
   comentarioEnEdicion: Comentario | null = null;  
+  user : User |null ;
 
-
-  constructor(private router: Router){
-    
+  constructor(private router: Router, private userService: UserService, private http: HttpClient){
+    this.user = null;
   }
-  ngOnInit(): void {
-    
+
+ 
+  ngOnInit() {
+    this.userService.getLoggedInUser().subscribe((user) => {
+      this.user = user
+      
+       // Update the value of loggedIn
+    });
   }
   
   navegateTo(route : string){
@@ -39,9 +46,17 @@ export class GridDestacadasComponent implements OnInit {
     }
   }
 
-  openPopup(noticia: Noticia) {
-    this.selectedNoticia = noticia;
-  }
+   /*  openPopup(noticia: Noticia) {
+      this.selectedNoticia = noticia;
+    } */
+
+    openPopup(noticia: Noticia) {
+      // Realiza una solicitud GET al servidor JSON para obtener todos los comentarios de la noticia por su URL
+      this.http.get<Comentario[]>(`http://localhost:3000/comentarios?urlNoticia=${encodeURIComponent(noticia.url)}`).subscribe((comentarios) => {
+        this.selectedNoticia = noticia;
+        this.selectedNoticia.comentario = comentarios;
+      });
+    }
 
   closePopup() {
     this.selectedNoticia = null;
@@ -50,21 +65,42 @@ export class GridDestacadasComponent implements OnInit {
   agregarComentario(noticia: Noticia, textoComentario: string) {
     const comentario: Comentario = {
       text: textoComentario,
-      usuario: this.currentUser || 'anonymous',
-      editing: false
+      usuario: (this.user?.name as string) || 'anonymous',
+      editing: false,
+      urlNoticia: noticia.url
     };
+
     noticia.comentario.push(comentario);
-    this.cerrarFormularioComentario(); 
-  }
+    
+    fetch('http://localhost:3000/comentarios', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(comentario)
+    })
+    .then((response) => response.json())
+    .then((data) => {
+      console.log('Comentario guardado en el servidor JSON:', data);
+    })
+    .catch((error) => {
+      console.error('Error al guardar el comentario en el servidor JSON:', error);
+    });
+
+
+    this.cerrarFormularioComentario();
+}
 
   editarComentario(comentario: Comentario) {
     this.comentarioEnEdicion = comentario;
   }
 
   guardarComentario(comentario: Comentario) {
-    this.comentarioEnEdicion = null;
-    // Puedes realizar una llamada al servicio para actualizar el comentario en el servidor si es necesario.
+    // Realizar una solicitud POST al servidor JSON para guardar el comentario
+    
   }
+
+
   eliminarComentario(noticia: Noticia, index: number) {
     noticia.comentario.splice(index, 1);
   }
