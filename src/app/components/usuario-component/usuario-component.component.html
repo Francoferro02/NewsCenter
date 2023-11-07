@@ -15,18 +15,21 @@
             <p><strong>Location:</strong> {{user?.location}}</p>
             <p><strong>Joined:</strong> {{user?.join}}</p>
         </div>
-        <button class="btn btn-primary" (click)="openModal()">Edit Profile</button>
+        <button id="edit-profile-button" class="btn btn-primary" (click)="openModal()">Edit Profile</button>
         <div class="modal" *ngIf="showModal">
             <div class="modal-content">
-                    <form (submit)="updateField('name')">
-                      <input [ngModel]="editingUser?.name" (ngModelChange)="onNameChange($event)" name="name" required>
-                      <button type="submit">Guardar</button>
+                <h2 class="edit-profile-title">Edit Profile Data</h2>
+                    <form class="modal-submit" (submit)="updateField('name')">
+                     <label for="name">Name</label>
+                      <input class="input-edit" [ngModel]="editingUser?.name" (ngModelChange)="onNameChange($event)" name="name" required>
+                      <button class="btn btn-primary" type="submit">Save</button>
                     </form>
-                    <form (submit)="updateField('surname')">
-                        <input [ngModel]="editingUser?.surname" (ngModelChange)="onSurnameChange($event)" name="surname" required>
-                        <button type="submit">Guardar</button>
+                    <form class="modal-submit" (submit)="updateField('surname')">
+                        <label for="surname">Surname</label>
+                        <input class="input-edit"  [ngModel]="editingUser?.surname" (ngModelChange)="onSurnameChange($event)" name="surname" required>
+                        <button class="btn btn-primary" type="submit">Save</button>
                       </form>
-                    <button (click)="closeModal()">Cerrar</button>
+                    <button class="btn btn-primary" (click)="closeModal()">Close</button>
             </div>
         </div>
         <ul>

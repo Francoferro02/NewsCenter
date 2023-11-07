@@ -21,7 +21,7 @@ export class GridDestacadasComponent implements OnInit {
   rated: boolean = false;
   nuevoComentario: string = '';
   comentarioEnEdicion: Comentario | null = null;  
-  user : User |null ;
+  user : User |null  ;
 
   constructor(private router: Router, private userService: UserService, private http: HttpClient){
     this.user = null;
@@ -89,6 +89,35 @@ export class GridDestacadasComponent implements OnInit {
 
 
     this.cerrarFormularioComentario();
+}
+
+
+
+guardarNoticiaEnPerfil() {
+  console.log(this.user)
+  if (this.user && this.selectedNoticia) {
+    // Obtén el índice del usuario actual
+    const userIndex = this.user.id - 1;
+
+    // Agrega la URL de la noticia al arreglo savedNews del usuario
+    this.user.savedNews.push(this.selectedNoticia.url);
+
+    // Actualiza el usuario en el servidor JSON utilizando una solicitud PUT
+    fetch(`http://localhost:3000/users/${userIndex}`, {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(this.user),
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        console.log('Noticia guardada en el perfil del usuario', data);
+      })
+      .catch((error) => {
+        console.error('Error al guardar la noticia en el servidor JSON:', error);
+      });
+  }
 }
 
   editarComentario(comentario: Comentario) {

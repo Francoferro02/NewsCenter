@@ -7,4 +7,5 @@ export class User  {
     location!: string;
     join!: Date;
     rolBio! : string;
+    savedNews! :string[];
 }

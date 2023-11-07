@@ -1,13 +1,16 @@
 {
   "users": [
     {
-      "name": "Jorgue",
-      "surname": "Gonzales",
-      "email": "francoandresferro@gmail.com",
+      "name": "Axel",
+      "surname": "Dominguez",
+      "email": "axeldominguez@gmail.com",
       "password": "1234",
       "location": "Mar del Plata",
-      "rolbio": "Web Developer",
+      "rolbio": "Developer",
       "join": "6/11/2023",
+      "savedNews": [
+        "https://www.youtube.com/watch?v=quQ0NW_QTJM"
+      ],
       "id": 1
     },
     {
@@ -18,7 +21,30 @@
       "location": "Mar del Plata",
       "rolbio": "Developer",
       "join": "6/11/2023",
+      "savedNews": [],
       "id": 2
+    },
+    {
+      "name": "Reloj",
+      "surname": "Bolvi",
+      "email": "nunu@gmail.com",
+      "password": "1234",
+      "location": "Mar del PLatra",
+      "rolbio": "Aparecer",
+      "join": "7/11/2023",
+      "savedNews": [],
+      "id": 3
+    },
+    {
+      "name": "Mami ",
+      "surname": "Babolti",
+      "email": "a@b.com",
+      "password": "1234",
+      "location": "Papuruc'a",
+      "rolbio": "aa",
+      "join": "7/11/2023",
+      "savedNews": [],
+      "id": 4
     }
   ],
   "comentarios": [
@@ -42,6 +68,34 @@
       "editing": false,
       "urlNoticia": "https://www.cbssports.com/nfl/news/eagles-vs-cowboys-score-philadelphia-holds-off-dallas-to-build-comfortable-cushion-in-nfc-east/live/",
       "id": 3
+    },
+    {
+      "text": "me encanta\n",
+      "usuario": "anonymous",
+      "editing": false,
+      "urlNoticia": "https://tech.hindustantimes.com/photos/5-asteroids-to-come-very-close-to-earth-check-what-nasa-revealed-71699272720771.html",
+      "id": 4
+    },
+    {
+      "text": "dsrfg",
+      "usuario": "anonymous",
+      "editing": false,
+      "urlNoticia": "https://www.youtube.com/watch?v=quQ0NW_QTJM",
+      "id": 5
+    },
+    {
+      "text": "asd",
+      "usuario": "anonymous",
+      "editing": false,
+      "urlNoticia": "https://finance.yahoo.com/news/stock-market-news-today-stocks-rise-with-fed-hopes-still-in-play-143450628.html",
+      "id": 6
+    },
+    {
+      "text": "asdasd",
+      "usuario": "anonymous",
+      "editing": false,
+      "urlNoticia": "https://www.youtube.com/watch?v=quQ0NW_QTJM",
+      "id": 7
     }
   ]
 }

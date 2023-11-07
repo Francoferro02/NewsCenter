@@ -21,7 +21,8 @@ export class LoginFormComponent implements OnInit {
       password: ['', Validators.required],
       location: ['', Validators.required],
       rolbio: ['', Validators.required],
-      join: Date.now()
+      join: Date.now(),
+      savedNews: []
     });
   }
 
@@ -35,6 +36,8 @@ export class LoginFormComponent implements OnInit {
   get surname(){return this.loginForm.get('surname')}
   get location(){return this.loginForm.get('location')}
   get rolbio(){return this.loginForm.get('rolbio')}
+  get savedNews(){return this.loginForm.get('savedNews')}
+  
 
 
 

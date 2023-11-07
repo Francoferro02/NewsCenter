@@ -57,9 +57,11 @@
   </span>
   </li>
 <li class="sidenav-nav-item"(click)="navegateTo('Profile')">
-<span class="sidenav-complexIcon"*ngIf="collapsed" >
-  <img class="icon" src="../../assets/badge_FILL0_wght400_GRAD0_opsz24.png">
-  <span class="sidenav-nav-text">PROFILE</span>
+<span class="sidenav-complexIcon"*ngIf="collapsed">
+  <div *ngIf="loggedIn">
+    <img class="icon" src="../../assets/badge_FILL0_wght400_GRAD0_opsz24.png">
+    <span class="sidenav-nav-text">PROFILE</span>
+  </div>
 </span>
 </li>
 </ul>
