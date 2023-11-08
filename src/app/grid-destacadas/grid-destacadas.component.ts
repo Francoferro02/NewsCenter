@@ -19,6 +19,7 @@ export class GridDestacadasComponent implements OnInit {
   selectedNoticia: Noticia | null = null;
   comentando: boolean = false;
   rated: boolean = false;
+  rated2: boolean = false;
   nuevoComentario: string = '';
   comentarioEnEdicion: Comentario | null = null;  
   user : User |null  ;
@@ -33,8 +34,8 @@ export class GridDestacadasComponent implements OnInit {
       this.user = user
       
        // Update the value of loggedIn
-    });
-  }
+  })
+}
   
   navegateTo(route : string){
     this.router.navigate(['/', route])
@@ -46,17 +47,30 @@ export class GridDestacadasComponent implements OnInit {
     }
   }
 
-   /*  openPopup(noticia: Noticia) {
-      this.selectedNoticia = noticia;
-    } */
-
+   
     openPopup(noticia: Noticia) {
       // Realiza una solicitud GET al servidor JSON para obtener todos los comentarios de la noticia por su URL
       this.http.get<Comentario[]>(`http://localhost:3000/comentarios?urlNoticia=${encodeURIComponent(noticia.url)}`).subscribe((comentarios) => {
+        // Almacena los comentarios en la propiedad comentario de la noticia seleccionada
         this.selectedNoticia = noticia;
         this.selectedNoticia.comentario = comentarios;
+    
+        // Realiza una solicitud GET al servidor JSON para obtener la información de la noticia en la pestaña "news"
+        this.http.get<any[]>(`http://localhost:3000/news?urlNoticia=${encodeURIComponent(noticia.url)}`).subscribe((news) => {
+          // Verifica si la noticia y la respuesta del servidor no son nulas
+          if (this.selectedNoticia && news && news.length > 0) {
+            // Si se encontró información de la noticia, actualiza la calificación en la noticia seleccionada
+            this.selectedNoticia.rating = news[0].rating;
+          } else {
+            // Si no se encontró información, establece la calificación en 0
+            if (this.selectedNoticia) {
+              this.selectedNoticia.rating = 0;
+            }
+          }
+        });
       });
     }
+
 
   closePopup() {
     this.selectedNoticia = null;
@@ -187,15 +201,52 @@ editAndSaveComentario(comentario: Comentario) {
   ratingByStars(){
     this.rated = !this.rated;
   }
-  rate(ratingStar: number) {
-    if (this.selectedNoticia) {
-      console.log(this.selectedNoticia.rating)
-      this.selectedNoticia.CantidadCalificaciones += 1;
-      this.selectedNoticia.rating = (this.selectedNoticia.rating * (this.selectedNoticia.CantidadCalificaciones - 1) + ratingStar) / this.selectedNoticia.CantidadCalificaciones;
-    }
-    console.log(this.selectedNoticia?.rating);
-  }
 
+
+
+ rate(ratingStar: number) {
+    if (this.selectedNoticia) {
+      // Realiza una solicitud GET al servidor JSON para obtener la lista de noticias
+      this.http.get<any[]>('http://localhost:3000/news').subscribe((newsList) => {
+        let newsToUpdate = newsList.find((news) => news.urlNoticia === this.selectedNoticia?.url);
+  
+        if (newsToUpdate) {
+          // La noticia existe, actualiza su rating
+          newsToUpdate.CantidadCalificaciones += 1;
+          const newRating = (newsToUpdate.rating * (newsToUpdate.CantidadCalificaciones - 1) + ratingStar) / newsToUpdate.CantidadCalificaciones;
+          newsToUpdate.rating = Number(newRating.toFixed(1));
+          this.rated2 =true
+  
+          // Realiza una solicitud PUT al servidor JSON para actualizar la noticia
+          this.http.put(`http://localhost:3000/news/${newsToUpdate.id}`, newsToUpdate).subscribe((response) => {
+            console.log('Calificación actualizada en el servidor', response);
+          });
+        } else {
+          // La noticia no existe, agrégala al array news
+          newsToUpdate = {
+            urlNoticia: this.selectedNoticia?.url,
+            rating: ratingStar,
+            CantidadCalificaciones: 1,
+           
+          };
+  
+          // Realiza una solicitud POST para agregar la nueva noticia
+          this.http.post('http://localhost:3000/news', newsToUpdate).subscribe((response) => {
+            console.log('Nueva noticia agregada al servidor', response);
+          });
+        }
+      });
+    }
+  }
+ 
+  
+  
+  
+  
+  
+  
+  
+  
 
   compartirEnTwitter(url: string) {
     window.open(`https://twitter.com/share?url=${encodeURIComponent(url)}`, '_blank');

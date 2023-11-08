@@ -8,7 +8,7 @@
       "location": "Mar del Plata",
       "rolbio": "Web Developer",
       "join": "7/11/2023",
-      "img": "",
+      "img": "https://i.ibb.co/Y8GbBZh/fetchimage.webp",
       "savedNews": [
         "https://apnews.com/article/israel-hamas-war-news-11-6-2023-51286d15dddd77ae0dd7ea76ee52bc71"
       ],
@@ -22,50 +22,13 @@
       "location": "mar del plata",
       "rolbio": "Developer",
       "join": "7/11/2023",
-      "img": "",
+      "img": "https://i.ibb.co/Vgc6Z0w/Whats-App-Image-2023-07-07-at-15-43-48.jpg",
       "savedNews": [
         "https://deadline.com/2023/11/actors-strike-new-talks-final-offer-1235594696/",
-        "https://www.theverge.com/23945184/epic-v-google-fortnite-play-store-antitrust-trial-updates"
+        "https://www.theverge.com/23945184/epic-v-google-fortnite-play-store-antitrust-trial-updates",
+        "https://www.washingtonpost.com/climate-environment/2023/11/07/northern-greenland-ice-shelves-decline/"
       ],
       "id": 2
-    },
-    {
-      "name": "asd",
-      "surname": "asd",
-      "email": "a@b.com",
-      "password": "1234",
-      "location": "sdf",
-      "rolbio": "sdf",
-      "join": "7/11/2023",
-      "img": "",
-      "savedNews": null,
-      "id": 3
-    },
-    {
-      "name": "a",
-      "surname": "as",
-      "email": "axeldominguez@gmail.com",
-      "password": "1234",
-      "location": "Mar del Plata",
-      "rolbio": "Developer",
-      "savedNews": null,
-      "join": "7/11/2023",
-      "img": "",
-      "id": 4
-    },
-    {
-      "name": "a",
-      "surname": "s",
-      "email": "a@c.com",
-      "password": "1234",
-      "location": "aaa",
-      "rolbio": "Developer",
-      "savedNews": [
-        "https://deadline.com/2023/11/actors-strike-new-talks-final-offer-1235594696/"
-      ],
-      "join": "7/11/2023",
-      "img": "",
-      "id": 5
     }
   ],
   "comentarios": [
@@ -75,6 +38,33 @@
       "editing": true,
       "urlNoticia": "https://www.healthshots.com/how-to/walk-10000-steps-a-day/",
       "id": "1699415020293"
+    },
+    {
+      "text": "azsdads",
+      "usuario": "anonymous",
+      "editing": false,
+      "urlNoticia": "https://www.washingtonpost.com/climate-environment/2023/11/07/northern-greenland-ice-shelves-decline/",
+      "id": "1699465232346"
+    }
+  ],
+  "news": [
+    {
+      "urlNoticia": "https://www.washingtonpost.com/climate-environment/2023/11/07/northern-greenland-ice-shelves-decline/",
+      "rating": 3.4,
+      "CantidadCalificaciones": 31,
+      "id": 1
+    },
+    {
+      "urlNoticia": "https://www.washingtonpost.com/climate-environment/2023/11/07/northern-greenland-ice-shelves-decline/",
+      "rating": 5,
+      "CantidadCalificaciones": 1,
+      "id": 2
+    },
+    {
+      "urlNoticia": "https://www.washingtonpost.com/politics/2023/11/07/supreme-court-guns-domestic-violence-rahimi/",
+      "rating": 3.9,
+      "CantidadCalificaciones": 28,
+      "id": 3
     }
   ]
 }

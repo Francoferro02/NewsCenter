@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { User } from 'src/app/models/user.model';
 import { UserService } from '../Services/user.service';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-usuario-component',
@@ -27,7 +28,7 @@ export class UsuarioComponentComponent implements OnInit {
 
   popupTimer: any;
 
-  constructor(private userService: UserService){
+  constructor(private userService: UserService, private http: HttpClient){
     this.user = null;
   }
   ngOnInit(){
@@ -37,6 +38,17 @@ export class UsuarioComponentComponent implements OnInit {
       this.editingUser = { ...user };
       this.editedUser = { ...user };
       this.savedNews = user.savedNews || [];
+      this.selectedImageURL = user.img
+
+      if (this.selectedImageURL) {
+        const imgElement = document.getElementById('imagenUsuario'); // Asegúrate de que tengas un elemento <img> con un id="imagenUsuario"
+        if (imgElement) {
+          imgElement.setAttribute('src', this.selectedImageURL);
+        }
+      }
+      else{
+        console.log('no hay imagen de perfil');
+      }
   })}
   
   deleteUser(userId: number) {
@@ -110,13 +122,58 @@ export class UsuarioComponentComponent implements OnInit {
     }
   }
 
-  onImageChange(event: any) {
+ 
+
+  async onImageChange(event: any) {
     const fileList: FileList = event.target.files;
     if (fileList.length > 0) {
       const selectedImage = fileList[0];
-      this.selectedImageURL = URL.createObjectURL(selectedImage);
+  
+      // Configura la información del formulario que se enviará a ImgBB
+      const formData = new FormData();
+      formData.append("image", selectedImage);
+  
+      try {
+        // Realiza la solicitud POST a la API de ImgBB para cargar la imagen
+        const response = await fetch("https://api.imgbb.com/1/upload?key=c3224f0dab590826bdda5e40ba14114c", {
+          method: "POST",
+          body: formData,
+        });
+  
+        if (response.ok) {
+          const data = await response.json();
+          if (data && data.data && data.data.url) {
+            // Obtén la URL de la imagen subida
+            const selectedImageURL = data.data.url;
+  
+            console.log("imagen link: " + selectedImageURL);
+  
+            // Update the user object with the selectedImageURL
+            const userId = this.editingUser?.id; // Change this to the appropriate user ID
+            const userToUpdate = await fetch(`http://localhost:3000/users/${userId}`);
+            const userData = await userToUpdate.json();
+            userData.img = selectedImageURL;
+  
+            // Update the user data on the JSON Server
+            await fetch(`http://localhost:3000/users/${userId}`, {
+              method: "PUT",
+              headers: {
+                "Content-Type": "application/json",
+              },
+              body: JSON.stringify(userData),
+            });
+  
+            console.log("User data updated with image URL.");
+          }
+        } else {
+          console.error("Error al cargar la imagen en ImgBB.");
+        }
+      } catch (error) {
+        console.error("Error al cargar la imagen: " + error);
+      }
     }
   }
+
 
   openModal() {
     this.showModal = true;

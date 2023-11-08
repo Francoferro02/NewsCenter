@@ -45,6 +45,7 @@
             <i class="fa fa-star " (click)="rate(1)"></i>
           </div>
         </div>
+        <span class="rated-span" *ngIf="rated2">You have rated this news successfully!</span>
         <h4>Share</h4>
         <div class="social-media-icons">
           <i class="fab fa-twitter" (click)="compartirEnTwitter(selectedNoticia.url)"></i>
