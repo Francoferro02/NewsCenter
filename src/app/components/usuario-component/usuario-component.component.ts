@@ -23,6 +23,10 @@ export class UsuarioComponentComponent implements OnInit {
 
   editedUser: User | null = null;
 
+  savedNews: string[] = [];
+
+  popupTimer: any;
+
   constructor(private userService: UserService){
     this.user = null;
   }
@@ -32,6 +36,7 @@ export class UsuarioComponentComponent implements OnInit {
       this.users = this.users;
       this.editingUser = { ...user };
       this.editedUser = { ...user };
+      this.savedNews = user.savedNews || [];
   })}
   
   deleteUser(userId: number) {
@@ -134,5 +139,48 @@ export class UsuarioComponentComponent implements OnInit {
       };
     }
   }
+  showPopup(event: MouseEvent, newsUrl: string) {
+    event.preventDefault();
+    const newsPopup = document.getElementById('newsPopup');
+    const newsFrame = document.getElementById('newsFrame');
+  
+    if (newsPopup) {
+      // Comprobar si newsPopup no es nulo antes de acceder a su propiedad style
+      if (newsFrame) {
+        // Cargar el contenido de la noticia en el iframe
+        newsFrame.setAttribute('src', newsUrl);
+      }
+  
+      // Mostrar el popup
+      newsPopup.style.display = 'block';
+    }
+  }
 
+  startPopupTimer(newsUrl: string) {
+    this.popupTimer = setTimeout(() => {
+      const newsPopup = document.getElementById('newsPopup');
+      const newsFrame = document.getElementById('newsFrame');
+  
+      if (newsPopup && newsFrame) {
+        // Cargar el contenido de la noticia en el iframe
+        newsFrame.setAttribute('src', newsUrl);
+  
+        // Mostrar el popup
+        newsPopup.style.display = 'block';
+      }
+    }, 4000);
+  }
+  
+  clearPopupTimer() {
+    clearTimeout(this.popupTimer);
+  }
+  
+  closePopup() {
+    const newsPopup = document.getElementById('newsPopup');
+  
+    if (newsPopup) {
+      // Ocultar el popup
+      newsPopup.style.display = 'none';
+    }
+  }
 }

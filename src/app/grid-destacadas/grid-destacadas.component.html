@@ -89,10 +89,10 @@
                 </div>
               </td>
               <td class="botones-editar-coment">
-                <button (click)="editarComentario(comentario)"
-                  *ngIf="comentario?.usuario === user?.name">Edit</button>
-                <button (click)="eliminarComentario(selectedNoticia, i)"
-                  *ngIf="comentario?.usuario === user?.name">Delete</button>
+                <button (click)="editAndSaveComentario(comentario)">
+                  {{ comentario.editing ? 'Save' : 'Edit' }}
+                </button>
+                <button (click)="eliminarComentario(selectedNoticia, comentario.id)" *ngIf="comentario?.usuario === user?.name">Delete</button>
               </td>
             </tr>
 

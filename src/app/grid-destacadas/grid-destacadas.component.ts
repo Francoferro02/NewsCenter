@@ -67,11 +67,12 @@ export class GridDestacadasComponent implements OnInit {
       text: textoComentario,
       usuario: (this.user?.name as string) || 'anonymous',
       editing: false,
-      urlNoticia: noticia.url
+      urlNoticia: noticia.url,
+      id: this.generateUniqueCommentId()
     };
 
     noticia.comentario.push(comentario);
-    
+
     fetch('http://localhost:3000/comentarios', {
       method: 'POST',
       headers: {
@@ -91,7 +92,9 @@ export class GridDestacadasComponent implements OnInit {
     this.cerrarFormularioComentario();
 }
 
-
+ generateUniqueCommentId() {
+  return Date.now().toString();
+}
 
 guardarNoticiaEnPerfil() {
   if (this.user && this.selectedNoticia) {
@@ -112,31 +115,35 @@ guardarNoticiaEnPerfil() {
   }
 }
 
-
-
-
-
-
-
-  editarComentario(comentario: Comentario) {
-    this.comentarioEnEdicion = comentario;
+editAndSaveComentario(comentario: Comentario) {
+  if (!comentario.editing) {
+    // Si el comentario no está en modo edición, lo activamos para la edición.
+    comentario.editing = true;
+  } else {
+    // Si el comentario está en modo edición, lo guardamos en el servidor y deshabilitamos la edición.
+    fetch(`http://localhost:3000/comentarios/${comentario.id}`, {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(comentario)
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        console.log('Comentario actualizado en el servidor JSON:', data);
+      })
+      .catch((error) => {
+        console.error('Error al actualizar el comentario en el servidor JSON:', error);
+      });
+  comentario.editing = false; // Deshabilita la edición
   }
+}
 
-  guardarComentario(comentario: Comentario) {
-    // Realizar una solicitud POST al servidor JSON para guardar el comentario
-    
-  }
-
-
-  eliminarComentario(noticia: Noticia, index: number) {
-    const comentario = noticia.comentario[index];
+  eliminarComentario(noticia: Noticia, commentId: string) {
+    // Construye la URL de eliminación utilizando el ID del comentario
+    const deleteUrl = `http://localhost:3000/comentarios/${commentId}`;
   
-    if (!comentario) {
-      console.error('El comentario no existe en la posición especificada.');
-      return;
-    }
-  
-    fetch(`http://localhost:3000/comentarios/${comentario}`, {
+    fetch(deleteUrl, {
       method: 'DELETE',
       headers: {
         'Content-Type': 'application/json',
@@ -147,14 +154,16 @@ guardarNoticiaEnPerfil() {
           // Éxito: el comentario se eliminó correctamente.
           console.log('Comentario eliminado en el servidor JSON.');
           // Ahora, también deberías eliminar el comentario localmente de la noticia.
-          noticia.comentario.splice(index, 1);
+          noticia.comentario = noticia.comentario.filter((comentario) => comentario.id !== commentId);
         } else {
           console.error('No se pudo eliminar el comentario en el servidor JSON.');
         }
       })
       .catch((error) => {
-        console.error('Error al eliminar el comentario en el servidor JSON:', error);
-      });
+  console.error('Error al eliminar el comentario en el servidor JSON:', error);
+});
+
+      this.cerrarFormularioComentario();
   }
 
   mostrarFormularioComentario() {

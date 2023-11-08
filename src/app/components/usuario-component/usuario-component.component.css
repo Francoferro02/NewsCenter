@@ -197,3 +197,33 @@ label{
 .button-space {
   margin-right: 10px; /* Ajusta el valor según el espacio deseado */
 }
+
+.news-popup {
+  display: none;
+  position: fixed;
+  top: 10%;
+  left: 10%;
+  width: 80%;
+  height: 80%;
+  background-color: white;
+  border: 2px solid #333;
+  z-index: 999;
+}
+
+.close-button {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: none;
+  border: none;
+  font-size: 20px;
+  cursor: pointer;
+  background-color: white;
+  margin-right: 10px;
+}
+
+.news-frame {
+  width: 100%;
+  height: 100%;
+  border: none;
+}

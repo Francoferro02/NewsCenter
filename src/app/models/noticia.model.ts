@@ -3,7 +3,7 @@ export class Comentario {
     usuario!: string;
     editing!: boolean;
     urlNoticia!: string;
-  
+    id!:string;
   }
   export class Noticia {
       urlToImage!: string;

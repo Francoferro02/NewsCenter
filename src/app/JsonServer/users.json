@@ -9,7 +9,9 @@
       "rolbio": "Web Developer",
       "join": "7/11/2023",
       "img": "",
-      "savedNews": [],
+      "savedNews": [
+        "https://apnews.com/article/israel-hamas-war-news-11-6-2023-51286d15dddd77ae0dd7ea76ee52bc71"
+      ],
       "id": 1
     },
     {
@@ -67,6 +69,12 @@
     }
   ],
   "comentarios": [
-    {}
+    {
+      "text": "aaaa",
+      "usuario": "Franco",
+      "editing": true,
+      "urlNoticia": "https://www.healthshots.com/how-to/walk-10000-steps-a-day/",
+      "id": "1699415020293"
+    }
   ]
 }

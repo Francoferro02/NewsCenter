@@ -61,12 +61,17 @@
     </div>
 
     <div class="saved-news">
-        <h3>Saved News</h3>
-        <ul>
-            <li>News 1 - Lorem ipsum dolor sit amet</li>
-            <li>News 2 - Consectetur adipiscing elit</li>
-            <li>News 3 - Sed do eiusmod tempor incididunt</li>
-        </ul>
+      <h3>Saved News</h3>
+      <ul>
+        <li *ngFor="let newsUrl of savedNews">
+          <a [href]="newsUrl" target="_blank" (mouseenter)="startPopupTimer(newsUrl)" (mouseleave)="clearPopupTimer()"> {{ newsUrl }}</a>
+        </li>
+      </ul>
     </div>
-
+    
+    <!-- Div para mostrar el contenido de la noticia -->
+    <div id="newsPopup" class="news-popup">
+      <iframe id="newsFrame" class="news-frame"></iframe>
+      <button (click)="closePopup()" class="close-button">Close</button>
+    </div>
 </div>
