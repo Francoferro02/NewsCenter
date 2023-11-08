@@ -62,79 +62,61 @@ export class GridDestacadasComponent implements OnInit {
     this.selectedNoticia = null;
   }
 
- 
   agregarComentario(noticia: Noticia, textoComentario: string) {
-    fetch('http://localhost:3000/contador')
-      .then((response) => response.json())
-      .then((contadorData) => {
-        const contador = contadorData.valor; 
-        
-        const comentario: Comentario = {
-          idComentario: contador,
-          text: textoComentario,
-          usuario: (this.user?.name as string) || 'anonymous',
-          editing: false,
-          urlNoticia: noticia.url,
-        };
-                contadorData.valor = contador + 1;
-        fetch('http://localhost:3000/comentarios', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify(comentario),
-        })
-        .then((response) => response.json())
-        .then((data) => {
-          console.log('Comentario guardado en el servidor JSON:', data);
-          
-          fetch('http://localhost:3000/contador', {
-            method: 'PUT',
-            headers: {
-              'Content-Type': 'application/json',
-            },
-            body: JSON.stringify(contadorData),
-          });
-        })
-        .catch((error) => {
-          console.error('Error al guardar el comentario en el servidor JSON:', error);
-        });
-      })
-      .catch((error) => {
-        console.error('Error al obtener el valor del contador desde el servidor JSON:', error);
-      });
-  
+    const comentario: Comentario = {
+      text: textoComentario,
+      usuario: (this.user?.name as string) || 'anonymous',
+      editing: false,
+      urlNoticia: noticia.url
+    };
+
+    noticia.comentario.push(comentario);
+    
+    fetch('http://localhost:3000/comentarios', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(comentario)
+    })
+    .then((response) => response.json())
+    .then((data) => {
+      console.log('Comentario guardado en el servidor JSON:', data);
+    })
+    .catch((error) => {
+      console.error('Error al guardar el comentario en el servidor JSON:', error);
+    });
+
+
     this.cerrarFormularioComentario();
-  }
+}
 
 
 
 guardarNoticiaEnPerfil() {
-  console.log(this.user)
   if (this.user && this.selectedNoticia) {
-    // Obtén el índice del usuario actual
-    const userIndex = this.user.id - 1;
+    const newsUrl = this.selectedNoticia.url;
 
-    // Agrega la URL de la noticia al arreglo savedNews del usuario
-    this.user.savedNews.push(this.selectedNoticia.url);
+    // Verifica si la URL de la noticia ya está en la lista de noticias guardadas del usuario
+    if (!this.user.savedNews.includes(newsUrl)) {
+      // Si la URL no está en la lista, agrégala
+      this.user.savedNews.push(newsUrl);
 
-    // Actualiza el usuario en el servidor JSON utilizando una solicitud PUT
-    fetch(`http://localhost:3000/users/${userIndex}`, {
-      method: 'PUT',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(this.user),
-    })
-      .then((response) => response.json())
-      .then((data) => {
-        console.log('Noticia guardada en el perfil del usuario', data);
-      })
-      .catch((error) => {
-        console.error('Error al guardar la noticia en el servidor JSON:', error);
+      // Realiza una solicitud PUT al servidor JSON para actualizar el usuario con la nueva lista de noticias guardadas
+      this.userService.updateUser(this.user).subscribe((response: any) => {
+        console.log('Noticia guardada en el perfil del usuario', response);
       });
+    } else {
+      console.log('La noticia ya está en la lista de noticias guardadas');
+    }
   }
 }
+
+
+
+
+
+
 
   editarComentario(comentario: Comentario) {
     this.comentarioEnEdicion = comentario;
@@ -154,7 +136,7 @@ guardarNoticiaEnPerfil() {
       return;
     }
   
-    fetch(`http://localhost:3000/comentarios/${comentario.idComentario}`, {
+    fetch(`http://localhost:3000/comentarios/${comentario}`, {
       method: 'DELETE',
       headers: {
         'Content-Type': 'application/json',

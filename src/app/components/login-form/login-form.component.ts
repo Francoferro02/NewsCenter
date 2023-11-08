@@ -21,9 +21,10 @@ export class LoginFormComponent implements OnInit {
       password: ['', Validators.required],
       location: ['', Validators.required],
       rolbio: ['', Validators.required],
+      savedNews: [[]],
       join: Date.now(),
       img: String,
-      savedNews: []
+      
     });
   }
 
