@@ -338,8 +338,10 @@ padding: 3rem 10rem 0 0;
   background-color: #4caf50; /* Color de fondo para el mensaje de éxito */
   color: white; /* Color del texto del mensaje de éxito */
   border-radius: 0.5rem; /* Agrega esquinas redondeadas al mensaje */
+  font-size: large;
 }
 
 .error-message {
-  background-color: #f44336; /* Color de fondo para el mensaje de error */
+  background-color: #f44336;
+  font-size: large; /* Color de fondo para el mensaje de error */
 }

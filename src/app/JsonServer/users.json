@@ -25,11 +25,19 @@
       "location": "mar del plata",
       "rolbio": "Developer",
       "join": "7/11/2023",
-      "img": "https://i.ibb.co/Vgc6Z0w/Whats-App-Image-2023-07-07-at-15-43-48.jpg",
+      "img": "https://i.ibb.co/nM6xZP6/Ep-AMDa-IXUAAY3-L.jpg",
       "savedNews": [
         "https://deadline.com/2023/11/actors-strike-new-talks-final-offer-1235594696/",
         "https://www.theverge.com/23945184/epic-v-google-fortnite-play-store-antitrust-trial-updates",
-        "https://www.washingtonpost.com/climate-environment/2023/11/07/northern-greenland-ice-shelves-decline/"
+        "https://www.washingtonpost.com/climate-environment/2023/11/07/northern-greenland-ice-shelves-decline/",
+        "https://indianexpress.com/article/sports/cricket/england-vs-netherlands-live-score-icc-cricket-world-cup-2023-40th-match-today-at-mca-stadium-pune-9018443/",
+        "https://www.hindustantimes.com/india-news/galti-se-nikal-gaya-rabri-devi-defends-nitish-kumars-remark-he-said-sorry-101699435002866.html",
+        "https://www.livemint.com/news/world/israel-hamas-war-day-33-live-updates-hamas-tunnels-al-shifa-hospital-gaza-benjamin-netanyahu-idf-ceasefire-palestinians-11699405299656.html",
+        "https://www.reuters.com/business/environment/this-year-virtually-certain-be-warmest-125000-years-eu-scientists-say-2023-11-08/",
+        "https://www.deccanherald.com/science/space/boom-in-space-tourism-threatens-to-boost-the-amounts-of-space-junk-and-climate-emissions-2761735",
+        "https://lifestyle.livemint.com/smart-living/innovation/aditya-l1-solar-flare-isro-sun-xray-solar-power-111699429761499.html",
+        "https://www.ndtv.com/india-news/cbi-inquiry-against-mahua-moitra-ordered-by-anti-corruption-panel-bjp-mp-4557198",
+        "https://www.cnbc.com/2023/11/08/ukraine-war-live-updates-latest-news-on-russia-and-the-war-in-ukraine.html"
       ],
       "id": 2
     }
@@ -48,6 +56,76 @@
       "editing": false,
       "urlNoticia": "https://www.washingtonpost.com/climate-environment/2023/11/07/northern-greenland-ice-shelves-decline/",
       "id": "1699465232346"
+    },
+    {
+      "text": "sgdsfg",
+      "usuario": "axel",
+      "editing": false,
+      "urlNoticia": "https://indianexpress.com/article/sports/cricket/england-vs-netherlands-live-score-icc-cricket-world-cup-2023-40th-match-today-at-mca-stadium-pune-9018443/",
+      "id": "1699533351304"
+    },
+    {
+      "text": "asdf",
+      "usuario": "anonymous",
+      "editing": false,
+      "urlNoticia": "https://www.deccanherald.com/science/space/boom-in-space-tourism-threatens-to-boost-the-amounts-of-space-junk-and-climate-emissions-2761735",
+      "id": "1699536559871"
+    },
+    {
+      "text": "sadfasdfasdf",
+      "usuario": "anonymous",
+      "editing": false,
+      "urlNoticia": "https://www.espncricinfo.com/story/icc-cricket-world-cup-2023-shubman-gill-and-mohammed-siraj-lead-icc-odi-rankings-tables-1407814",
+      "id": "1699536728975"
+    },
+    {
+      "text": "sdfasdfsadf",
+      "usuario": "axel",
+      "editing": false,
+      "urlNoticia": "https://timesofindia.indiatimes.com/sports/cricket/icc-world-cup/news/world-cup-rain-forecast-adds-uncertainty-to-new-zealands-clash-with-sri-lanka/articleshow/105063022.cms",
+      "id": "1699536744991"
+    },
+    {
+      "text": "sdfasdf",
+      "usuario": "anonymous",
+      "editing": true,
+      "urlNoticia": "https://www.hindustantimes.com/cricket/england-vs-netherlands-live-score-icc-world-cup-2023-today-8-november-eng-vs-ned-40-odi-match-in-pune-101699419043198.html",
+      "id": "1699537752479"
+    },
+    {
+      "text": "aaaaaaa",
+      "usuario": "anonymous",
+      "editing": true,
+      "urlNoticia": "https://www.hindustantimes.com/cricket/england-vs-netherlands-live-score-icc-world-cup-2023-today-8-november-eng-vs-ned-40-odi-match-in-pune-101699419043198.html",
+      "id": "1699537788831"
+    },
+    {
+      "text": "cccc",
+      "usuario": "anonymous",
+      "editing": false,
+      "urlNoticia": "https://www.ndtv.com/india-news/cbi-inquiry-against-mahua-moitra-ordered-by-anti-corruption-panel-bjp-mp-4557198",
+      "id": "1699537887479"
+    },
+    {
+      "text": "adasd",
+      "usuario": "anonymous",
+      "editing": false,
+      "urlNoticia": "https://www.ndtv.com/india-news/cbi-inquiry-against-mahua-moitra-ordered-by-anti-corruption-panel-bjp-mp-4557198",
+      "id": "1699538017526"
+    },
+    {
+      "text": "asd",
+      "usuario": "anonymous",
+      "editing": false,
+      "urlNoticia": "https://www.ndtv.com/india-news/cbi-inquiry-against-mahua-moitra-ordered-by-anti-corruption-panel-bjp-mp-4557198",
+      "id": "1699539286638"
+    },
+    {
+      "text": "",
+      "usuario": "anonymous",
+      "editing": false,
+      "urlNoticia": "https://www.ndtv.com/india-news/cbi-inquiry-against-mahua-moitra-ordered-by-anti-corruption-panel-bjp-mp-4557198",
+      "id": "1699539481414"
     }
   ],
   "news": [
@@ -74,6 +152,54 @@
       "rating": 4.5,
       "CantidadCalificaciones": 7,
       "id": 4
+    },
+    {
+      "urlNoticia": "https://indianexpress.com/article/sports/cricket/england-vs-netherlands-live-score-icc-cricket-world-cup-2023-40th-match-today-at-mca-stadium-pune-9018443/",
+      "rating": 3.5,
+      "CantidadCalificaciones": 6,
+      "id": 5
+    },
+    {
+      "urlNoticia": "https://www.livemint.com/news/world/israel-hamas-war-day-33-live-updates-hamas-tunnels-al-shifa-hospital-gaza-benjamin-netanyahu-idf-ceasefire-palestinians-11699405299656.html",
+      "rating": 5,
+      "CantidadCalificaciones": 1,
+      "id": 6
+    },
+    {
+      "urlNoticia": "https://www.espncricinfo.com/story/icc-cricket-world-cup-2023-shubman-gill-and-mohammed-siraj-lead-icc-odi-rankings-tables-1407814",
+      "rating": 3,
+      "CantidadCalificaciones": 2,
+      "id": 7
+    },
+    {
+      "urlNoticia": "https://www.livemint.com/news/india/complete-information-on-delhi-odd-even-scheme-to-be-shared-with-sc-in-next-hearing-says-gopal-rai-11699433369905.html",
+      "rating": 3.3,
+      "CantidadCalificaciones": 3,
+      "id": 8
+    },
+    {
+      "urlNoticia": "https://www.hindustantimes.com/india-news/galti-se-nikal-gaya-rabri-devi-defends-nitish-kumars-remark-he-said-sorry-101699435002866.html",
+      "rating": 4,
+      "CantidadCalificaciones": 2,
+      "id": 9
+    },
+    {
+      "urlNoticia": "https://timesofindia.indiatimes.com/sports/cricket/icc-world-cup/news/glenn-maxwells-heroics-evoke-memories-of-kapil-devs-1983-world-cup-exploits/articleshow/105063910.cms",
+      "rating": 5,
+      "CantidadCalificaciones": 2,
+      "id": 10
+    },
+    {
+      "urlNoticia": "https://www.reuters.com/business/environment/this-year-virtually-certain-be-warmest-125000-years-eu-scientists-say-2023-11-08/",
+      "rating": 4.5,
+      "CantidadCalificaciones": 2,
+      "id": 11
+    },
+    {
+      "urlNoticia": "https://www.deccanherald.com/science/space/boom-in-space-tourism-threatens-to-boost-the-amounts-of-space-junk-and-climate-emissions-2761735",
+      "rating": 4,
+      "CantidadCalificaciones": 1,
+      "id": 12
     }
   ]
 }

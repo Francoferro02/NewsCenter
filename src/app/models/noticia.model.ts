@@ -1,7 +1,7 @@
 export class Comentario {
     text!: string;
     usuario!: string;
-    editing!: boolean;
+    editing!: boolean ;
     urlNoticia!: string;
     id!:string;
   }

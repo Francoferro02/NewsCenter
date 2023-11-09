@@ -5,8 +5,8 @@
     <div class="seccion-nombre-container">
         <h2 class="seccion-nombre">{{titulo}}</h2>
     </div>
-    <div class="lista-noticias" *ngFor="let noticia of nombreArray">
-            <div class="noticia-ppal" *ngIf="noticia.urlToImage">
+    <div class="lista-noticias" *ngFor="let noticia of nombreArray" (click)="openPopup(noticia)">
+            <div class="noticia-ppal"  *ngIf="noticia.urlToImage" >
                 <img [src]="noticia.urlToImage" alt="photo-main-news" class="foto-noticia-ppal">
                 <div class="texto-noticia-ppal">
                     <h2>{{noticia.title}}</h2>
@@ -16,4 +16,95 @@
             </div>
     </div>
 </section>
+<div *ngIf="selectedNoticia" class="modal">
+    <div class="modal-content">
+      <h2>
+        <a href="{{ selectedNoticia.url }}" target="_blank">{{ selectedNoticia.title }}</a>
+      </h2>
+      <div class="imagen-y-contenido">
+        <img [src]="selectedNoticia.urlToImage"  class="noticia-img" (click)="redirectTo()" />
+        <div class="contenido-y-botones">
+          <p class="resumen-noticia">{{ selectedNoticia.content }}</p>
+          <h3>Calificación: {{ selectedNoticia.rating }}</h3>
+          
+          <div class="botones">
+            <!-- Botones de Calificación con estrellas -->
+            <button class="btn-save" (click)="ratingByStars()">Rate</button>
+            
+            <button class="btn-save" (click)="mostrarFormularioComentario()">Comment</button>
+            
+            <button class="btn-save" (click)="guardarNoticiaEnPerfil()">Save</button>
+           
+          </div>
+          <div *ngIf="alreadySaved" class="error-message">La noticia ya se encuentra en tu lista de favoritos</div>
+          <div *ngIf="savedSuccessfully" class="success-message">News Successfully saved!</div>
+          <div class="rating" *ngIf="rated">
+            <div class="rating">
+              <!-- estan al reves porque para que se pinten tuve que darlas vuelta con el flex direction -->
+              <i class="fa fa-star " (click)="rate(5)"></i>
+              <i class="fa fa-star " (click)="rate(4)"></i>
+              <i class="fa fa-star " (click)="rate(3)"></i>
+              <i class="fa fa-star " (click)="rate(2)"></i>
+              <i class="fa fa-star " (click)="rate(1)"></i>
+            </div>
+          </div>
+          <span class="rated-span" *ngIf="rated2">You have rated this news successfully!</span>
+          <h4>Share</h4>
+          <div class="social-media-icons">
+            <i class="fab fa-twitter" (click)="compartirEnTwitter(selectedNoticia.url)"></i>
+            <i class="fab fa-facebook" (click)="compartirEnFacebook(selectedNoticia.url)"></i>
+            <i class="fab fa-whatsapp" (click)="compartirEnWhatsApp(selectedNoticia.url)"></i>
+          </div>
+        </div>
+      </div>
+      <div class="comentarios">
+        <div class="caja-de-comentarios" *ngIf="comentando">
+          <form (submit)="agregarComentario(selectedNoticia, nuevoComentario); cerrarFormularioComentario(); $event.preventDefault()">
+            <textarea class="caja-de-comentarios-input" [(ngModel)]="nuevoComentario" name="nuevoComentario" placeholder="Write your comment..."></textarea>
+            <div class="botones-comentarios">
+              <button type="button" (click)="cerrarFormularioComentario()">Cancel</button>
+              <button type="submit">Save</button>
+            </div>
+          </form>
+      </div>
+     
+        <div class="comentarios-guardados">
+          <h3>Comments</h3>
+          <table class="tabla-comentarios">
+           <thead>
+            <tr>
+              <th>
+                User
+              </th>
+              <th>
+                Comment
+              </th>
+            </tr>
+           </thead>
+            <tbody>
+              <tr *ngFor="let comentario of selectedNoticia.comentario; let i = index">
+                <td>{{ comentario?.usuario }}</td>
+                <td>
+                  <div *ngIf="!comentario.editing">
+                    {{ comentario?.text }}
+                  </div>
+                  <div *ngIf="comentario.editing">
+                    <input type="text" [(ngModel)]="comentario.text" />
+                  </div>
+                </td>
+                <td class="botones-editar-coment">
+                  <button (click)="editAndSaveComentario(comentario)">
+                    {{ comentario.editing ? 'Save' : 'Edit' }}
+                  </button>
+                  <button (click)="eliminarComentario(comentario.id)" *ngIf="comentario?.usuario === user?.name">Delete</button>
+                </td>
+              </tr>
+  
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <button (click)="closePopup()">Close</button>
+    </div>
+  </div>
 <app-footer></app-footer>

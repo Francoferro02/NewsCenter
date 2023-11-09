@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+  import { Component, Input, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { clippingParents } from '@popperjs/core';
 import { Comentario, Noticia } from '../models/noticia.model';
@@ -27,7 +27,9 @@ export class GridDestacadasComponent implements OnInit {
   nextCommentId: number = 1;
   comments: Noticia[] = [];
   savedSuccessfully: boolean = false;
- alreadySaved: boolean = false;
+  alreadySaved: boolean = false;
+ 
+
   constructor(private router: Router, private userService: UserService, private http: HttpClient,private commentService: CommentsService){
     this.user = null;
     this.commentService.getComments().subscribe((comments) => {
@@ -56,6 +58,7 @@ export class GridDestacadasComponent implements OnInit {
 
    
     openPopup(noticia: Noticia) {
+      
       // Realiza una solicitud GET al servidor JSON para obtener todos los comentarios de la noticia por su URL
       this.http.get<Comentario[]>(`http://localhost:3000/comentarios?urlNoticia=${encodeURIComponent(noticia.url)}`).subscribe((comentarios) => {
         // Almacena los comentarios en la propiedad comentario de la noticia seleccionada
@@ -80,6 +83,8 @@ export class GridDestacadasComponent implements OnInit {
 
 
   closePopup() {
+    this.rated = false;
+    this.rated2 = false;
     this.selectedNoticia = null;
   }
 
@@ -147,10 +152,13 @@ guardarNoticiaEnPerfil() {
 
 
 editAndSaveComentario(comentario: Comentario) {
+  
+  console.log("ajajaj")
   if (!comentario.editing) {
     // Si el comentario no está en modo edición, lo activamos para la edición.
     comentario.editing = true;
   } else {
+    comentario.editing = false;
     // Si el comentario está en modo edición, lo guardamos en el servidor y deshabilitamos la edición.
     fetch(`http://localhost:3000/comentarios/${comentario.id}`, {
       method: 'PUT',
@@ -166,8 +174,11 @@ editAndSaveComentario(comentario: Comentario) {
       .catch((error) => {
         console.error('Error al actualizar el comentario en el servidor JSON:', error);
       });
-  comentario.editing = false; // Deshabilita la edición
+      
+      console.log("mm");
+   // Deshabilita la edición
   }
+
 }
 eliminarComentario(commentId: string): void {
   this.commentService.deleteComment(commentId).subscribe(() => {
@@ -239,6 +250,7 @@ eliminarComentario(commentId: string): void {
           // Realiza una solicitud POST para agregar la nueva noticia
           this.http.post('http://localhost:3000/news', newsToUpdate).subscribe((response) => {
             console.log('Nueva noticia agregada al servidor', response);
+            this.rated2 =true
           });
         }
       });

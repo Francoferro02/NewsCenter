@@ -34,9 +34,10 @@
           <button class="btn-save" (click)="mostrarFormularioComentario()">Comment</button>
           
           <button class="btn-save" (click)="guardarNoticiaEnPerfil()">Save</button>
-          <div *ngIf="savedSuccessfully" class="success-message">Noticia Guardada</div>
-          <div *ngIf="alreadySaved" class="error-message">La noticia ya se encuentra en tu lista de favoritos</div>
+         
         </div>
+        <div *ngIf="alreadySaved" class="error-message">La noticia ya se encuentra en tu lista de favoritos</div>
+        <div *ngIf="savedSuccessfully" class="success-message">News Successfully saved!</div>
         <div class="rating" *ngIf="rated">
           <div class="rating">
             <!-- estan al reves porque para que se pinten tuve que darlas vuelta con el flex direction -->
