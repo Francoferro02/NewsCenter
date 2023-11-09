@@ -22,6 +22,7 @@ import { LoginFormComponent } from './components/login-form/login-form.component
 import {HttpClientModule } from '@angular/common/http';
 import { SignUpFormComponent } from './components/sign-up-form/sign-up-form.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { SharedPopupService } from './components/Services/sharedPopup';
 
 @NgModule({
   declarations: [
@@ -49,9 +50,10 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     AppRoutingModule,
     HttpClientModule,
     ReactiveFormsModule,
-    FormsModule
+    FormsModule,
+    
   ],
-  providers: [],
+  providers: [SharedPopupService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -15,10 +15,12 @@
     border-radius: 5rem;
     border: transparent;
     height: 5rem;
-    width: 20rem;
+    width: 30rem;
     font-size: larger;
     font-weight: 400;
     padding: 2rem;
+    position: relative;
+    display: inline-block;
   }
   
   .search-bar input {
@@ -38,7 +40,7 @@
     border: none;
     border-radius: 5rem;
     cursor: pointer;
-    padding: 0.5rem 1rem; /* Ajusta el espaciado interno según tus preferencias */
+    padding: 0.5rem 1rem; 
     cursor: pointer;
   }
   
@@ -86,4 +88,43 @@
   align-items: center;
   padding-right: 4rem;
   font-size: medium;
+}
+
+
+.dropdown {
+  position: relative;
+  display: inline-block;
+  width: 100%;
+}
+
+
+
+.dropdown-content {
+  
+  position: absolute;
+  background-color: #f9f9f9;
+  width: 50rem;
+  box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+  z-index: 20;
+}
+
+.dropdown-content ul {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+
+.dropdown-content li {
+  padding: 1rem;
+  cursor: pointer;
+}
+
+.dropdown button:focus + .dropdown-content {
+  display: block;
+}
+
+.dropdown-content li:hover {
+  background-color:  #312783;
+  color: white;
+  transition: 0.2s ease ;
 }

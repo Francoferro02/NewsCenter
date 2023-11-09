@@ -63,7 +63,7 @@
     <div class="saved-news">
       <h3>Saved News</h3>
       <ul>
-        <li *ngFor="let newsUrl of savedNews">
+        <li *ngFor="let newsUrl of savedNews" class="saved-links">
           <a [href]="newsUrl" target="_blank" (mouseenter)="startPopupTimer(newsUrl)" (mouseleave)="clearPopupTimer()"> {{ newsUrl }}</a>
         </li>
       </ul>

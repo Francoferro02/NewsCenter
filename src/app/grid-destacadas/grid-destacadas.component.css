@@ -345,3 +345,10 @@ padding: 3rem 10rem 0 0;
   background-color: #f44336;
   font-size: large; /* Color de fondo para el mensaje de error */
 }
+
+.app-nav-bar{
+  position: fixed;
+ display: flex;
+ justify-content: flex-start;
+ margin: -25rem;
+}

@@ -1,9 +1,15 @@
 <div class="container">
   <div class="search-container">
     <div class="search-container">
-      <input type="text" [(ngModel)]="searchTerm" (input)="search()" placeholder="Search by title..." class="search-bar">
+      <input type="text" [(ngModel)]="searchTerm" (keyup.enter)="performSearch(); toggleDropdown()" placeholder="Search by title..." class="search-bar">
       <ul class="search-results" *ngIf="searchResults.length > 0">
-        <li *ngFor="let result of searchResults" (click)="selectResult(result)">{{ result.title }}</li>
+        <div class="dropdown">
+          <div class="dropdown-content" *ngIf="showDropdown">
+            <ul>
+              <li *ngFor="let result of searchResults" (click)="selectResult(result)">{{ result.title }}</li>
+            </ul>
+          </div>
+        </div>
       </ul>
     </div>
   </div>
