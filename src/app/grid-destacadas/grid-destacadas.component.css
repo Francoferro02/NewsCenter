@@ -330,3 +330,16 @@ padding: 3rem 10rem 0 0;
  align-items: center;
  padding-top: 1rem;
 }
+.success-message, .error-message {
+  max-width: 100%; /* Limita el ancho máximo del mensaje al 100% del contenedor */
+  padding: 1rem; /* Agrega espacio interno al mensaje para un mejor aspecto */
+  text-align: center; /* Centra el texto en el mensaje */
+  margin: 1rem auto; /* Alinea el mensaje al centro horizontalmente */
+  background-color: #4caf50; /* Color de fondo para el mensaje de éxito */
+  color: white; /* Color del texto del mensaje de éxito */
+  border-radius: 0.5rem; /* Agrega esquinas redondeadas al mensaje */
+}
+
+.error-message {
+  background-color: #f44336; /* Color de fondo para el mensaje de error */
+}

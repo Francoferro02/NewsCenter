@@ -8,9 +8,12 @@
       "location": "Mar del Plata",
       "rolbio": "Web Developer",
       "join": "7/11/2023",
-      "img": "https://i.ibb.co/Y8GbBZh/fetchimage.webp",
+      "img": "https://i.ibb.co/KsS7v40/6a951ba11e7094537e234a5ffb6b3f62.jpg",
       "savedNews": [
-        "https://apnews.com/article/israel-hamas-war-news-11-6-2023-51286d15dddd77ae0dd7ea76ee52bc71"
+        "https://apnews.com/article/israel-hamas-war-news-11-6-2023-51286d15dddd77ae0dd7ea76ee52bc71",
+        "https://deadline.com/2023/11/legend-of-zelda-movie-wes-ball-1235596216/",
+        "https://www.eurogamer.net/bioware-teases-mass-effect-5-title-plus-answers-to-trilogy-ending-questions",
+        "https://www.cnn.com/2023/11/07/politics/cnn-poll-trump-biden-matchup/index.html"
       ],
       "id": 1
     },
@@ -65,6 +68,12 @@
       "rating": 3.9,
       "CantidadCalificaciones": 28,
       "id": 3
+    },
+    {
+      "urlNoticia": "https://deadline.com/2023/11/legend-of-zelda-movie-wes-ball-1235596216/",
+      "rating": 4.5,
+      "CantidadCalificaciones": 7,
+      "id": 4
     }
   ]
 }

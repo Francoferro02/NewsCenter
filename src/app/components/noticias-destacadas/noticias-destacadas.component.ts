@@ -9,6 +9,8 @@ import { Noticia } from 'src/app/models/noticia.model';
 })
 export class NoticiasDestacadasComponent implements OnInit {
   listaNoticiasDestacas: Noticia[] = [];
+  selectedNoticia: Noticia | undefined;
+  showNewsDetail: boolean | undefined;
 
   constructor(private serviceApi: LastNewsService) {}
 
@@ -32,7 +34,5 @@ export class NoticiasDestacadasComponent implements OnInit {
       });
     });
   }
-
- 
 }
 

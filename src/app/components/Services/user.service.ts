@@ -57,4 +57,10 @@ export class UserService {
     const userId = user.id; // Asume que el usuario tiene un campo 'id'
     return this.http.put(`${this.url}/users/${userId}`, user);
   }
+
+  getUserById(id: number): Observable<User> {
+    return this.http.get<User>(`${this.url}/users/${id}`);
+  }
 }
+
+

@@ -8,8 +8,7 @@
           </div>
         <h2 class="user-name">{{editingUser ? (editingUser.name || 'No name') : (user?.name || 'No name')}}</h2>
         <h2 class="user-surname">{{editingUser ? (editingUser.surname || 'No surname') : (user?.surname  || 'No surname')}}</h2>
-
-        <p class="user-bio">{{editingUser ? (editingUser.rolBio || 'No information') : (user?.rolBio || 'No information')}}</p>
+        <p class="user-bio">{{user?.rolbio}}</p>
         <div class="user-info">
             <p><strong>Email:</strong> {{user?.email}}</p>
             <p><strong>Location:</strong> {{user?.location}}</p>
@@ -42,10 +41,11 @@
                         <label for="location">Location</label>
                         <input class="input-edit"  [ngModel]="editingUser?.location" (ngModelChange)="onLocationChange($event)" name="location" required>
                       </form>
-                      <form class="modal-submit" (submit)="updateField('rolBio')">
-                        <label for="rolBio">Tech Rol</label>
-                        <input class="input-edit"  [ngModel]="editingUser?.rolBio" (ngModelChange)="onInfoBioChange($event)" name="rolBio" required>
-                      </form><form class="modal-submit" (submit)="updateField('password')">
+                      <form class="modal-submit" (submit)="updateField('rolbio')">
+                        <label for="rolbio">Tech Rol</label>
+                        <input class="input-edit"  [ngModel]="editingUser?.rolbio" (ngModelChange)="onInfoBioChange($event)" name="rolbio" required>
+                      </form>
+                      <form class="modal-submit" (submit)="updateField('password')">
                         <label for="password">Password</label>
                         <input class="input-edit"  [ngModel]="editingUser?.password" (ngModelChange)="onPasswordChange($event)" name="password" required>
                       </form>

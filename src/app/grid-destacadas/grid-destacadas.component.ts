@@ -5,6 +5,7 @@ import { Comentario, Noticia } from '../models/noticia.model';
 import {User} from 'src/app/models/user.model'
 import { UserService } from '../components/Services/user.service';
 import { HttpClient } from '@angular/common/http';
+import { CommentsService } from '../components/Services/comments.service';
 
 
 
@@ -24,8 +25,14 @@ export class GridDestacadasComponent implements OnInit {
   comentarioEnEdicion: Comentario | null = null;  
   user : User |null  ;
   nextCommentId: number = 1;
-  constructor(private router: Router, private userService: UserService, private http: HttpClient){
+  comments: Noticia[] = [];
+  savedSuccessfully: boolean = false;
+ alreadySaved: boolean = false;
+  constructor(private router: Router, private userService: UserService, private http: HttpClient,private commentService: CommentsService){
     this.user = null;
+    this.commentService.getComments().subscribe((comments) => {
+        
+    });
   }
 
  
@@ -114,20 +121,30 @@ guardarNoticiaEnPerfil() {
   if (this.user && this.selectedNoticia) {
     const newsUrl = this.selectedNoticia.url;
 
-    // Verifica si la URL de la noticia ya está en la lista de noticias guardadas del usuario
     if (!this.user.savedNews.includes(newsUrl)) {
-      // Si la URL no está en la lista, agrégala
       this.user.savedNews.push(newsUrl);
 
-      // Realiza una solicitud PUT al servidor JSON para actualizar el usuario con la nueva lista de noticias guardadas
       this.userService.updateUser(this.user).subscribe((response: any) => {
+        this.savedSuccessfully = true;
+        this.alreadySaved = false;
         console.log('Noticia guardada en el perfil del usuario', response);
+
+        setTimeout(() => {
+          this.savedSuccessfully = false;
+        }, 3000);
       });
     } else {
+      this.alreadySaved = true;
+      this.savedSuccessfully = false;
       console.log('La noticia ya está en la lista de noticias guardadas');
+      
+      setTimeout(() => {
+        this.alreadySaved = false;
+      }, 3000);
     }
   }
 }
+
 
 editAndSaveComentario(comentario: Comentario) {
   if (!comentario.editing) {
@@ -152,33 +169,22 @@ editAndSaveComentario(comentario: Comentario) {
   comentario.editing = false; // Deshabilita la edición
   }
 }
-
-  eliminarComentario(noticia: Noticia, commentId: string) {
-    // Construye la URL de eliminación utilizando el ID del comentario
-    const deleteUrl = `http://localhost:3000/comentarios/${commentId}`;
-  
-    fetch(deleteUrl, {
-      method: 'DELETE',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-    })
-      .then((response) => {
-        if (response.status === 204) {
-          // Éxito: el comentario se eliminó correctamente.
-          console.log('Comentario eliminado en el servidor JSON.');
-          // Ahora, también deberías eliminar el comentario localmente de la noticia.
-          noticia.comentario = noticia.comentario.filter((comentario) => comentario.id !== commentId);
-        } else {
-          console.error('No se pudo eliminar el comentario en el servidor JSON.');
-        }
-      })
-      .catch((error) => {
-  console.error('Error al eliminar el comentario en el servidor JSON:', error);
-});
-
-      this.cerrarFormularioComentario();
-  }
+eliminarComentario(commentId: string): void {
+  this.commentService.deleteComment(commentId).subscribe(() => {
+    // Verifica si selectedNoticia no es nulo
+    if (this.selectedNoticia) {
+      const comentarioIndex = this.selectedNoticia.comentario.findIndex((comentario) => comentario.id === commentId);
+      if (comentarioIndex !== -1) {
+        this.selectedNoticia.comentario.splice(comentarioIndex, 1);
+        console.log('Comentario eliminado en el servidor JSON y localmente.');
+      } else {
+        console.error('No se encontró el comentario localmente.');
+      }
+    } else {
+      console.error('selectedNoticia es nulo.');
+    }
+  });
+}
 
   mostrarFormularioComentario() {
     this.toggleComentarioForm()
@@ -239,14 +245,6 @@ editAndSaveComentario(comentario: Comentario) {
     }
   }
  
-  
-  
-  
-  
-  
-  
-  
-  
 
   compartirEnTwitter(url: string) {
     window.open(`https://twitter.com/share?url=${encodeURIComponent(url)}`, '_blank');

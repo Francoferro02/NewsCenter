@@ -1,6 +1,7 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { UserService } from '../components/Services/user.service';
 import {User} from 'src/app/models/user.model'
+import { Noticia } from '../models/noticia.model';
 
 
 @Component({
@@ -16,6 +17,12 @@ export class NavBarComponent  implements OnInit{
   
 
   user : User |null ;
+
+  @Input() noticias: Noticia[] = []; 
+  @Output() searchResultSelected = new EventEmitter<Noticia>(); 
+
+  searchTerm: string = ''; 
+  searchResults: Noticia[] = []; 
 
   constructor(private userService: UserService) {
     this.user = null;
@@ -45,7 +52,17 @@ export class NavBarComponent  implements OnInit{
     });
   }
 
+  search() {
+    this.searchResults = this.noticias.filter(noticia =>
+      noticia.title.toLowerCase().includes(this.searchTerm.toLowerCase())
+    );
+  }
 
+  selectResult(result: Noticia) {
+    this.searchResultSelected.emit(result);
+    this.searchTerm = ''; // Limpia el campo de búsqueda
+    this.searchResults = []; // Limpia los resultados
+  }
   openLoginPopup() {
     this.showPopup1 = true;
   }

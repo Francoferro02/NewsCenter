@@ -1,10 +1,10 @@
 <div class="container">
   <div class="search-container">
-    <div class="search-bar">
-      <input type="text" id="search-input" placeholder="Search by country or language...">
-      <button class="search-button">
-        <span class="material-symbols-outlined">search</span>
-      </button>
+    <div class="search-container">
+      <input type="text" [(ngModel)]="searchTerm" (input)="search()" placeholder="Search by title...">
+      <ul class="search-results" *ngIf="searchResults.length > 0">
+        <li *ngFor="let result of searchResults" (click)="selectResult(result)">{{ result.title }}</li>
+      </ul>
     </div>
   </div>
   <div class="button-container">

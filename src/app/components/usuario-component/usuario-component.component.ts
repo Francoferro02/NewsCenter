@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { User } from 'src/app/models/user.model';
 import { UserService } from '../Services/user.service';
 import { HttpClient } from '@angular/common/http';
+import { ChangeDetectorRef } from '@angular/core';
 
 @Component({
   selector: 'app-usuario-component',
@@ -28,7 +29,7 @@ export class UsuarioComponentComponent implements OnInit {
 
   popupTimer: any;
 
-  constructor(private userService: UserService, private http: HttpClient){
+  constructor(private userService: UserService,private changeDetectorRef: ChangeDetectorRef){
     this.user = null;
   }
   ngOnInit(){
@@ -69,11 +70,24 @@ export class UsuarioComponentComponent implements OnInit {
   startEditing(field: string): void {
     this.editedField = field;
   }
-  updateUser() {
+  async updateUser() {
     if (this.editingUser) {
-      this.userService.updateUser(this.editingUser).subscribe(() => {
-        this.user = this.editingUser;
-      });
+      try {
+        await this.userService.updateUser(this.editingUser).toPromise(); 
+        const updatedUser = await this.userService.getUserById(this.editingUser.id).toPromise();
+        if (updatedUser) {
+          this.editingUser = { ...updatedUser };
+        } else {
+          this.editingUser = { ...this.editingUser }; 
+        }
+        if (this.editingUser && this.editingUser.img) {
+          this.selectedImageURL = this.editingUser.img;
+        } else {
+          this.selectedImageURL = null; 
+        }
+      } catch (error) {
+        console.error("Error al actualizar el usuario: " + error);
+      }
     }
   }
   updateField(field: string): void {
@@ -113,7 +127,7 @@ export class UsuarioComponentComponent implements OnInit {
   }
   onInfoBioChange(newInfoBio: string) {
     if (this.editingUser) {
-      this.editingUser.rolBio = newInfoBio;
+      this.editingUser.rolbio = newInfoBio;
     }
   }
   onPasswordChange(newPassword: string) {
@@ -164,6 +178,11 @@ export class UsuarioComponentComponent implements OnInit {
             });
   
             console.log("User data updated with image URL.");
+
+            this.selectedImageURL = selectedImageURL;
+
+            // Forzar la actualización de la vista
+            this.changeDetectorRef.detectChanges();
           }
         } else {
           console.error("Error al cargar la imagen en ImgBB.");
@@ -190,7 +209,7 @@ export class UsuarioComponentComponent implements OnInit {
         password: this.editedUser.password || '',
         location: this.editedUser.location || '',
         join: this.editedUser.join || new Date(),
-        rolBio: this.editedUser.rolBio || '',
+        rolbio: this.editedUser.rolbio || '',
         savedNews: this.editedUser.savedNews || [],
         img: this.editedUser.img || ''
       };

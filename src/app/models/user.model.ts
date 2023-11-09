@@ -6,7 +6,7 @@ export class User  {
     password!: string;
     location!: string;
     join!: Date;
-    rolBio! : string;
+    rolbio! : string;
     savedNews! : string[];
     img!: string;
 }
