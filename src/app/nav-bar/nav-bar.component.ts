@@ -73,10 +73,12 @@ export class NavBarComponent implements OnInit {
 
   closePopup() {
     this.showPopup = false;
+    this.sharedPopupService.closePopup();
   }
 
   closePopup1() {
     this.showPopup1 = false;
+    this.sharedPopupService.closePopup();
   }
 
   logout() {

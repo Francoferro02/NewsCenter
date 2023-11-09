@@ -22,4 +22,10 @@ export class SharedPopupService {
   getBusquedaDesdeNavBar() {
     return this.busquedaDesdeNavBar;
   }
+
+  closePopup() {
+    this.selectedNoticiaSource.next(null); // Establece selectedNoticia como null
+  }
+
+  
 }

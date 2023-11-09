@@ -111,6 +111,7 @@ export class GridSeccionComponent implements OnInit {
     this.rated = false;
     this.rated2 = false;
     this.selectedNoticia = null;
+    this.sharedPopupService.closePopup()
   }
 
   agregarComentario(noticia: Noticia, textoComentario: string) {
