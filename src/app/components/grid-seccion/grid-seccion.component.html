@@ -2,6 +2,13 @@
     <div class="logo-seccion">
             <img class="logo-chico" src="../../../assets/Logo/Recurso 3.png" alt="logo" (click)="navegateTo('LastNews')">     
     </div>
+    <div class="filtrado-options">
+      <label>Filtrar por:</label>
+      <select (change)="cambiarFiltradoGridSeccion($event)">
+        <option value="top-headlines">Top Headlines</option>
+        <option value="everything">Everything</option>
+      </select>
+    </div>
     <div class="seccion-nombre-container">
         <h2 class="seccion-nombre">{{titulo}}</h2>
     </div>

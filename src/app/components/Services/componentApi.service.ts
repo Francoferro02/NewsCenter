@@ -6,39 +6,43 @@ import { Observable, ReplaySubject } from 'rxjs';
   providedIn: 'root',
 })
 export class componentApiService {
-  
- constructor(private http:HttpClient){}
+  private newsCache = new Map<string, ReplaySubject<any[]>>();
+  private filtradoGridSeccion: string = 'top-headlines'; // Propiedad para almacenar el filtrado
+  private categoria: string = ''; // Propiedad para almacenar la categoría
 
- private newsCache = new Map<string, ReplaySubject<any[]>>();
-  
- listaNoticiasSport: any [] = [];
- listaNoticiasScience: any [] = [];
- listaNoticiasBusiness: any [] = [];
- listaNoticiasTech: any [] = [];
- listaNoticiasHealth: any [] = [];
- listaNoticiasEntertainment: any[] = [];
+  listaNoticiasSport: any[] = [];
+  listaNoticiasScience: any[] = [];
+  listaNoticiasBusiness: any[] = [];
+  listaNoticiasTech: any[] = [];
+  listaNoticiasHealth: any[] = [];
+  listaNoticiasEntertainment: any[] = [];
 
+  @Input() listadoNoticiasSport: any;
+  @Input() listadoNoticiasScience: any;
+  @Input() listadoNoticiasBusiness: any;
+  @Input() listadoNoticiasTech: any;
+  @Input() listadoNoticiasHealth: any;
+  @Input() listadoNoticiasEntertainment: any;
 
- @Input()listadoNoticiasSport:any;
- @Input()listadoNoticiasScience:any;
- @Input()listadoNoticiasBusiness:any;
- @Input()listadoNoticiasTech:any;
- @Input()listadoNoticiasHealth:any;
- @Input() listadoNoticiasEntertainment: any;
+  constructor(private http: HttpClient) {}
 
-
-
-
- getNoticiasPorCategoria(categoria: string): Observable<any[]> {
-  if (!this.newsCache.has(categoria) || !this.newsCache.get(categoria)?.observers.length) {
-    const url = `https://newsapi.org/v2/top-headlines?language=en&category=${categoria}&apiKey=385dd2c9c8254f5db32d6eedbad90e95`;
-    const cache = new ReplaySubject<any[]>(1);
-    this.http.get<any>(url).subscribe((data) => {
-      cache.next(data.articles || []); // Utiliza 'data.articles' si está definido, de lo contrario, usa un arreglo vacío
-    });
-    this.newsCache.set(categoria, cache);
+  getNoticiasPorCategoria(categoria: string): Observable<any[]> {
+    if (!this.newsCache.has(categoria) || !this.newsCache.get(categoria)?.observers.length) {
+      const url = `https://newsapi.org/v2/top-headlines?language=en&category=${categoria}&apiKey=385dd2c9c8254f5db32d6eedbad90e95`;
+      const cache = new ReplaySubject<any[]>(1);
+      this.http.get<any>(url).subscribe((data: any) => {
+        cache.next(data.articles || []); 
+      });
+      this.newsCache.set(categoria, cache);
+    }
+    return this.newsCache.get(categoria)?.asObservable() || new ReplaySubject<any[]>(1).asObservable();
   }
-  return this.newsCache.get(categoria)?.asObservable() || new ReplaySubject<any[]>(1).asObservable();
-}
 
+  setFiltradoGridSeccion(filtrado: string, categoria: string) {
+    // Actualiza el valor del filtrado y la categoría en función de la selección del usuario
+    this.filtradoGridSeccion = filtrado;
+    this.categoria = categoria;
+    // Luego, llamas a la función getNoticiasPorCategoria con los nuevos valores de filtrado y categoría.
+    this.getNoticiasPorCategoria(categoria);
+  }
 }

@@ -7,6 +7,7 @@ import { UserService } from '../components/Services/user.service';
 import { HttpClient } from '@angular/common/http';
 import { CommentsService } from '../components/Services/comments.service';
 import { SharedPopupService } from '../components/Services/sharedPopup';
+import { LastNewsService } from '../components/Services/last-news.service';
 
 
 
@@ -31,7 +32,7 @@ export class GridDestacadasComponent implements OnInit {
   alreadySaved: boolean = false;
 
 
-  constructor(private router: Router, private userService: UserService, private http: HttpClient, private commentService: CommentsService, private sharedPopupService: SharedPopupService) {
+  constructor(private router: Router, private userService: UserService, private http: HttpClient, private commentService: CommentsService, private sharedPopupService: SharedPopupService, private serviceApi:LastNewsService) {
     this.user = null;
     this.commentService.getComments().subscribe((comments) => {
 
@@ -277,7 +278,16 @@ export class GridDestacadasComponent implements OnInit {
     window.open(`https://api.whatsapp.com/send?text=${encodeURIComponent(url)}`, '_blank');
   }
 
-
+  cambiarFiltradoDestacadas(event: Event) {
+    const selectedOption = (event.target as HTMLSelectElement).value;
+    if (selectedOption === 'top-headlines') {
+      // Cambiar el filtrado a Top Headlines
+      this.serviceApi.setFiltradoDestacadas('top-headlines');
+    } else if (selectedOption === 'everything') {
+      // Cambiar el filtrado a Everything
+      this.serviceApi.setFiltradoDestacadas('everything');
+    }
+  }
 
 }
 

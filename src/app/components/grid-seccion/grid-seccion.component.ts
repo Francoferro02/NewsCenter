@@ -37,7 +37,7 @@ export class GridSeccionComponent implements OnInit {
   savedSuccessfully: boolean = false;
   alreadySaved: boolean = false;
   nombreArray: any[] = [];
-
+  categoria: string;
 
   constructor(
     private router: Router,
@@ -45,11 +45,11 @@ export class GridSeccionComponent implements OnInit {
     private userService: UserService,
     private http: HttpClient,
     private commentService: CommentsService,
-    private sharedPopupService: SharedPopupService
+    private sharedPopupService: SharedPopupService,
   ) {
     this.user = null;
+    this.categoria = 'general'
     this.commentService.getComments().subscribe((comments) => {
-
     });
   }
   ngOnInit(): void {
@@ -290,6 +290,13 @@ export class GridSeccionComponent implements OnInit {
     window.open(`https://api.whatsapp.com/send?text=${encodeURIComponent(url)}`, '_blank');
   }
 
+  cambiarFiltradoGridSeccion(event: Event) {
+    const selectedOption = (event.target as HTMLSelectElement).value;
 
-
+    if (selectedOption === 'top-headlines') {
+      this.componenteApi.setFiltradoGridSeccion('top-headlines', this.categoria);
+    } else if (selectedOption === 'everything') {
+      this.componenteApi.setFiltradoGridSeccion('everything', this.categoria);
+    }
+  }
 }

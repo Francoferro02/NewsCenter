@@ -1,5 +1,13 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
 <section class="container-main">
+  <div class="filtrado-options">
+    <label>Filtrar por:</label>
+    <select (change)="cambiarFiltradoDestacadas($event)">
+      <option value="top-headlines">Top Headlines</option>
+      <option value="everything">Everything</option>
+    </select>
+  </div>
+  
   <div class="lista-noticias">
     <div *ngFor="let noticia of listadoNoticiasDestacas; let first = first" (click)="openPopup(noticia)">
       <div class="noticia" [ngClass]="{ 'noticia-ppal': first, 'noticia-chica': !first }">

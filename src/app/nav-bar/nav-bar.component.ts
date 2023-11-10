@@ -4,6 +4,7 @@ import { User } from 'src/app/models/user.model'
 import { Noticia } from '../models/noticia.model';
 import { LastNewsService } from '../components/Services/last-news.service';
 import { SharedPopupService } from '../components/Services/sharedPopup';
+import * as stringSimilarity from 'string-similarity';
 
 @Component({
   selector: 'app-nav-bar',
@@ -42,15 +43,20 @@ export class NavBarComponent implements OnInit {
 
   search() {
     this.lastNewsService.fetchAndDisplayPosts().subscribe((response) => {
-      // Maneja la respuesta de la API aquí
       if (response.articles) {
-        const searchTermLowerCase = this.searchTerm.toLowerCase(); // Convierte el término de búsqueda a minúsculas
+        const searchTermLowerCase = this.searchTerm.toLowerCase();
+        const titles = response.articles.map((article: any) => article.title.toLowerCase());
+        
+        // Utiliza string-similarity para calcular la similitud entre el término de búsqueda y los títulos
+        const similarityScores = stringSimilarity.findBestMatch(searchTermLowerCase, titles);
+  
+        // Filtra los resultados con una puntuación de similitud mínima (puedes ajustar este valor)
+        const minSimilarityScore = 0.3; // Ejemplo de umbral de similitud
+        this.searchResults = response.articles.filter((article: any, index: number) => {
+          return similarityScores.ratings[index].rating >= minSimilarityScore;
 
-        // Filtra los artículos que contienen el término de búsqueda en su título
-        this.searchResults = response.articles.filter((article: any) => // Agrega el tipo 'any' o el tipo adecuado si lo conoces
-          article.title.toLowerCase().includes(searchTermLowerCase)
-        );
-
+        });
+  
         console.log(this.searchResults);
       }
     });
@@ -102,5 +108,10 @@ export class NavBarComponent implements OnInit {
     this.showDropdown = !this.showDropdown;
   }
 
-  
+  onEnterKeyPress(event: Event) {
+    if (event instanceof KeyboardEvent && event.key === 'Enter') {
+      this.performSearch();
+      this.toggleDropdown();
+    }
+  }
 }
