@@ -7,11 +7,13 @@ import { Observable } from 'rxjs';
 })
 export class LastNewsService {
   private filtradoDestacadas: string = 'top-headlines';
+ 
  constructor(private http:HttpClient){}
 
+  
 
   fetchAndDisplayPosts(): Observable<any> {
-    const url = `https://newsapi.org/v2/${this.filtradoDestacadas}?language=en&apiKey=385dd2c9c8254f5db32d6eedbad90e95`
+    const url = `https://newsapi.org/v2/${this.filtradoDestacadas}?language=en&apiKey=12c5c9726e834cbbbaf33d1e05ae1efc`
     
     return this.http.get(url);
   }
@@ -23,6 +25,14 @@ export class LastNewsService {
     // Luego, llamas a la función fetchAndDisplayPosts con el nuevo valor de filtrado.
     this.fetchAndDisplayPosts();
   }
+
+
+
+  /*  */
+
+
 }
+
+
 
 

@@ -1,10 +1,12 @@
+import { HttpClient } from '@angular/common/http'
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { UserService } from '../components/Services/user.service';
 import { User } from 'src/app/models/user.model'
 import { Noticia } from '../models/noticia.model';
 import { LastNewsService } from '../components/Services/last-news.service';
 import { SharedPopupService } from '../components/Services/sharedPopup';
-import * as stringSimilarity from 'string-similarity';
+import * as stringSimilarity from 'string-similarity'
+
 
 @Component({
   selector: 'app-nav-bar',
@@ -28,7 +30,7 @@ export class NavBarComponent implements OnInit {
   searchResults: Noticia[] = [];
   showDropdown: boolean = false;
 
-  constructor(private userService: UserService, private lastNewsService: LastNewsService, private sharedPopupService: SharedPopupService ) {
+  constructor(private userService: UserService, private lastNewsService: LastNewsService, private sharedPopupService: SharedPopupService, private http: HttpClient) {
     this.user = null;
   }
 
@@ -41,34 +43,42 @@ export class NavBarComponent implements OnInit {
 
   }
 
-  search() {
-    this.lastNewsService.fetchAndDisplayPosts().subscribe((response) => {
-      if (response.articles) {
-        const searchTermLowerCase = this.searchTerm.toLowerCase();
-        const titles = response.articles.map((article: any) => article.title.toLowerCase());
-        
-        // Utiliza string-similarity para calcular la similitud entre el término de búsqueda y los títulos
-        const similarityScores = stringSimilarity.findBestMatch(searchTermLowerCase, titles);
-  
-        // Filtra los resultados con una puntuación de similitud mínima (puedes ajustar este valor)
-        const minSimilarityScore = 0.3; // Ejemplo de umbral de similitud
-        this.searchResults = response.articles.filter((article: any, index: number) => {
-          return similarityScores.ratings[index].rating >= minSimilarityScore;
 
-        });
+  search() {
+    const searchTermLowerCase = this.searchTerm.toLowerCase();
+    const url = `https://newsapi.org/v2/everything?q=${searchTermLowerCase}&language=en&apiKey=12c5c9726e834cbbbaf33d1e05ae1efc`;
   
-        console.log(this.searchResults);
+    this.http.get(url).subscribe(
+      (response: any) => {
+        if (response.articles && response.articles.length > 0) {
+          const filteredResults = response.articles
+            .filter((article: any) =>
+              article.title.toLowerCase().includes(searchTermLowerCase)
+            )
+            .slice(0, 10); 
+  
+          this.searchResults = filteredResults;
+          console.log('Resultados después de la búsqueda:', this.searchResults);
+        } else {
+          console.log('No hay datos disponibles en la respuesta.');
+        }
+      },
+      (error) => {
+        console.error('Error al obtener datos de la API:', error);
       }
-    });
+    );
   }
+
 
   selectResult(result: Noticia) {
     this.searchResultSelected.emit(result);
+    ;
     this.sharedPopupService.openPopup(result);
     this.sharedPopupService.setBusquedaDesdeNavBar(true);
     this.searchTerm = ''; // Limpia el campo de búsqueda
     this.searchResults = []; // Limpia los resultados
   }
+
   openLoginPopup() {
     this.showPopup1 = true;
   }

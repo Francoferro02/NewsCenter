@@ -22,22 +22,12 @@
       "surname": "do",
       "email": "axeldominguez@gmail.com",
       "password": "1234",
-      "location": "mar del plata",
+      "location": "Batán",
       "rolbio": "Developer",
       "join": "7/11/2023",
-      "img": "https://i.ibb.co/nM6xZP6/Ep-AMDa-IXUAAY3-L.jpg",
+      "img": "https://i.ibb.co/QJGfL61/Whats-App-Image-2023-10-08-at-20-11-58.jpg",
       "savedNews": [
-        "https://deadline.com/2023/11/actors-strike-new-talks-final-offer-1235594696/",
-        "https://www.theverge.com/23945184/epic-v-google-fortnite-play-store-antitrust-trial-updates",
-        "https://www.washingtonpost.com/climate-environment/2023/11/07/northern-greenland-ice-shelves-decline/",
-        "https://indianexpress.com/article/sports/cricket/england-vs-netherlands-live-score-icc-cricket-world-cup-2023-40th-match-today-at-mca-stadium-pune-9018443/",
-        "https://www.hindustantimes.com/india-news/galti-se-nikal-gaya-rabri-devi-defends-nitish-kumars-remark-he-said-sorry-101699435002866.html",
-        "https://www.livemint.com/news/world/israel-hamas-war-day-33-live-updates-hamas-tunnels-al-shifa-hospital-gaza-benjamin-netanyahu-idf-ceasefire-palestinians-11699405299656.html",
-        "https://www.reuters.com/business/environment/this-year-virtually-certain-be-warmest-125000-years-eu-scientists-say-2023-11-08/",
-        "https://www.deccanherald.com/science/space/boom-in-space-tourism-threatens-to-boost-the-amounts-of-space-junk-and-climate-emissions-2761735",
-        "https://lifestyle.livemint.com/smart-living/innovation/aditya-l1-solar-flare-isro-sun-xray-solar-power-111699429761499.html",
-        "https://www.ndtv.com/india-news/cbi-inquiry-against-mahua-moitra-ordered-by-anti-corruption-panel-bjp-mp-4557198",
-        "https://www.cnbc.com/2023/11/08/ukraine-war-live-updates-latest-news-on-russia-and-the-war-in-ukraine.html"
+        "https://sports.ndtv.com/cricket/new-zealand-vs-sri-lanka-live-cricket-score-icc-cricket-world-cup-2023-nz-vs-sl-latest-updates-4559539"
       ],
       "id": 2
     }
@@ -140,6 +130,13 @@
       "editing": false,
       "urlNoticia": "https://www.cnn.com/2023/11/08/politics/minnesota-14th-amendment-trump/index.html",
       "id": "1699575989157"
+    },
+    {
+      "text": "sdafd",
+      "usuario": "anonymous",
+      "editing": false,
+      "urlNoticia": "https://timesofindia.indiatimes.com/sports/cricket/icc-world-cup/news/watch-witty-kane-williamson-asks-angelo-mathews-about-his-helmet-strap-during-nz-sl-world-cup-match/articleshow/105096306.cms",
+      "id": "1699627307893"
     }
   ],
   "news": [
@@ -214,6 +211,18 @@
       "rating": 4,
       "CantidadCalificaciones": 1,
       "id": 12
+    },
+    {
+      "urlNoticia": "https://marginalrevolution.com/marginalrevolution/2023/10/the-culture-that-is-porirua-new-zealand.html",
+      "rating": 5,
+      "CantidadCalificaciones": 1,
+      "id": 13
+    },
+    {
+      "urlNoticia": "https://sports.ndtv.com/cricket/new-zealand-vs-sri-lanka-live-cricket-score-icc-cricket-world-cup-2023-nz-vs-sl-latest-updates-4559539",
+      "rating": 3,
+      "CantidadCalificaciones": 2,
+      "id": 14
     }
   ]
 }

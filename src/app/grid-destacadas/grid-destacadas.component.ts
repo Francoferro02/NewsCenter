@@ -66,7 +66,7 @@ export class GridDestacadasComponent implements OnInit {
 
 
   openPopup(noticia: Noticia) {
-
+    console.log("aaa");
     // Realiza una solicitud GET al servidor JSON para obtener todos los comentarios de la noticia por su URL
     this.http.get<Comentario[]>(`http://localhost:3000/comentarios?urlNoticia=${encodeURIComponent(noticia.url)}`).subscribe((comentarios) => {
       // Almacena los comentarios en la propiedad comentario de la noticia seleccionada
