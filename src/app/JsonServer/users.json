@@ -137,6 +137,13 @@
       "editing": false,
       "urlNoticia": "https://timesofindia.indiatimes.com/sports/cricket/icc-world-cup/news/watch-witty-kane-williamson-asks-angelo-mathews-about-his-helmet-strap-during-nz-sl-world-cup-match/articleshow/105096306.cms",
       "id": "1699627307893"
+    },
+    {
+      "text": "messi messi messi",
+      "usuario": "axel",
+      "editing": false,
+      "urlNoticia": "https://www.bbc.co.uk/sport/av/football/67269034",
+      "id": "1699640175359"
     }
   ],
   "news": [
@@ -223,6 +230,12 @@
       "rating": 3,
       "CantidadCalificaciones": 2,
       "id": 14
+    },
+    {
+      "urlNoticia": "https://www.bbc.co.uk/sport/av/football/67269034",
+      "rating": 5,
+      "CantidadCalificaciones": 1,
+      "id": 15
     }
   ]
 }

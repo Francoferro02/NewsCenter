@@ -42,12 +42,16 @@
     font-weight: bold;
     font-size: medium;
     justify-content: center;
+    align-items: center;
     color: white;
     background-color: #312783;
     border: none;
     border-radius: 2rem;
     padding: 1.3rem 5rem;
     cursor: pointer;
+    max-height: 5rem;
+    width: 15rem;
+    
   }
 
   button:hover{
@@ -76,6 +80,8 @@
   align-items: center;
   padding-right: 4rem;
   font-size: medium;
+  position: relative;
+  max-height: 5rem;
 }
 
 
