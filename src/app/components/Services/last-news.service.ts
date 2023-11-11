@@ -1,35 +1,51 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable, OnInit } from '@angular/core';
-import { Observable } from 'rxjs';
+import {BehaviorSubject, Observable, map } from 'rxjs';
+import { Noticia } from 'src/app/models/noticia.model';
 
 @Injectable({
   providedIn: 'root',
 })
 export class LastNewsService {
-  private filtradoDestacadas: string = 'top-headlines';
- 
+  private idioma: string = 'en'; // Nuevo
+  private pais: string = 'us'; // Nuevo
+  private listadoNoticiasDestacasSubject = new BehaviorSubject<any>(null);
  constructor(private http:HttpClient){}
 
   
 
-  fetchAndDisplayPosts(): Observable<any> {
-    const url = `https://newsapi.org/v2/${this.filtradoDestacadas}?language=en&apiKey=12c5c9726e834cbbbaf33d1e05ae1efc`
-    
-    return this.http.get(url);
-  }
+ fetchAndDisplayPosts(): Observable<any> {
+  const url = `https://newsapi.org/v2/top-headlines?language=${this.idioma}&country=${this.pais}&apiKey=12c5c9726e834cbbbaf33d1e05ae1efc`;
+  return this.http.get(url);
+}
+
+getListadoNoticiasDestacasObservable(): Observable<Noticia[]> {
+  return this.fetchAndDisplayPosts().pipe(
+    map((response: any) => {
+      if (response && response.articles && Array.isArray(response.articles)) {
+        return response.articles.map((article: any) => {
+          return {
+            urlToImage: article.urlToImage,
+            title: article.title,
+            content: article.content,
+            url: article.url,
+            comentario: [],
+            rating: 0,
+            CantidadCalificaciones: 0,
+          } as Noticia;
+        });
+      } else {
+        throw new Error('Respuesta de la API no válida.');
+      }
+    })
+  );
+}
   
-  setFiltradoDestacadas(filtrado: string) {
-    // Actualiza el valor del filtrado en función de la selección del usuario
-    // Por ejemplo, puedes almacenar el valor en una propiedad privada y usarlo en la función fetchAndDisplayPosts.
-    this.filtradoDestacadas = filtrado;
-    // Luego, llamas a la función fetchAndDisplayPosts con el nuevo valor de filtrado.
+  setFiltradoDestacadas(idioma: string, pais: string) {
+    this.idioma = idioma;
+    this.pais = pais;
     this.fetchAndDisplayPosts();
   }
-
-
-
-  /*  */
-
 
 }
 

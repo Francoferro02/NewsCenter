@@ -39,6 +39,8 @@ export class GridSeccionComponent implements OnInit {
   nombreArray: any[] = [];
   categoria: string;
 
+  selectedLanguage: string = 'en'; 
+  selectedCountry: string = 'us'; 
   constructor(
     private router: Router,
     private componenteApi: componentApiService,
@@ -69,6 +71,9 @@ export class GridSeccionComponent implements OnInit {
         this.openPopup(noticia);
       }
     });
+  }
+  ngOnDestroy() {
+    this.sharedPopupService.closePopup();
   }
 
   navegateTo(route: string) {
@@ -290,13 +295,7 @@ export class GridSeccionComponent implements OnInit {
     window.open(`https://api.whatsapp.com/send?text=${encodeURIComponent(url)}`, '_blank');
   }
 
-  cambiarFiltradoGridSeccion(event: Event) {
-    const selectedOption = (event.target as HTMLSelectElement).value;
-
-    if (selectedOption === 'top-headlines') {
-      this.componenteApi.setFiltradoGridSeccion('top-headlines', this.categoria);
-    } else if (selectedOption === 'everything') {
-      this.componenteApi.setFiltradoGridSeccion('everything', this.categoria);
-    }
-  }
+  cambiarFiltradoComponent(event: Event) {
+    this.componenteApi.setFiltradoGridSeccion(this.selectedLanguage,this.selectedCountry,this.categoria);
+}
 }

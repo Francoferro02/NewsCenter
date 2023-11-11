@@ -42,7 +42,12 @@ export class NavBarComponent implements OnInit {
     });
 
   }
-
+ 
+  ngOnDestroy(){
+    this.searchResults = [];
+    this.closePopup();
+    
+  }
 
   search() {
     const searchTermLowerCase = this.searchTerm.toLowerCase();

@@ -18,7 +18,7 @@ export class SharedPopupService {
   setBusquedaDesdeNavBar(value: boolean) {
     this.busquedaDesdeNavBar = value;
   }
-
+  
   getBusquedaDesdeNavBar() {
     return this.busquedaDesdeNavBar;
   }

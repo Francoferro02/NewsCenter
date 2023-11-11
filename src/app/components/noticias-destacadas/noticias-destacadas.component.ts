@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { of, switchMap } from 'rxjs';
 import { LastNewsService } from 'src/app/components/Services/last-news.service';
 import { Noticia } from 'src/app/models/noticia.model';
 
@@ -11,17 +12,25 @@ export class NoticiasDestacadasComponent implements OnInit {
   listaNoticiasDestacas: Noticia[] = [];
   selectedNoticia: Noticia | undefined;
   showNewsDetail: boolean | undefined;
+  
 
   constructor(private serviceApi: LastNewsService) {}
 
-  ngOnInit(): void {
-    this.getNoticiasDestacadas();
+  ngOnInit() {
+    this.serviceApi.getListadoNoticiasDestacasObservable().subscribe(
+      (noticias: Noticia[]) => {
+        this.listaNoticiasDestacas = noticias;
+      },
+      error => {
+        console.error('Error al obtener noticias:', error);
+      }
+    );
   }
-
+/*
   getNoticiasDestacadas() {
-    this.serviceApi.fetchAndDisplayPosts().subscribe(data => {
-      console.log(data);
-      this.listaNoticiasDestacas = data.articles.map((article: any) => {
+    this.serviceApi.fetchAndDisplayPosts().subscribe((noticias: Noticia[]) => {
+      console.log(noticias);
+      this.listaNoticiasDestacas = noticias.articles.map((article: any) => {
         return {
           urlToImage: article.urlToImage,
           title: article.title,
@@ -34,5 +43,6 @@ export class NoticiasDestacadasComponent implements OnInit {
       });
     });
   }
+*/
 }
 

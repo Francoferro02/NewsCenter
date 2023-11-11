@@ -1,11 +1,26 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
 <section class="container-main">
   <div class="filtrado-options">
+    <!-- Menú desplegable para el idioma -->
     <label>Filtrar por:</label>
-    <select (change)="cambiarFiltradoDestacadas($event)">
-      <option value="top-headlines">Top Headlines</option>
-      <option value="everything">Everything</option>
+
+      <label>Idioma:</label>
+      <select [(ngModel)]="selectedLanguage" (change)="cambiarFiltradoDestacadas()"> 
+        <option value="en">English</option>
+        <option value="es">Español</option>
+        <!-- Agrega más opciones según tus necesidades -->
+      </select>
+ 
+
+    <!-- Menú desplegable para el país -->
+    <label>País:</label>
+    <select [(ngModel)]="selectedCountry" (change)="cambiarFiltradoDestacadas()"> 
+      <option value="us">United States</option>
+      <option value="ar">Argentina</option>
+      <!-- Agrega más opciones según tus necesidades -->
     </select>
+
+    <button (click)="cambiarFiltradoDestacadas()">Aplicar Filtro</button>
   </div>
   
   <div class="lista-noticias">

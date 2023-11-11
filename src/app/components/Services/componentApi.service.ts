@@ -7,9 +7,9 @@ import { Observable, ReplaySubject } from 'rxjs';
 })
 export class componentApiService {
   private newsCache = new Map<string, ReplaySubject<any[]>>();
-  private filtradoGridSeccion: string = 'top-headlines'; // Propiedad para almacenar el filtrado
   private categoria: string = ''; // Propiedad para almacenar la categoría
-
+  private idiomaGridSeccion: string = 'en'; // Nuevo
+  private paisGridSeccion: string = 'us'; // Nuevo
   listaNoticiasSport: any[] = [];
   listaNoticiasScience: any[] = [];
   listaNoticiasBusiness: any[] = [];
@@ -28,7 +28,7 @@ export class componentApiService {
 
   getNoticiasPorCategoria(categoria: string): Observable<any[]> {
     if (!this.newsCache.has(categoria) || !this.newsCache.get(categoria)?.observers.length) {
-      const url = `https://newsapi.org/v2/top-headlines?language=en&category=${categoria}&apiKey=12c5c9726e834cbbbaf33d1e05ae1efc`;
+      const url = `https://newsapi.org/v2/top-headlines?language=${this.idiomaGridSeccion}&country=${this.paisGridSeccion}&category=${categoria}&apiKey=12c5c9726e834cbbbaf33d1e05ae1efc`;
       const cache = new ReplaySubject<any[]>(1);
       this.http.get<any>(url).subscribe((data: any) => {
         cache.next(data.articles || []); 
@@ -38,11 +38,9 @@ export class componentApiService {
     return this.newsCache.get(categoria)?.asObservable() || new ReplaySubject<any[]>(1).asObservable();
   }
 
-  setFiltradoGridSeccion(filtrado: string, categoria: string) {
-    // Actualiza el valor del filtrado y la categoría en función de la selección del usuario
-    this.filtradoGridSeccion = filtrado;
-    this.categoria = categoria;
-    // Luego, llamas a la función getNoticiasPorCategoria con los nuevos valores de filtrado y categoría.
+  setFiltradoGridSeccion(idioma: string, pais: string, categoria: string) {
+    this.idiomaGridSeccion = idioma;
+    this.paisGridSeccion = pais;
     this.getNoticiasPorCategoria(categoria);
   }
 }

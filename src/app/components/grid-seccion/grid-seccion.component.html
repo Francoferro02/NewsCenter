@@ -3,10 +3,20 @@
             <img class="logo-chico" src="../../../assets/Logo/Recurso 3.png" alt="logo" (click)="navegateTo('LastNews')">     
     </div>
     <div class="filtrado-options">
-      <label>Filtrar por:</label>
-      <select (change)="cambiarFiltradoGridSeccion($event)">
-        <option value="top-headlines">Top Headlines</option>
-        <option value="everything">Everything</option>
+      <!-- Menú desplegable para el idioma -->
+      <label>Idioma:</label>
+      <select [(ngModel)]="selectedLanguage"> 
+        <option value="en">English</option>
+        <option value="es">Español</option>
+        <!-- Agrega más opciones según tus necesidades -->
+      </select>
+  
+      <!-- Menú desplegable para el país -->
+      <label>País:</label>
+      <select [(ngModel)]="selectedCountry"> 
+        <option value="us">United States</option>
+        <option value="ar">Argentina</option>
+        <!-- Agrega más opciones según tus necesidades -->
       </select>
     </div>
     <div class="seccion-nombre-container">

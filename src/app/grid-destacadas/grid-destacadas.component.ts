@@ -8,7 +8,7 @@ import { HttpClient } from '@angular/common/http';
 import { CommentsService } from '../components/Services/comments.service';
 import { SharedPopupService } from '../components/Services/sharedPopup';
 import { LastNewsService } from '../components/Services/last-news.service';
-
+import { ChangeDetectorRef } from '@angular/core';
 
 
 @Component({
@@ -30,9 +30,10 @@ export class GridDestacadasComponent implements OnInit {
   comments: Noticia[] = [];
   savedSuccessfully: boolean = false;
   alreadySaved: boolean = false;
+  selectedLanguage: string = 'en'; // Valor predeterminado, puedes ajustarlo según tus necesidades
+  selectedCountry: string = 'us';
 
-
-  constructor(private router: Router, private userService: UserService, private http: HttpClient, private commentService: CommentsService, private sharedPopupService: SharedPopupService, private serviceApi:LastNewsService) {
+  constructor(private router: Router, private userService: UserService, private http: HttpClient, private commentService: CommentsService, private sharedPopupService: SharedPopupService, private serviceApi:LastNewsService,private cdr: ChangeDetectorRef) {
     this.user = null;
     this.commentService.getComments().subscribe((comments) => {
 
@@ -52,6 +53,12 @@ export class GridDestacadasComponent implements OnInit {
         this.openPopup(noticia);
       }
     });
+    this.serviceApi.getListadoNoticiasDestacasObservable().subscribe((noticias) => {
+      this.listadoNoticiasDestacas = noticias;
+    });
+  }
+  ngOnDestroy() {
+    this.sharedPopupService.closePopup();
   }
 
   navegateTo(route: string) {
@@ -278,16 +285,11 @@ export class GridDestacadasComponent implements OnInit {
     window.open(`https://api.whatsapp.com/send?text=${encodeURIComponent(url)}`, '_blank');
   }
 
-  cambiarFiltradoDestacadas(event: Event) {
-    const selectedOption = (event.target as HTMLSelectElement).value;
-    if (selectedOption === 'top-headlines') {
-      // Cambiar el filtrado a Top Headlines
-      this.serviceApi.setFiltradoDestacadas('top-headlines');
-    } else if (selectedOption === 'everything') {
-      // Cambiar el filtrado a Everything
-      this.serviceApi.setFiltradoDestacadas('everything');
-    }
+  cambiarFiltradoDestacadas() {
+    console.log('Antes de llamar a la API con idioma:', this.selectedLanguage, 'y país:', this.selectedCountry);
+    this.serviceApi.setFiltradoDestacadas(this.selectedLanguage, this.selectedCountry);
+    console.log('Despues de llamar a la API con idioma:', this.selectedLanguage, 'y país:', this.selectedCountry);
+    this.cdr.markForCheck();
   }
-
 }
 

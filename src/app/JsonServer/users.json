@@ -13,7 +13,8 @@
         "https://apnews.com/article/israel-hamas-war-news-11-6-2023-51286d15dddd77ae0dd7ea76ee52bc71",
         "https://deadline.com/2023/11/legend-of-zelda-movie-wes-ball-1235596216/",
         "https://www.eurogamer.net/bioware-teases-mass-effect-5-title-plus-answers-to-trilogy-ending-questions",
-        "https://www.cnn.com/2023/11/07/politics/cnn-poll-trump-biden-matchup/index.html"
+        "https://www.cnn.com/2023/11/07/politics/cnn-poll-trump-biden-matchup/index.html",
+        "https://time.com/6330031/messi-ballon-d-or-2023/"
       ],
       "id": 1
     },
@@ -144,6 +145,13 @@
       "editing": false,
       "urlNoticia": "https://www.bbc.co.uk/sport/av/football/67269034",
       "id": "1699640175359"
+    },
+    {
+      "text": "Wow Inflaation sucks",
+      "usuario": "Franco",
+      "editing": false,
+      "urlNoticia": "https://www.wsj.com/personal-finance/taxes/income-tax-brackets-2024-irs-be0f9cc5",
+      "id": "1699661439327"
     }
   ],
   "news": [
@@ -236,6 +244,12 @@
       "rating": 5,
       "CantidadCalificaciones": 1,
       "id": 15
+    },
+    {
+      "urlNoticia": "https://time.com/6330031/messi-ballon-d-or-2023/",
+      "rating": 4,
+      "CantidadCalificaciones": 1,
+      "id": 16
     }
   ]
 }
