@@ -14,35 +14,11 @@ export class NoticiasDestacadasComponent implements OnInit {
   showNewsDetail: boolean | undefined;
   
 
-  constructor(private serviceApi: LastNewsService) {}
+  constructor() {}
 
   ngOnInit() {
-    this.serviceApi.getListadoNoticiasDestacasObservable().subscribe(
-      (noticias: Noticia[]) => {
-        this.listaNoticiasDestacas = noticias;
-      },
-      error => {
-        console.error('Error al obtener noticias:', error);
-      }
-    );
+
   }
-/*
-  getNoticiasDestacadas() {
-    this.serviceApi.fetchAndDisplayPosts().subscribe((noticias: Noticia[]) => {
-      console.log(noticias);
-      this.listaNoticiasDestacas = noticias.articles.map((article: any) => {
-        return {
-          urlToImage: article.urlToImage,
-          title: article.title,
-          content: article.content,
-          url: article.url,
-          comentario: [],
-          rating: 0,
-          CantidadCalificaciones: 0,
-        };
-      });
-    });
-  }
-*/
+
 }
 

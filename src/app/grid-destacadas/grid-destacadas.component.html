@@ -4,19 +4,13 @@
     <!-- Menú desplegable para el idioma -->
     <label>Filtrar por:</label>
 
-      <label>Idioma:</label>
-      <select [(ngModel)]="selectedLanguage" (change)="cambiarFiltradoDestacadas()"> 
-        <option value="en">English</option>
-        <option value="es">Español</option>
-        <!-- Agrega más opciones según tus necesidades -->
-      </select>
- 
+      
 
     <!-- Menú desplegable para el país -->
     <label>País:</label>
-    <select [(ngModel)]="selectedCountry" (change)="cambiarFiltradoDestacadas()"> 
-      <option value="us">United States</option>
-      <option value="ar">Argentina</option>
+    <select [(ngModel)]="selectedCountry" (change)="cambiarPais()"> 
+      <option value="us" class="language">United States</option>
+      <option value="ar" class="language">Argentina</option>
       <!-- Agrega más opciones según tus necesidades -->
     </select>
 

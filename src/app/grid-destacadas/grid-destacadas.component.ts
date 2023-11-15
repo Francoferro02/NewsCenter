@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnChanges, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { clippingParents } from '@popperjs/core';
 import { Comentario, Noticia } from '../models/noticia.model';
@@ -9,7 +9,7 @@ import { CommentsService } from '../components/Services/comments.service';
 import { SharedPopupService } from '../components/Services/sharedPopup';
 import { LastNewsService } from '../components/Services/last-news.service';
 import { ChangeDetectorRef } from '@angular/core';
-
+import { SimpleChanges } from '@angular/core';
 
 @Component({
   selector: 'app-grid-destacadas',
@@ -17,8 +17,9 @@ import { ChangeDetectorRef } from '@angular/core';
   styleUrls: ['./grid-destacadas.component.css']
 })
 
-export class GridDestacadasComponent implements OnInit {
+export class GridDestacadasComponent implements OnInit, OnChanges{
   @Input() listadoNoticiasDestacas: any;
+/*  listadoNoticiasDestacas: Noticia[] = []; */
   selectedNoticia: Noticia | null = null;
   comentando: boolean = false;
   rated: boolean = false;
@@ -30,7 +31,6 @@ export class GridDestacadasComponent implements OnInit {
   comments: Noticia[] = [];
   savedSuccessfully: boolean = false;
   alreadySaved: boolean = false;
-  selectedLanguage: string = 'en'; // Valor predeterminado, puedes ajustarlo según tus necesidades
   selectedCountry: string = 'us';
 
   constructor(private router: Router, private userService: UserService, private http: HttpClient, private commentService: CommentsService, private sharedPopupService: SharedPopupService, private serviceApi:LastNewsService,private cdr: ChangeDetectorRef) {
@@ -55,8 +55,20 @@ export class GridDestacadasComponent implements OnInit {
     });
     this.serviceApi.getListadoNoticiasDestacasObservable().subscribe((noticias) => {
       this.listadoNoticiasDestacas = noticias;
-    });
+    }); 
+    
+    
+}
+  ngOnChanges(changes: SimpleChanges) {
+    // Verifica si hubo cambios en el input 'listadoNoticiasDestacas'
+    if (changes['listadoNoticiasDestacas'] && !changes['listadoNoticiasDestacas'].firstChange) {
+      console.log('123123123');
+      console.log(this.listadoNoticiasDestacas);
+      this.cambiarFiltradoDestacadas();
+    }
   }
+  
+
   ngOnDestroy() {
     this.sharedPopupService.closePopup();
   }
@@ -286,10 +298,40 @@ export class GridDestacadasComponent implements OnInit {
   }
 
   cambiarFiltradoDestacadas() {
-    console.log('Antes de llamar a la API con idioma:', this.selectedLanguage, 'y país:', this.selectedCountry);
-    this.serviceApi.setFiltradoDestacadas(this.selectedLanguage, this.selectedCountry);
-    console.log('Despues de llamar a la API con idioma:', this.selectedLanguage, 'y país:', this.selectedCountry);
+  /*   this.serviceApi.setFiltradoDestacadas(this.selectedCountry);
+    console.log(this.selectedCountry);
     this.cdr.markForCheck();
+    console.log('lala'); */
+
+    this.serviceApi.setFiltradoDestacadas(this.selectedCountry);
+    console.log(this.selectedCountry);
+    console.log('lala');
+  
+    // Llama al método para actualizar listadoNoticiasDestacas\
+    this.serviceApi.getListadoNoticiasDestacasObservable().subscribe((nuevasNoticias) => {
+      this.actualizarListadoNoticiasDestacas(nuevasNoticias);})
+      console.log(this.listadoNoticiasDestacas);
+      this.cdr.markForCheck();
+  }
+
+  actualizarListadoNoticiasDestacas(nuevasNoticias: Noticia[]) {
+    this.listadoNoticiasDestacas = nuevasNoticias;
+  }
+  cambiarPais(){
+    // Obtener el elemento select
+    const selectElement: HTMLSelectElement | null = document.querySelector('select');
+  
+    // Verificar si el elemento select existe
+    if (selectElement) {
+      // Obtener el valor seleccionado
+      this.selectedCountry = selectElement.value;
+  
+      // Realizar la acción que necesites con el valor seleccionado
+      console.log('País seleccionado:', this.selectedCountry);
+  
+      // Retornar el valor seleccionado
+      
+    }
   }
 }
 

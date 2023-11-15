@@ -8,7 +8,6 @@ import { Observable, ReplaySubject } from 'rxjs';
 export class componentApiService {
   private newsCache = new Map<string, ReplaySubject<any[]>>();
   private categoria: string = ''; // Propiedad para almacenar la categoría
-  private idiomaGridSeccion: string = 'en'; // Nuevo
   private paisGridSeccion: string = 'us'; // Nuevo
   listaNoticiasSport: any[] = [];
   listaNoticiasScience: any[] = [];
@@ -28,7 +27,7 @@ export class componentApiService {
 
   getNoticiasPorCategoria(categoria: string): Observable<any[]> {
     if (!this.newsCache.has(categoria) || !this.newsCache.get(categoria)?.observers.length) {
-      const url = `https://newsapi.org/v2/top-headlines?language=${this.idiomaGridSeccion}&country=${this.paisGridSeccion}&category=${categoria}&apiKey=12c5c9726e834cbbbaf33d1e05ae1efc`;
+      const url = `https://newsapi.org/v2/top-headlines?country=${this.paisGridSeccion}&category=${categoria}&apiKey=12c5c9726e834cbbbaf33d1e05ae1efc`;
       const cache = new ReplaySubject<any[]>(1);
       this.http.get<any>(url).subscribe((data: any) => {
         cache.next(data.articles || []); 
@@ -38,8 +37,8 @@ export class componentApiService {
     return this.newsCache.get(categoria)?.asObservable() || new ReplaySubject<any[]>(1).asObservable();
   }
 
-  setFiltradoGridSeccion(idioma: string, pais: string, categoria: string) {
-    this.idiomaGridSeccion = idioma;
+  setFiltradoGridSeccion( pais: string, categoria: string) {
+    
     this.paisGridSeccion = pais;
     this.getNoticiasPorCategoria(categoria);
   }

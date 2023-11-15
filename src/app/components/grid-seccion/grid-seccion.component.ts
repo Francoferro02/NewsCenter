@@ -296,6 +296,6 @@ export class GridSeccionComponent implements OnInit {
   }
 
   cambiarFiltradoComponent(event: Event) {
-    this.componenteApi.setFiltradoGridSeccion(this.selectedLanguage,this.selectedCountry,this.categoria);
+    this.componenteApi.setFiltradoGridSeccion(this.selectedCountry,this.categoria);
 }
 }
