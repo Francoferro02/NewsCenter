@@ -27,14 +27,14 @@ export class LastNewsService implements OnInit {
     if (this.categoria === 'general') {
       // Si hay una categoría general y se ha seleccionado un país, incluye el parámetro country
       if (this.pais) {
-        url = `https://newsapi.org/v2/top-headlines?category=${this.categoria}&country=${this.pais}&apiKey=e88601fed28f488b8bbaf8c0d51cf962`;
+        url = `https://newsapi.org/v2/top-headlines?category=${this.categoria}&country=${this.pais}&apiKey=12c5c9726e834cbbbaf33d1e05ae1efc`;
       } else {
         // Si no se ha seleccionado un país, excluye el parámetro country
-        url = `https://newsapi.org/v2/top-headlines?language=${this.language}&apiKey=e88601fed28f488b8bbaf8c0d51cf962`;
+        url = `https://newsapi.org/v2/top-headlines?language=${this.language}&apiKey=12c5c9726e834cbbbaf33d1e05ae1efc`;
       }
     } else {
       // Si hay una categoría específica, incluye el parámetro category y, si aplica, country
-      url = `https://newsapi.org/v2/top-headlines?category=${this.categoria}&${this.pais ? `country=${this.pais}&` : ''}apiKey=e88601fed28f488b8bbaf8c0d51cf962`;
+      url = `https://newsapi.org/v2/top-headlines?category=${this.categoria}&${this.pais ? `country=${this.pais}&` : ''}apiKey=12c5c9726e834cbbbaf33d1e05ae1efc`;
     }
   
     return this.http.get(url);

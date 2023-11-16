@@ -27,7 +27,7 @@ export class componentApiService {
 
   getNoticiasPorCategoria(categoria: string): Observable<any[]> {
     if (!this.newsCache.has(categoria) || !this.newsCache.get(categoria)?.observers.length) {
-      const url = `https://newsapi.org/v2/top-headlines?country=${this.paisGridSeccion}&category=${categoria}&apiKey=e88601fed28f488b8bbaf8c0d51cf962`;
+      const url = `https://newsapi.org/v2/top-headlines?country=${this.paisGridSeccion}&category=${categoria}&apiKey=12c5c9726e834cbbbaf33d1e05ae1efc`;
       const cache = new ReplaySubject<any[]>(1);
       this.http.get<any>(url).subscribe((data: any) => {
         cache.next(data.articles || []); 
