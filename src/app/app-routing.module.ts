@@ -11,6 +11,7 @@ import { EntertainmentComponent } from './components/entertainment/entertainment
 import { AuthGuard } from './auth.guard';
 import { GridDestacadasComponent } from './grid-destacadas/grid-destacadas.component';
 import { LoginFormComponent } from './components/login-form/login-form.component';
+import { SignUpFormComponent } from './components/sign-up-form/sign-up-form.component';
 
 const routes: Routes = [
   {path: '', redirectTo: 'LastNews', pathMatch: 'full'},
@@ -23,7 +24,8 @@ const routes: Routes = [
   {path: 'Health', component:HealthComponent},
   {path: 'Profile', component:UsuarioComponentComponent},
   {path: 'Destacadas', canActivate: [AuthGuard], component: GridDestacadasComponent},
-  {path: 'login', component: LoginFormComponent}
+  {path: 'login', component: LoginFormComponent},
+  {path: 'signup', component: SignUpFormComponent}
 ];
 
 @NgModule({

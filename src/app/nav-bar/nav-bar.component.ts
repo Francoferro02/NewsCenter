@@ -19,7 +19,8 @@ export class NavBarComponent implements OnInit {
   @Input() loggedIn: boolean = false;
   @Output() closePopupEvent = new EventEmitter<void>();
   busquedaDesdeNavBar: boolean = false;
-
+  loginFormPopup = true;
+  signupFormPopup = false;
 
   user: User | null;
 
@@ -129,5 +130,13 @@ export class NavBarComponent implements OnInit {
       this.performSearch();
       this.toggleDropdown();
     }
+  }
+
+  closeLoginForm() {
+    this.loginFormPopup = false;
+  }
+
+  closeSignupForm() {
+    this.signupFormPopup = false;
   }
 }

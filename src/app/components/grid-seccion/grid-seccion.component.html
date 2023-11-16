@@ -6,6 +6,8 @@
   <div class="seccion-nombre-container">
     <h2 class="seccion-nombre">{{titulo}}</h2>
   </div>
+
+
   <div class="lista-noticias" *ngFor="let noticia of nombreArray" (click)="openPopup(noticia)">
     <div class="noticia-ppal" *ngIf="noticia.urlToImage">
       <img [src]="noticia.urlToImage" alt="photo-main-news" class="foto-noticia-ppal">

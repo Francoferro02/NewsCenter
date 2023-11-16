@@ -39,8 +39,6 @@ export class GridSeccionComponent implements OnInit {
   alreadySaved: boolean = false;
   nombreArray: any[] = [];
   categoria: string;
-
-  selectedLanguage: string = 'en'; 
   selectedCountry: string = 'us'; 
   constructor(
     private router: Router,

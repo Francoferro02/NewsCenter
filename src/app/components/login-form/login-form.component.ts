@@ -2,6 +2,7 @@ import { Component, EventEmitter, Input, Output, OnInit  } from '@angular/core';
 import { FormControl, FormGroup, Validators, FormBuilder} from '@angular/forms';
 import { UserService } from '../Services/user.service';
 import { AuthServiceService } from '../Services/auth-service.service';
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-login-form',
   templateUrl: './login-form.component.html',
@@ -13,7 +14,7 @@ export class LoginFormComponent implements OnInit {
 
   loginForm: FormGroup;
 
-  constructor(private formBuilder: FormBuilder, private userService: UserService, private authService: AuthServiceService) {
+  constructor(private formBuilder: FormBuilder, private userService: UserService, private authService: AuthServiceService,private router: Router) {
     this.loginForm = this.formBuilder.group({
       name: ['', Validators.required],
       surname: ['', Validators.required],
@@ -66,5 +67,11 @@ export class LoginFormComponent implements OnInit {
   }
 
 
+  redirectToSignup() {
+    // Cierra el popup actual
+    this.closePopup();
 
+    // Navega a la ruta '/signup'
+    this.router.navigate(['/signup']);
+  }
 }

@@ -195,6 +195,13 @@
       "editing": false,
       "urlNoticia": "https://news.google.com/rss/articles/CBMikgFodHRwczovL3d3dy5pbmZvYmFlLmNvbS9kZXBvcnRlcy8yMDIzLzExLzE0L2p1YW4tcm9tYW4tcmlxdWVsbWUtc2VyYS1jYW5kaWRhdG8tYS1wcmVzaWRlbnRlLWRlLWJvY2EteS1jb21wZXRpcmEtY29udHJhLWxhLWxpc3RhLWRlLW1hdXJpY2lvLW1hY3JpL9IBpgFodHRwczovL3d3dy5pbmZvYmFlLmNvbS9kZXBvcnRlcy8yMDIzLzExLzE0L2p1YW4tcm9tYW4tcmlxdWVsbWUtc2VyYS1jYW5kaWRhdG8tYS1wcmVzaWRlbnRlLWRlLWJvY2EteS1jb21wZXRpcmEtY29udHJhLWxhLWxpc3RhLWRlLW1hdXJpY2lvLW1hY3JpLz9vdXRwdXRUeXBlPWFtcC10eXBl?oc=5",
       "id": "1700104015471"
+    },
+    {
+      "text": "Wow Biden ",
+      "usuario": "Franco",
+      "editing": false,
+      "urlNoticia": "https://www.investors.com/market-trend/stock-market-today/dow-jones-futures-key-inflation-data-targets-surges-on-earnings/",
+      "id": "1700153542167"
     }
   ],
   "news": [
@@ -299,6 +306,12 @@
       "rating": 4.7,
       "CantidadCalificaciones": 3,
       "id": 17
+    },
+    {
+      "urlNoticia": "https://www.investors.com/market-trend/stock-market-today/dow-jones-futures-key-inflation-data-targets-surges-on-earnings/",
+      "rating": 4,
+      "CantidadCalificaciones": 1,
+      "id": 18
     }
   ]
 }

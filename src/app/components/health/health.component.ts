@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { componentApiService } from '../Services/componentApi.service';
 
 @Component({
@@ -6,7 +6,7 @@ import { componentApiService } from '../Services/componentApi.service';
   templateUrl: './health.component.html',
   styleUrls: ['./health.component.css']
 })
-export class HealthComponent {
+export class HealthComponent implements OnInit {
   titulo:string = 'HEALTH'
   listaNoticiasHealth: any[] = [];
   @Input()listadoNoticiasHealth:any;

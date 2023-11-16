@@ -68,8 +68,6 @@ export class GridDestacadasComponent implements OnInit {
 
   }
 
-
-
   ngOnDestroy() {
     this.sharedPopupService.closePopup();
   }
