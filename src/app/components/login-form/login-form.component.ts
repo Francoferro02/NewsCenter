@@ -11,7 +11,7 @@ import { Router } from '@angular/router';
 export class LoginFormComponent implements OnInit {
   @Input() showPopup: boolean = true;
   @Output() closePopupEvent = new EventEmitter<void>();
-
+  @Output() switchToSignUp = new EventEmitter<void>();
   loginForm: FormGroup;
 
   constructor(private formBuilder: FormBuilder, private userService: UserService, private authService: AuthServiceService) {
@@ -67,4 +67,7 @@ export class LoginFormComponent implements OnInit {
   }
 
 
+  switchToSignUpForm() {
+    this.switchToSignUp.emit();
+  }
 }

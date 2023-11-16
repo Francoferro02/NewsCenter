@@ -139,4 +139,9 @@ export class NavBarComponent implements OnInit {
   closeSignupForm() {
     this.signupFormPopup = false;
   }
+
+  switchToSignUpForm() {
+    this.showPopup = false; // Cierra el formulario de inicio de sesión
+    this.showPopup1 = true; // Abre el formulario de registro
+  }
 }
