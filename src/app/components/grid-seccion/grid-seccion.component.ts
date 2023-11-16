@@ -1,13 +1,13 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { componentApiService } from '../Services/componentApi.service';
-import { clippingParents } from '@popperjs/core';
+
 import { Comentario, Noticia } from 'src/app/models/noticia.model';
 import { User } from 'src/app/models/user.model'
 import { UserService } from '../Services/user.service';
 import { HttpClient } from '@angular/common/http';
 import { CommentsService } from '../Services/comments.service';
-import { from } from 'rxjs';
+import { LastNewsService } from '../Services/last-news.service';
 import { SharedPopupService } from '../Services/sharedPopup';
 
 @Component({
@@ -48,6 +48,7 @@ export class GridSeccionComponent implements OnInit {
     private http: HttpClient,
     private commentService: CommentsService,
     private sharedPopupService: SharedPopupService,
+    
   ) {
     this.user = null;
     this.categoria = 'general'
@@ -298,4 +299,10 @@ export class GridSeccionComponent implements OnInit {
   cambiarFiltradoComponent(event: Event) {
     this.componenteApi.setFiltradoGridSeccion(this.selectedCountry,this.categoria);
 }
+
+
+
+
 }
+
+

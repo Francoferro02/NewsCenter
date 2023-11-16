@@ -1,6 +1,5 @@
 import { Component, Input, OnChanges, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { clippingParents } from '@popperjs/core';
 import { Comentario, Noticia } from '../models/noticia.model';
 import { User } from 'src/app/models/user.model'
 import { UserService } from '../components/Services/user.service';
@@ -9,7 +8,7 @@ import { CommentsService } from '../components/Services/comments.service';
 import { SharedPopupService } from '../components/Services/sharedPopup';
 import { LastNewsService } from '../components/Services/last-news.service';
 import { ChangeDetectorRef } from '@angular/core';
-import { SimpleChanges } from '@angular/core';
+
 
 @Component({
   selector: 'app-grid-destacadas',
@@ -17,9 +16,9 @@ import { SimpleChanges } from '@angular/core';
   styleUrls: ['./grid-destacadas.component.css']
 })
 
-export class GridDestacadasComponent implements OnInit, OnChanges{
+export class GridDestacadasComponent implements OnInit{
   @Input() listadoNoticiasDestacas: any;
-/*  listadoNoticiasDestacas: Noticia[] = []; */
+
   selectedNoticia: Noticia | null = null;
   comentando: boolean = false;
   rated: boolean = false;
@@ -32,6 +31,7 @@ export class GridDestacadasComponent implements OnInit, OnChanges{
   savedSuccessfully: boolean = false;
   alreadySaved: boolean = false;
   selectedCountry: string = 'us';
+
 
   constructor(private router: Router, private userService: UserService, private http: HttpClient, private commentService: CommentsService, private sharedPopupService: SharedPopupService, private serviceApi:LastNewsService,private cdr: ChangeDetectorRef) {
     this.user = null;
@@ -48,25 +48,24 @@ export class GridDestacadasComponent implements OnInit, OnChanges{
       // Update the value of loggedIn
      
     })
+
     this.sharedPopupService.selectedNoticia$.subscribe((noticia) => {
       if (noticia && this.sharedPopupService.getBusquedaDesdeNavBar()) { // Verificar la bandera
         this.openPopup(noticia);
       }
     });
-    this.serviceApi.getListadoNoticiasDestacasObservable().subscribe((noticias) => {
+
+    this.serviceApi.getListadoNoticiasDestacasObservable().subscribe(
+      (noticias) => {
       this.listadoNoticiasDestacas = noticias;
+      this.cdr.detectChanges(); 
+      
+      
     }); 
     
     
 }
-  ngOnChanges(changes: SimpleChanges) {
-    // Verifica si hubo cambios en el input 'listadoNoticiasDestacas'
-    if (changes['listadoNoticiasDestacas'] && !changes['listadoNoticiasDestacas'].firstChange) {
-      console.log('123123123');
-      console.log(this.listadoNoticiasDestacas);
-      this.cambiarFiltradoDestacadas();
-    }
-  }
+
   
 
   ngOnDestroy() {
@@ -180,7 +179,7 @@ export class GridDestacadasComponent implements OnInit, OnChanges{
 
   editAndSaveComentario(comentario: Comentario) {
 
-    console.log("ajajaj")
+    
     if (!comentario.editing) {
       // Si el comentario no está en modo edición, lo activamos para la edición.
       comentario.editing = true;
@@ -298,24 +297,22 @@ export class GridDestacadasComponent implements OnInit, OnChanges{
   }
 
   cambiarFiltradoDestacadas() {
-  /*   this.serviceApi.setFiltradoDestacadas(this.selectedCountry);
-    console.log(this.selectedCountry);
-    this.cdr.markForCheck();
-    console.log('lala'); */
+  
 
     this.serviceApi.setFiltradoDestacadas(this.selectedCountry);
     console.log(this.selectedCountry);
-    console.log('lala');
-  
     // Llama al método para actualizar listadoNoticiasDestacas\
     this.serviceApi.getListadoNoticiasDestacasObservable().subscribe((nuevasNoticias) => {
-      this.actualizarListadoNoticiasDestacas(nuevasNoticias);})
-      console.log(this.listadoNoticiasDestacas);
+      this.actualizarListadoNoticiasDestacas(nuevasNoticias)
       this.cdr.markForCheck();
+    ;})
+     
+      
   }
 
   actualizarListadoNoticiasDestacas(nuevasNoticias: Noticia[]) {
     this.listadoNoticiasDestacas = nuevasNoticias;
+    console.log("cambiado", this.listadoNoticiasDestacas);
   }
   cambiarPais(){
     // Obtener el elemento select

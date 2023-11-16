@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { of, switchMap } from 'rxjs';
 import { LastNewsService } from 'src/app/components/Services/last-news.service';
 import { Noticia } from 'src/app/models/noticia.model';
 
@@ -9,7 +8,7 @@ import { Noticia } from 'src/app/models/noticia.model';
   styleUrls: ['./noticias-destacadas.component.css']
 })
 export class NoticiasDestacadasComponent implements OnInit {
-  listaNoticiasDestacas: Noticia[] = [];
+  
   selectedNoticia: Noticia | undefined;
   showNewsDetail: boolean | undefined;
   
@@ -17,7 +16,7 @@ export class NoticiasDestacadasComponent implements OnInit {
   constructor() {}
 
   ngOnInit() {
-
+;
   }
 
 }

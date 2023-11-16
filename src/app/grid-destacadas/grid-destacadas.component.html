@@ -2,31 +2,41 @@
 <section class="container-main">
   <div class="filtrado-options">
     <!-- Menú desplegable para el idioma -->
-    <label>Filtrar por:</label>
-
-      
-
+    <label>Filtrar por pais:</label>
     <!-- Menú desplegable para el país -->
-    <label>País:</label>
-    <select [(ngModel)]="selectedCountry" (change)="cambiarPais()"> 
+    
+    <select class="select-menu" [(ngModel)]="selectedCountry" (change)="cambiarPais()"> 
       <option value="us" class="language">United States</option>
       <option value="ar" class="language">Argentina</option>
+      <option value="br" class="language">Brasil</option>
+      <option value="mx" class="language">Mexico</option>
+      <option value="ca" class="language">Canada</option>
+      <option value="co" class="language">Colombia</option>
+      <option value="jp" class="language">Japan</option>
       <!-- Agrega más opciones según tus necesidades -->
     </select>
 
-    <button (click)="cambiarFiltradoDestacadas()">Aplicar Filtro</button>
+    <button class= "btn-search" (click)="cambiarFiltradoDestacadas()">Aplicar Filtro</button>
   </div>
   
   <div class="lista-noticias">
     <div *ngFor="let noticia of listadoNoticiasDestacas; let first = first" (click)="openPopup(noticia)">
       <div class="noticia" [ngClass]="{ 'noticia-ppal': first, 'noticia-chica': !first }">
-        <div *ngIf="noticia.urlToImage">
+        <div *ngIf="noticia.urlToImage; else noImage">
           <img [src]="noticia.urlToImage" alt="" />
           <div class="noticia-content">
             <h2 class="noticia-title">{{ noticia.title }}</h2>
             <p class="noticia-text">{{ noticia.content }}</p>
           </div>
         </div>
+        <ng-template #noImage>
+          <div class="noticia-sin-imagen">
+            <h2 class="noticia-title">{{ noticia.title }}</h2>
+            <p class="noticia-text">{{ noticia.content }}</p>
+            <!-- Agregar la etiqueta img con la ruta de la imagen predeterminada -->
+            <img class='noImageImage'src="../../assets/Logo/Recurso 3.png" alt="Imagen Predeterminada" />
+          </div>
+        </ng-template>
       </div>
     </div>
   </div>
@@ -39,7 +49,12 @@
       <a href="{{ selectedNoticia.url }}" target="_blank">{{ selectedNoticia.title }}</a>
     </h2>
     <div class="imagen-y-contenido">
-      <img [src]="selectedNoticia.urlToImage"  class="noticia-img" (click)="redirectTo()" />
+      <img
+      [src]="selectedNoticia.urlToImage ||  '/assets/Logo/pngworld.jpg'"
+      class="noticia-img"
+      (click)="redirectTo()"
+      [ngClass]="{'no-image': !selectedNoticia.urlToImage}"
+    />
       <div class="contenido-y-botones">
         <p class="resumen-noticia">{{ selectedNoticia.content }}</p>
         <h3>Calificación: {{ selectedNoticia.rating }}</h3>

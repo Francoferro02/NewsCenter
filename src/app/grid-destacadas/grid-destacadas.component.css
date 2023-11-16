@@ -1,40 +1,45 @@
-
 .container-main {
   display: flex;
   flex-direction: column;
   align-items: center;
- 
+
 }
 
 .lista-noticias {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  
+
 }
 
 .noticia {
   margin: 1rem 0;
-  max-width: 100%; /* Todas las noticias ocupan el 100% del ancho */
+  max-width: 100%;
+  /* Todas las noticias ocupan el 100% del ancho */
   border-bottom: 0.1rem solid black;
   cursor: pointer;
- 
+
 }
 
 .noticia img {
   max-width: 100%;
+  height: 20rem;
   height: auto;
+
+
 }
 
 .noticia-ppal {
   margin-top: 5rem;
-  max-width: 100%; /* La noticia principal ocupa el 100% del ancho */
+  max-width: 100%;
+  /* La noticia principal ocupa el 100% del ancho */
   border-bottom: 0.1rem solid black;
   margin: 0;
 }
 
 .noticia-ppal img {
-  width: 100%; /* La imagen de la noticia principal ocupa el 100% del ancho */
+  width: 100%;
+  /* La imagen de la noticia principal ocupa el 100% del ancho */
   height: 45rem;
   object-fit: cover;
   margin: 2rem 0;
@@ -54,12 +59,18 @@
 .noticia-chica {
   display: flex;
   margin: 1rem;
-  max-width: 50rem; /* Ancho máximo para noticias secundarias */
- 
+  max-width: 50rem;
+  /* Ancho máximo para noticias secundarias */
+
 }
 
-.noticia-chica img{
-  padding: 2rem 0
+.noticia-chica img {
+  padding: 2rem 0;
+}
+
+.noticia-sin-imagen img {
+  padding: 15rem;
+  object-fit: contain;
 }
 
 .modal {
@@ -74,78 +85,81 @@
   background: rgba(0, 0, 0, 0.7);
   z-index: 1;
 }
+
 .modal-content {
   background: white;
   padding: 3rem;
   border-radius: 1rem;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
   text-align: center;
-  max-width: 60%; /* Limitar el ancho del modal */
+  max-width: 60%;
+  /* Limitar el ancho del modal */
   z-index: 1;
   display: flex;
   justify-content: flex-start;
   margin: 3rem;
 }
 
-.comentarios{
-  display: flex; 
-  flex-direction: column; 
-}
-
-.comentario{
+.comentarios {
   display: flex;
   flex-direction: column;
- 
+}
+
+.comentario {
+  display: flex;
+  flex-direction: column;
+
   margin: 3rem 0;
 }
 
-.imagen-y-contenido{
+.imagen-y-contenido {
   display: flex;
 }
 
-.comentarios-guardados{
+.comentarios-guardados {
   margin: 3rem 0;
-  border-top:0.1rem solid rgba(161, 161, 161, 0.378) ;
+  border-top: 0.1rem solid rgba(161, 161, 161, 0.378);
   border-bottom: 0.1rem solid black;
   padding: 1rem;
 }
 
-.botones-comentarios{
+.botones-comentarios {
   display: flex;
   flex-direction: column;
 }
 
-.botones-comentarios h3{
+.botones-comentarios h3 {
   display: flex;
   justify-content: flex-start;
   font-size: small;
 }
 
-.botones{
+.botones {
   display: flex;
   margin-top: 2rem;
   justify-content: center;
   align-items: center;
 }
 
-.contenido-y-botones{
+.contenido-y-botones {
   margin: 1rem;
   display: flex;
   flex-direction: column;
   justify-content: center;
 }
 
-.botones-nuevo-comentario{
-display: flex;
-justify-content: center;
+.botones-nuevo-comentario {
+  display: flex;
+  justify-content: center;
 }
-.resumen-noticia{
+
+.resumen-noticia {
   text-align: left;
   padding: 4rem;
   font-size: medium;
 }
 
-.modal button{
+.modal button {
   display: flex;
   font-weight: bold;
   font-size: medium;
@@ -158,7 +172,7 @@ justify-content: center;
   cursor: pointer;
 }
 
-.modal button:hover{
+.modal button:hover {
   background-color: rgb(221, 221, 221);
   color: #312783;
   cursor: pointer;
@@ -166,14 +180,14 @@ justify-content: center;
 }
 
 
-.modal img{
+.modal img {
   width: 50rem;
-  height:50vh;
+  height: 50vh;
   object-fit: cover;
   cursor: pointer;
 }
 
-.modal h2{
+.modal h2 {
   margin: 2rem;
   font-weight: 800;
   font-size: x-large;
@@ -181,28 +195,31 @@ justify-content: center;
 }
 
 
-a{
+a {
   text-decoration: none;
   color: black;
 }
 
-a:hover{
+a:hover {
   color: rgb(30, 49, 126);
   transition: 0.3s ease;
 }
 
 .noticia-title {
-  font-size: 2rem; /* Tamaño de letra más grande para el título */
+  font-size: 2rem;
+  /* Tamaño de letra más grande para el título */
   font-weight: bold;
   margin: 2rem 0;
 }
 
 .noticia-text {
-  font-size: 1.2rem; /* Tamaño de letra más grande para el texto */
-  line-height: 1.5; /* Espaciado de línea más amplio */
+  font-size: 1.2rem;
+  /* Tamaño de letra más grande para el texto */
+  line-height: 1.5;
+  /* Espaciado de línea más amplio */
 }
 
-.seccion-comentarios{
+.seccion-comentarios {
   display: flex;
   margin-top: 1rem;
   padding: 0.5rem;
@@ -218,32 +235,38 @@ button {
   padding: 0.5rem 1rem;
   cursor: pointer;
   max-height: 5rem;
-  font-size: 100%; /* Establece el tamaño de fuente al 100% */
+  font-size: 100%;
+  /* Establece el tamaño de fuente al 100% */
   line-height: 1;
   display: flex;
-  align-items: center; 
+  align-items: center;
 }
 
-#comment-box{
-  
-    width: 100%; /* Establece el ancho deseado en píxeles */
-    height: 10vh; /* Establece la altura deseada en píxeles */
-    font-size: 16px; /* Opcional: ajusta el tamaño de fuente según tus preferencias */
+#comment-box {
+
+  width: 100%;
+  /* Establece el ancho deseado en píxeles */
+  height: 10vh;
+  /* Establece la altura deseada en píxeles */
+  font-size: 16px;
+  /* Opcional: ajusta el tamaño de fuente según tus preferencias */
 
 }
 
-.social-media-icons{
- margin: 2rem 0 0 0;
- display: flex;
- justify-content: center;
- gap: 2rem
-
+.social-media-icons {
+  margin: 2rem 0 0 0;
+  display: flex;
+  justify-content: center;
+  gap: 2rem
 }
 
 .social-media-icons i {
-  font-size: 3rem; /* Modifica el tamaño de los iconos */
-  color: black; /* Cambia el color predeterminado de los iconos */
-  transition: color 0.3s; /* Agrega una transición suave al cambiar el color */
+  font-size: 3rem;
+  /* Modifica el tamaño de los iconos */
+  color: black;
+  /* Cambia el color predeterminado de los iconos */
+  transition: color 0.3s;
+  /* Agrega una transición suave al cambiar el color */
   border: 0.1rem solid rgb(124, 124, 124);
   border-radius: 50%;
   padding: 1rem;
@@ -251,12 +274,13 @@ button {
 }
 
 .social-media-icons i:hover {
-  color: rgb(30, 49, 126); /* Cambia el color a azul cuando se pasa el mouse por encima */
+  color: rgb(30, 49, 126);
+  /* Cambia el color a azul cuando se pasa el mouse por encima */
 }
 
-h4{
+h4 {
   display: flex;
-  justify-content:flex-start;
+  justify-content: flex-start;
   margin: 3rem 0 0 5rem;
   font-style: italic;
 }
@@ -267,35 +291,35 @@ h4{
   object-fit: cover;
 }
 
-.caja-de-comentarios{
+.caja-de-comentarios {
   margin: 1rem;
   display: flex;
   flex-direction: column;
 }
 
-.caja-de-comentarios-input{
+.caja-de-comentarios-input {
   width: 100%;
   height: 15vh;
   font-size: medium;
 }
 
-.botones-comentarios{
+.botones-comentarios {
   display: flex;
 
 }
 
-.tabla-comentarios th{
-  font-size:x-large;
+.tabla-comentarios th {
+  font-size: x-large;
   justify-content: space-around;
- /*  padding-right: 10rem; */
-  
+  /*  padding-right: 10rem; */
+
 }
 
 
-.tabla-comentarios td{
-font-size: medium;
-border-bottom: 0.1rem solid black;
-padding: 3rem 10rem 0 0;
+.tabla-comentarios td {
+  font-size: medium;
+  border-bottom: 0.1rem solid black;
+  padding: 3rem 10rem 0 0;
 }
 
 .rating {
@@ -311,44 +335,108 @@ padding: 3rem 10rem 0 0;
   cursor: pointer;
 }
 
-.fa-star:hover  {
+.fa-star:hover {
   color: orange;
 }
 
 .rating i:hover,
-.rating i:hover ~ .fa-star {
+.rating i:hover~.fa-star {
   color: orange;
 }
 
-.rated-span{
- transition: 0.2s ease-in;
- font-size: small;
- font-weight: 700;
- display: flex;
- flex-direction: row;
- justify-content: center;
- align-items: center;
- padding-top: 1rem;
+.rated-span {
+  transition: 0.2s ease-in;
+  font-size: small;
+  font-weight: 700;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  padding-top: 1rem;
 }
-.success-message, .error-message {
-  max-width: 100%; /* Limita el ancho máximo del mensaje al 100% del contenedor */
-  padding: 1rem; /* Agrega espacio interno al mensaje para un mejor aspecto */
-  text-align: center; /* Centra el texto en el mensaje */
-  margin: 1rem auto; /* Alinea el mensaje al centro horizontalmente */
-  background-color: #4caf50; /* Color de fondo para el mensaje de éxito */
-  color: white; /* Color del texto del mensaje de éxito */
-  border-radius: 0.5rem; /* Agrega esquinas redondeadas al mensaje */
+
+.success-message,
+.error-message {
+  max-width: 100%;
+  /* Limita el ancho máximo del mensaje al 100% del contenedor */
+  padding: 1rem;
+  /* Agrega espacio interno al mensaje para un mejor aspecto */
+  text-align: center;
+  /* Centra el texto en el mensaje */
+  margin: 1rem auto;
+  /* Alinea el mensaje al centro horizontalmente */
+  background-color: #4caf50;
+  /* Color de fondo para el mensaje de éxito */
+  color: white;
+  /* Color del texto del mensaje de éxito */
+  border-radius: 0.5rem;
+  /* Agrega esquinas redondeadas al mensaje */
   font-size: large;
 }
 
 .error-message {
   background-color: #f44336;
-  font-size: large; /* Color de fondo para el mensaje de error */
+  font-size: large;
+  /* Color de fondo para el mensaje de error */
 }
 
-.app-nav-bar{
+.app-nav-bar {
   position: fixed;
- display: flex;
- justify-content: flex-start;
- margin: -25rem;
+  display: flex;
+  justify-content: flex-start;
+  margin: -25rem;
+}
+
+.noImageImage {
+  background-color: rgb(235, 235, 235);
+
+}
+
+.imagen-y-contenido img {
+  background-color: rgb(235, 235, 235);
+  object-fit:cover;
+  max-width: 100%;
+  max-height: 100%;
+}
+
+.filtrado-options{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 3rem;
+}
+
+.btn-search{
+  display: flex;
+  font-weight: bold;
+  font-size: medium;
+  justify-content: center;
+  color: white;
+  background-color: #312783;
+  border: none;
+  border-radius: 2rem;
+  padding: 1.3rem 5rem;
+  cursor: pointer; 
+}
+
+.btn-search:hover {
+  background-color: rgb(221, 221, 221);
+  color: #312783;
+  cursor: pointer;
+  transition: 0.5s ease;
+}
+
+.select-menu{
+  margin-top: 1rem;
+  font-size: medium;
+  padding: 1rem;
+  border-radius: 1rem;
+}
+
+.select-menu option{
+  margin-top: 1rem;
+  font-size: medium;
+  padding: 1rem;
+  border-radius: 1rem;
+  color: #312783; ;
 }
