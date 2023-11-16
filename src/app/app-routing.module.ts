@@ -8,7 +8,9 @@ import { HealthComponent } from './components/health/health.component';
 import { UsuarioComponentComponent } from './components/usuario-component/usuario-component.component';
 import { ScienceComponent } from './components/science/science.component';
 import { EntertainmentComponent } from './components/entertainment/entertainment.component';
-
+import { AuthGuard } from './auth.guard';
+import { GridDestacadasComponent } from './grid-destacadas/grid-destacadas.component';
+import { LoginFormComponent } from './components/login-form/login-form.component';
 
 const routes: Routes = [
   {path: '', redirectTo: 'LastNews', pathMatch: 'full'},
@@ -19,7 +21,9 @@ const routes: Routes = [
   {path:'Sports', component:SportsComponent },
   {path: 'Tech', component:TechnologyComponent},
   {path: 'Health', component:HealthComponent},
-  {path: 'Profile', component:UsuarioComponentComponent}
+  {path: 'Profile', component:UsuarioComponentComponent},
+  {path: 'Destacadas', canActivate: [AuthGuard], component: GridDestacadasComponent},
+  {path: 'login', component: LoginFormComponent}
 ];
 
 @NgModule({

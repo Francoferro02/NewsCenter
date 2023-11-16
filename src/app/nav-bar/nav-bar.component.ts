@@ -5,7 +5,7 @@ import { User } from 'src/app/models/user.model'
 import { Noticia } from '../models/noticia.model';
 import { LastNewsService } from '../components/Services/last-news.service';
 import { SharedPopupService } from '../components/Services/sharedPopup';
-import * as stringSimilarity from 'string-similarity'
+import { AuthServiceService } from '../components/Services/auth-service.service';
 
 
 @Component({
@@ -30,7 +30,7 @@ export class NavBarComponent implements OnInit {
   searchResults: Noticia[] = [];
   showDropdown: boolean = false;
 
-  constructor(private userService: UserService, private lastNewsService: LastNewsService, private sharedPopupService: SharedPopupService, private http: HttpClient) {
+  constructor(private userService: UserService, private lastNewsService: LastNewsService, private sharedPopupService: SharedPopupService, private http: HttpClient, private authService: AuthServiceService) {
     this.user = null;
   }
 
@@ -77,7 +77,7 @@ export class NavBarComponent implements OnInit {
 
   selectResult(result: Noticia) {
     this.searchResultSelected.emit(result);
-    ;
+    
     this.sharedPopupService.openPopup(result);
     this.sharedPopupService.setBusquedaDesdeNavBar(true);
     this.searchTerm = ''; // Limpia el campo de búsqueda
@@ -104,6 +104,7 @@ export class NavBarComponent implements OnInit {
 
   logout() {
     this.userService.logoutUser();
+    this.authService.desAutenticar();
   }
 
   updateLoggedInValue(loggedIn: boolean) {

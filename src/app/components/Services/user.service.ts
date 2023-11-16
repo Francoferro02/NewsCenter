@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable, map, of, switchMap, tap, throwError } from 'rxjs';
 import { User } from 'src/app/models/user.model';
+import { AuthServiceService } from './auth-service.service';
 
 @Injectable({
   providedIn: 'root'
@@ -12,7 +13,7 @@ export class UserService {
  private url = 'http://localhost:3000'
  private users: any[] = [];
  private loggedInUserSubject: BehaviorSubject<any> = new BehaviorSubject(null);
- constructor(private http: HttpClient) {
+ constructor(private http: HttpClient, private authService: AuthServiceService) {
     this.http.get<any[]>('http://localhost:3000/users').subscribe(users => {
     this.users = users;
   });
@@ -43,6 +44,7 @@ export class UserService {
 
   logoutUser(): void {
     this.loggedInUserSubject.next(null);
+    this.authService.desAutenticar();
   }
 
   getLoggedInUser(): Observable<any> {

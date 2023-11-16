@@ -1,7 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { componentApiService } from '../Services/componentApi.service';
-
 import { Comentario, Noticia } from 'src/app/models/noticia.model';
 import { User } from 'src/app/models/user.model'
 import { UserService } from '../Services/user.service';
@@ -9,6 +8,8 @@ import { HttpClient } from '@angular/common/http';
 import { CommentsService } from '../Services/comments.service';
 import { LastNewsService } from '../Services/last-news.service';
 import { SharedPopupService } from '../Services/sharedPopup';
+import { AuthGuard } from 'src/app/auth.guard';
+import { AuthServiceService } from '../Services/auth-service.service';
 
 @Component({
   selector: 'app-grid-seccion',
@@ -48,7 +49,8 @@ export class GridSeccionComponent implements OnInit {
     private http: HttpClient,
     private commentService: CommentsService,
     private sharedPopupService: SharedPopupService,
-    
+    private authService: AuthServiceService,
+    private authGuard: AuthGuard
   ) {
     this.user = null;
     this.categoria = 'general'
@@ -121,33 +123,41 @@ export class GridSeccionComponent implements OnInit {
   }
 
   agregarComentario(noticia: Noticia, textoComentario: string) {
-    const comentario: Comentario = {
-      text: textoComentario,
-      usuario: (this.user?.name as string) || 'anonymous',
-      editing: false,
-      urlNoticia: noticia.url,
-      id: this.generateUniqueCommentId()
-    };
-
-    noticia.comentario.push(comentario);
-
-    fetch('http://localhost:3000/comentarios', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify(comentario)
-    })
-      .then((response) => response.json())
-      .then((data) => {
-        console.log('Comentario guardado en el servidor JSON:', data);
+    if (this.authService.isUsuarioAutenticado()) {
+      
+      const comentario: Comentario = {
+        text: textoComentario,
+        usuario: (this.user?.name as string) || 'anonymous',
+        editing: false,
+        urlNoticia: noticia.url,
+        id: this.generateUniqueCommentId()
+      };
+  
+      noticia.comentario.push(comentario);
+  
+      fetch('http://localhost:3000/comentarios', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(comentario)
       })
-      .catch((error) => {
-        console.error('Error al guardar el comentario en el servidor JSON:', error);
-      });
-
-
-    this.cerrarFormularioComentario();
+        .then((response) => response.json())
+        .then((data) => {
+          console.log('Comentario guardado en el servidor JSON:', data);
+        })
+        .catch((error) => {
+          console.error('Error al guardar el comentario en el servidor JSON:', error);
+        });
+  
+  
+      this.cerrarFormularioComentario();
+    } else {
+      
+      this.authGuard.canActivate();
+    }
+    
+    
   }
 
   generateUniqueCommentId() {
@@ -155,30 +165,34 @@ export class GridSeccionComponent implements OnInit {
   }
 
   guardarNoticiaEnPerfil() {
-    if (this.user && this.selectedNoticia) {
-      const newsUrl = this.selectedNoticia.url;
-
-      if (!this.user.savedNews.includes(newsUrl)) {
-        this.user.savedNews.push(newsUrl);
-
-        this.userService.updateUser(this.user).subscribe((response: any) => {
-          this.savedSuccessfully = true;
-          this.alreadySaved = false;
-          console.log('Noticia guardada en el perfil del usuario', response);
-
+    if (this.authService.isUsuarioAutenticado()) {  
+      if (this.user && this.selectedNoticia) {
+        const newsUrl = this.selectedNoticia.url;
+  
+        if (!this.user.savedNews.includes(newsUrl)) {
+          this.user.savedNews.push(newsUrl);
+  
+          this.userService.updateUser(this.user).subscribe((response: any) => {
+            this.savedSuccessfully = true;
+            this.alreadySaved = false;
+            console.log('Noticia guardada en el perfil del usuario', response);
+  
+            setTimeout(() => {
+              this.savedSuccessfully = false;
+            }, 3000);
+          });
+        } else {
+          this.alreadySaved = true;
+          this.savedSuccessfully = false;
+          console.log('La noticia ya está en la lista de noticias guardadas');
+  
           setTimeout(() => {
-            this.savedSuccessfully = false;
+            this.alreadySaved = false;
           }, 3000);
-        });
-      } else {
-        this.alreadySaved = true;
-        this.savedSuccessfully = false;
-        console.log('La noticia ya está en la lista de noticias guardadas');
-
-        setTimeout(() => {
-          this.alreadySaved = false;
-        }, 3000);
+        }
       }
+    } else {
+      this.authGuard.canActivate();
     }
   }
 
@@ -224,8 +238,15 @@ export class GridSeccionComponent implements OnInit {
   }
 
   mostrarFormularioComentario() {
-    this.toggleComentarioForm()
-
+    if (this.authService.isUsuarioAutenticado()) {
+      // Lógica para el evento de clic cuando el usuario está autenticado
+      this.toggleComentarioForm()
+    
+    } else {
+      // Abre el modal de inicio de sesión si el usuario no está autenticado
+      this.authGuard.canActivate();
+    }
+    
   }
 
   cerrarFormularioComentario() {
@@ -242,7 +263,14 @@ export class GridSeccionComponent implements OnInit {
 
 
   ratingByStars() {
-    this.rated = !this.rated;
+    if (this.authService.isUsuarioAutenticado()) {
+      // Lógica para el evento de clic cuando el usuario está autenticado
+      this.rated = !this.rated;
+      console.log('ooo');
+    } else {
+      // Abre el modal de inicio de sesión si el usuario no está autenticado
+      this.authGuard.canActivate();
+    }
   }
 
 

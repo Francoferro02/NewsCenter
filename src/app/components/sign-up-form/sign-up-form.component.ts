@@ -3,6 +3,8 @@ import { FormControl, FormGroup, Validators, FormBuilder } from '@angular/forms'
 import { UserService } from '../Services/user.service';
 import { compileNgModule } from '@angular/compiler';
 import { Observable } from 'rxjs';
+import { AuthServiceService } from '../Services/auth-service.service';
+
 
 @Component({
   selector: 'app-sign-up-form',
@@ -15,9 +17,10 @@ export class SignUpFormComponent implements OnInit {
   @Output() closePopupEvent = new EventEmitter<void>();
   loggedIn: boolean = false;
   
-  signUpForm: FormGroup
+  signUpForm: FormGroup;
 
-  constructor(private formBuilder: FormBuilder, private userService: UserService) {
+  constructor(private formBuilder: FormBuilder, private userService: UserService, private authService: AuthServiceService) {
+
     this.signUpForm = this.formBuilder.group({
       signUpEmail: ['', Validators.required],
       signUpPassword: ['', Validators.required]
@@ -51,6 +54,8 @@ export class SignUpFormComponent implements OnInit {
             this.showFailMessage();
           }
         );
+       this.authService.autenticarUsuario();
+       console.log(this.authService.isUsuarioAutenticado);
     }
   }
   

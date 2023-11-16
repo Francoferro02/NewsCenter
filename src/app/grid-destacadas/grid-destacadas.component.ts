@@ -8,7 +8,9 @@ import { CommentsService } from '../components/Services/comments.service';
 import { SharedPopupService } from '../components/Services/sharedPopup';
 import { LastNewsService } from '../components/Services/last-news.service';
 import { ChangeDetectorRef } from '@angular/core';
-
+import { AuthServiceService } from '../components/Services/auth-service.service';
+import { NavBarComponent } from '../nav-bar/nav-bar.component';
+import { AuthGuard } from '../auth.guard';
 
 @Component({
   selector: 'app-grid-destacadas',
@@ -16,7 +18,7 @@ import { ChangeDetectorRef } from '@angular/core';
   styleUrls: ['./grid-destacadas.component.css']
 })
 
-export class GridDestacadasComponent implements OnInit{
+export class GridDestacadasComponent implements OnInit {
   @Input() listadoNoticiasDestacas: any;
 
   selectedNoticia: Noticia | null = null;
@@ -33,7 +35,7 @@ export class GridDestacadasComponent implements OnInit{
   selectedCountry: string = 'us';
 
 
-  constructor(private router: Router, private userService: UserService, private http: HttpClient, private commentService: CommentsService, private sharedPopupService: SharedPopupService, private serviceApi:LastNewsService,private cdr: ChangeDetectorRef) {
+  constructor(private router: Router, private userService: UserService, private http: HttpClient, private commentService: CommentsService, private sharedPopupService: SharedPopupService, private serviceApi: LastNewsService, private cdr: ChangeDetectorRef, private authService: AuthServiceService, private authGuard: AuthGuard) {
     this.user = null;
     this.commentService.getComments().subscribe((comments) => {
 
@@ -46,7 +48,7 @@ export class GridDestacadasComponent implements OnInit{
       this.user = user
 
       // Update the value of loggedIn
-     
+
     })
 
     this.sharedPopupService.selectedNoticia$.subscribe((noticia) => {
@@ -57,16 +59,16 @@ export class GridDestacadasComponent implements OnInit{
 
     this.serviceApi.getListadoNoticiasDestacasObservable().subscribe(
       (noticias) => {
-      this.listadoNoticiasDestacas = noticias;
-      this.cdr.detectChanges(); 
-      
-      
-    }); 
-    
-    
-}
+        this.listadoNoticiasDestacas = noticias;
+        this.cdr.detectChanges();
 
-  
+
+      });
+
+
+  }
+
+
 
   ngOnDestroy() {
     this.sharedPopupService.closePopup();
@@ -115,33 +117,38 @@ export class GridDestacadasComponent implements OnInit{
   }
 
   agregarComentario(noticia: Noticia, textoComentario: string) {
-    const comentario: Comentario = {
-      text: textoComentario,
-      usuario: (this.user?.name as string) || 'anonymous',
-      editing: false,
-      urlNoticia: noticia.url,
-      id: this.generateUniqueCommentId()
-    };
+    if (this.authService.isUsuarioAutenticado()) {
+      const comentario: Comentario = {
+        text: textoComentario,
+        usuario: (this.user?.name as string) || 'anonymous',
+        editing: false,
+        urlNoticia: noticia.url,
+        id: this.generateUniqueCommentId()
+      };
 
-    noticia.comentario.push(comentario);
+      noticia.comentario.push(comentario);
 
-    fetch('http://localhost:3000/comentarios', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify(comentario)
-    })
-      .then((response) => response.json())
-      .then((data) => {
-        console.log('Comentario guardado en el servidor JSON:', data);
+      fetch('http://localhost:3000/comentarios', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(comentario)
       })
-      .catch((error) => {
-        console.error('Error al guardar el comentario en el servidor JSON:', error);
-      });
+        .then((response) => response.json())
+        .then((data) => {
+          console.log('Comentario guardado en el servidor JSON:', data);
+        })
+        .catch((error) => {
+          console.error('Error al guardar el comentario en el servidor JSON:', error);
+        });
 
 
-    this.cerrarFormularioComentario();
+      this.cerrarFormularioComentario();
+    }
+    else {
+      this.authGuard.canActivate();
+    }
   }
 
   generateUniqueCommentId() {
@@ -149,37 +156,45 @@ export class GridDestacadasComponent implements OnInit{
   }
 
   guardarNoticiaEnPerfil() {
-    if (this.user && this.selectedNoticia) {
-      const newsUrl = this.selectedNoticia.url;
-
-      if (!this.user.savedNews.includes(newsUrl)) {
-        this.user.savedNews.push(newsUrl);
-
-        this.userService.updateUser(this.user).subscribe((response: any) => {
-          this.savedSuccessfully = true;
-          this.alreadySaved = false;
-          console.log('Noticia guardada en el perfil del usuario', response);
-
+    if (this.authService.isUsuarioAutenticado()) {
+      // Lógica para el evento de clic cuando el usuario está autenticado
+      if (this.user && this.selectedNoticia) {
+        const newsUrl = this.selectedNoticia.url;
+  
+        if (!this.user.savedNews.includes(newsUrl)) {
+          this.user.savedNews.push(newsUrl);
+  
+          this.userService.updateUser(this.user).subscribe((response: any) => {
+            this.savedSuccessfully = true;
+            this.alreadySaved = false;
+            console.log('Noticia guardada en el perfil del usuario', response);
+  
+            setTimeout(() => {
+              this.savedSuccessfully = false;
+            }, 3000);
+          });
+        } else {
+          this.alreadySaved = true;
+          this.savedSuccessfully = false;
+          console.log('La noticia ya está en la lista de noticias guardadas');
+  
           setTimeout(() => {
-            this.savedSuccessfully = false;
+            this.alreadySaved = false;
           }, 3000);
-        });
-      } else {
-        this.alreadySaved = true;
-        this.savedSuccessfully = false;
-        console.log('La noticia ya está en la lista de noticias guardadas');
-
-        setTimeout(() => {
-          this.alreadySaved = false;
-        }, 3000);
+        }
       }
+    } else {
+      // Abre el modal de inicio de sesión si el usuario no está autenticado
+      this.authGuard.canActivate();
     }
+    
+    
   }
 
 
   editAndSaveComentario(comentario: Comentario) {
 
-    
+
     if (!comentario.editing) {
       // Si el comentario no está en modo edición, lo activamos para la edición.
       comentario.editing = true;
@@ -201,7 +216,7 @@ export class GridDestacadasComponent implements OnInit{
           console.error('Error al actualizar el comentario en el servidor JSON:', error);
         });
 
-      console.log("mm");
+      
       // Deshabilita la edición
     }
 
@@ -224,7 +239,15 @@ export class GridDestacadasComponent implements OnInit{
   }
 
   mostrarFormularioComentario() {
-    this.toggleComentarioForm()
+    if (this.authService.isUsuarioAutenticado()) {
+      // Lógica para el evento de clic cuando el usuario está autenticado
+      this.toggleComentarioForm()
+    
+    } else {
+      // Abre el modal de inicio de sesión si el usuario no está autenticado
+      this.authGuard.canActivate();
+    }
+    
 
   }
 
@@ -242,7 +265,14 @@ export class GridDestacadasComponent implements OnInit{
 
 
   ratingByStars() {
-    this.rated = !this.rated;
+    if (this.authService.isUsuarioAutenticado()) {
+      // Lógica para el evento de clic cuando el usuario está autenticado
+      this.rated = !this.rated;
+      console.log('ooo');
+    } else {
+      // Abre el modal de inicio de sesión si el usuario no está autenticado
+      this.authGuard.canActivate();
+    }
   }
 
 
@@ -297,7 +327,7 @@ export class GridDestacadasComponent implements OnInit{
   }
 
   cambiarFiltradoDestacadas() {
-  
+
 
     this.serviceApi.setFiltradoDestacadas(this.selectedCountry);
     console.log(this.selectedCountry);
@@ -305,29 +335,30 @@ export class GridDestacadasComponent implements OnInit{
     this.serviceApi.getListadoNoticiasDestacasObservable().subscribe((nuevasNoticias) => {
       this.actualizarListadoNoticiasDestacas(nuevasNoticias)
       this.cdr.markForCheck();
-    ;})
-     
-      
+      ;
+    })
+
+
   }
 
   actualizarListadoNoticiasDestacas(nuevasNoticias: Noticia[]) {
     this.listadoNoticiasDestacas = nuevasNoticias;
     console.log("cambiado", this.listadoNoticiasDestacas);
   }
-  cambiarPais(){
+  cambiarPais() {
     // Obtener el elemento select
     const selectElement: HTMLSelectElement | null = document.querySelector('select');
-  
+
     // Verificar si el elemento select existe
     if (selectElement) {
       // Obtener el valor seleccionado
       this.selectedCountry = selectElement.value;
-  
+
       // Realizar la acción que necesites con el valor seleccionado
       console.log('País seleccionado:', this.selectedCountry);
-  
+
       // Retornar el valor seleccionado
-      
+
     }
   }
 }

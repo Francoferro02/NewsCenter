@@ -31,6 +31,42 @@
         "https://sports.ndtv.com/cricket/new-zealand-vs-sri-lanka-live-cricket-score-icc-cricket-world-cup-2023-nz-vs-sl-latest-updates-4559539"
       ],
       "id": 2
+    },
+    {
+      "name": "asdfsadf",
+      "surname": "ASDF",
+      "email": "axeldominguez@gmail.com",
+      "password": "1234",
+      "location": "asdf",
+      "rolbio": "asdf",
+      "savedNews": [],
+      "join": "16/11/2023",
+      "img": "",
+      "id": 3
+    },
+    {
+      "name": "asdfsadf",
+      "surname": "ASDF",
+      "email": "axeldominguez@gmail.com",
+      "password": "1234",
+      "location": "asdf",
+      "rolbio": "asdf",
+      "savedNews": [],
+      "join": "16/11/2023",
+      "img": "",
+      "id": 4
+    },
+    {
+      "name": "asdfsadf",
+      "surname": "ASDF",
+      "email": "axeldominguez@gmail.com",
+      "password": "1234",
+      "location": "asdf",
+      "rolbio": "asdf",
+      "savedNews": [],
+      "join": "16/11/2023",
+      "img": "",
+      "id": 5
     }
   ],
   "comentarios": [
@@ -257,6 +293,12 @@
       "rating": 4,
       "CantidadCalificaciones": 1,
       "id": 16
+    },
+    {
+      "urlNoticia": "https://www.ft.com/content/8a3e727e-32b6-4b6a-8974-b1695b88bd16",
+      "rating": 4.7,
+      "CantidadCalificaciones": 3,
+      "id": 17
     }
   ]
 }
