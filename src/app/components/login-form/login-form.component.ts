@@ -14,7 +14,7 @@ export class LoginFormComponent implements OnInit {
 
   loginForm: FormGroup;
 
-  constructor(private formBuilder: FormBuilder, private userService: UserService, private authService: AuthServiceService,private router: Router) {
+  constructor(private formBuilder: FormBuilder, private userService: UserService, private authService: AuthServiceService) {
     this.loginForm = this.formBuilder.group({
       name: ['', Validators.required],
       surname: ['', Validators.required],
@@ -67,11 +67,4 @@ export class LoginFormComponent implements OnInit {
   }
 
 
-  redirectToSignup() {
-    // Cierra el popup actual
-    this.closePopup();
-
-    // Navega a la ruta '/signup'
-    this.router.navigate(['/signup']);
-  }
 }

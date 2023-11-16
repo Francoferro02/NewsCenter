@@ -19,9 +19,9 @@
     </div>
   </div>
   <div *ngIf="showPopup1" class="popup-container1">
-    <app-sign-up-form (closePopupEvent)="closeSignupForm()" [showPopup1]="signupFormPopup"></app-sign-up-form>
+    <app-sign-up-form [showPopup1]="showPopup1" (closePopupEvent)="closePopup1()"></app-sign-up-form>
   </div>
   <div *ngIf="showPopup" class="popup-container">
-    <app-login-form (closePopupEvent)="closeLoginForm()" [showPopup]="loginFormPopup"></app-login-form>
+    <app-login-form [showPopup]="showPopup" (closePopupEvent)="closePopup()"></app-login-form>
   </div>
   
