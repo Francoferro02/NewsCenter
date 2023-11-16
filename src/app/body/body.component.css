@@ -28,4 +28,20 @@ margin-left: 16.5625rem;
     width: calc(60% -5rem);
     margin-left: 5rem;
 }
-
+@media only screen and (max-width: 768px) {
+    .body {
+      width: 100%;
+      margin-left: 0;
+      padding: 2rem;
+    }
+  
+    .body-trimmed {
+      width: 100%;
+      margin-left: 0;
+    }
+  
+    .body-md-screen {
+      width: 100%;
+      margin-left: 0;
+    }
+  }

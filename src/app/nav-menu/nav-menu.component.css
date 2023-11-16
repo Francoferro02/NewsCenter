@@ -18,3 +18,14 @@
     background-color: #d3d3d3;
     /* Cambia el color de fondo al pasar el mouse */
   }
+  @media only screen and (max-width: 768px) {
+    .nav-menu {
+      flex-direction: column; /* Cambia la dirección del flex a columna para apilar los elementos */
+      align-items: center; /* Centra los elementos en el eje transversal */
+    }
+  
+    .nav-menu-option {
+      width: 100%; /* Ocupa el ancho completo del contenedor */
+      margin-bottom: 0.313rem; /* Reduce el margen inferior */
+    }
+  }

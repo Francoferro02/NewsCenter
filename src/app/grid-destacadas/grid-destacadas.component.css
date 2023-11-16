@@ -440,3 +440,70 @@ h4 {
   border-radius: 1rem;
   color: #312783; ;
 }
+
+@media only screen and (max-width: 768px) {
+  .container {
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    left: 0;
+    padding: 2rem 1rem;
+  }
+
+  .search-bar {
+    width: 100%;
+    margin-bottom: 1rem;
+  }
+
+  .span-usuario {
+    padding-right: 1rem;
+  }
+
+  button {
+    width: 100%;
+    padding: 1.3rem 2rem;
+  }
+
+  .modal-content {
+    max-width: 80%;
+    margin: 3rem;
+  }
+
+  .noticia img {
+    height: auto;
+  }
+
+  .modal img {
+    width: 100%;
+    height: 50vh;
+    object-fit: cover;
+  }
+
+  .filtrado-options {
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+  }
+
+  .btn-search {
+    width: 100%;
+    padding: 1.3rem 2rem;
+  }
+
+  .select-menu {
+    width: 100%;
+    margin-top: 1rem;
+  }
+  
+  .select-menu option {
+    margin-top: 1rem;
+    font-size: medium;
+    padding: 1rem;
+    border-radius: 1rem;
+    color: #312783;
+  }
+  
+  .app-nav-bar {
+    margin: 0;
+  }
+}

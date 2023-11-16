@@ -108,3 +108,36 @@
   height: 100%;
 }
 
+
+@media only screen and (max-width: 768px) {
+  .sidenav {
+    height: 0; /* Inicialmente oculta la barra lateral al colapsarla */
+    overflow: hidden; /* Oculta el contenido que desborda */
+    position: fixed; /* Fija la posición para que la barra lateral no afecte el flujo normal */
+    width: 100%;
+    transition: height 0.3s; /* Agrega una transición suave para la altura */
+  }
+
+  .sidenav-collapsed {
+    height: auto; /* Establece la altura automática cuando la barra lateral está expandida */
+  }
+
+  .sidenav-nav {
+    height: auto;
+  }
+
+  .sidenav-nav-item {
+    width: 100%; /* Ocupa el ancho completo de la barra lateral */
+    margin-bottom: 0.313rem;
+  }
+
+  .sidenav-nav-text {
+    font-size: 1.5rem;
+    padding: 0.5rem;
+  }
+
+  /* Estilo para emerger desde arriba */
+  .sidenav.emerge {
+    height: 100vh; /* Establece la altura al 100% de la altura de la pantalla */
+  }
+}

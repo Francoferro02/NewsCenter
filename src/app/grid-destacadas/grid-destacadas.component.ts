@@ -44,11 +44,12 @@ export class GridDestacadasComponent implements OnInit {
 
 
   ngOnInit() {
+    this.selectedCountry= 'us'
     this.userService.getLoggedInUser().subscribe((user) => {
       this.user = user
 
-      // Update the value of loggedIn
-
+   
+      
     })
 
     this.sharedPopupService.selectedNoticia$.subscribe((noticia) => {
@@ -61,11 +62,9 @@ export class GridDestacadasComponent implements OnInit {
       (noticias) => {
         this.listadoNoticiasDestacas = noticias;
         this.cdr.detectChanges();
-
-
       });
 
-
+      
   }
 
   ngOnDestroy() {

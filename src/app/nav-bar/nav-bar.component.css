@@ -110,3 +110,25 @@
   transition: 0.2s ease ;
   border-radius: 1rem;
 }
+
+@media only screen and (max-width: 768px) {
+  .container {
+    flex-direction: column; /* Cambia la dirección del flex a columna para apilar los elementos */
+    align-items: center; /* Centra los elementos en el eje transversal */
+    width: 100%; /* Ocupa el ancho completo del contenedor */
+    left: 0; /* Ajusta la posición izquierda */
+    
+  }
+
+  .search-bar {
+    width: 100%; /* Ocupa el ancho completo del contenedor */
+    margin-bottom: 1rem; /* Añade un margen inferior */
+  }
+
+  
+
+  button {
+    width: 100%; /* Ocupa el ancho completo del contenedor */
+    padding: 1.3rem 2rem; /* Ajusta el relleno */
+  }
+}

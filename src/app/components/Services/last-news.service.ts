@@ -16,7 +16,7 @@ export class LastNewsService implements OnInit {
 
   ngOnInit() {
     
-
+  
   }
 
 

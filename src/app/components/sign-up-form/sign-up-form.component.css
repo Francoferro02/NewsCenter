@@ -78,3 +78,13 @@
     padding: 0;
     cursor: pointer;
   }
+
+  @media only screen and (max-width: 768px) {
+    .card-text-center {
+      padding: 1.5rem;
+    }
+  
+    .btn-primary {
+      padding: 1.5rem;
+    }
+  }
