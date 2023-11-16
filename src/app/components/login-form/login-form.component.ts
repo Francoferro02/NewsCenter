@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, Output, OnInit  } from '@angular/core';
+import { Component, EventEmitter, Input, Output, OnInit, SimpleChanges  } from '@angular/core';
 import { FormControl, FormGroup, Validators, FormBuilder} from '@angular/forms';
 import { UserService } from '../Services/user.service';
 import { AuthServiceService } from '../Services/auth-service.service';
@@ -11,7 +11,6 @@ import { Router } from '@angular/router';
 export class LoginFormComponent implements OnInit {
   @Input() showPopup: boolean = true;
   @Output() closePopupEvent = new EventEmitter<void>();
-  @Output() switchToSignUp = new EventEmitter<void>();
   loginForm: FormGroup;
 
   constructor(private formBuilder: FormBuilder, private userService: UserService, private authService: AuthServiceService) {
@@ -42,7 +41,15 @@ export class LoginFormComponent implements OnInit {
   get savedNews(){return this.loginForm.get('savedNews')}
   
 
-
+  ngOnChanges(changes: SimpleChanges) {
+    if (changes['showPopup'] && !changes['showPopup'].firstChange) {
+      // Se ha cambiado el valor de showPopup después del primer cambio
+      if (!this.showPopup) {
+        // Si showPopup es false, cerrar el formulario
+        this.closePopup();
+      }
+    }
+  }
 
 
   onSubmit() {
@@ -67,7 +74,4 @@ export class LoginFormComponent implements OnInit {
   }
 
 
-  switchToSignUpForm() {
-    this.switchToSignUp.emit();
-  }
 }

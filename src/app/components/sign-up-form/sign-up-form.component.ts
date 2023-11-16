@@ -71,4 +71,5 @@ export class SignUpFormComponent implements OnInit {
   closePopup1() {
     this.closePopupEvent.emit();
   }
+  
 }
