@@ -6,6 +6,7 @@
     <!-- Menú desplegable para el país -->
     
     <select class="select-menu" [(ngModel)]="selectedCountry" (change)="cambiarPais()"> 
+      <option value="wd" class="language">World</option>
       <option value="us" class="language">United States</option>
       <option value="ar" class="language">Argentina</option>
       <option value="br" class="language">Brasil</option>

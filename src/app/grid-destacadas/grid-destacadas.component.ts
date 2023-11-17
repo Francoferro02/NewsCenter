@@ -33,6 +33,7 @@ export class GridDestacadasComponent implements OnInit {
   savedSuccessfully: boolean = false;
   alreadySaved: boolean = false;
   selectedCountry: string = 'us';
+  categoria : string = 'general'
 
 
   constructor(private router: Router, private userService: UserService, private http: HttpClient, private commentService: CommentsService, private sharedPopupService: SharedPopupService, private serviceApi: LastNewsService, private cdr: ChangeDetectorRef, private authService: AuthServiceService, private authGuard: AuthGuard) {
@@ -44,7 +45,8 @@ export class GridDestacadasComponent implements OnInit {
 
 
   ngOnInit() {
-    this.selectedCountry= 'us'
+    this.categoria = 'general'
+    this.selectedCountry = ''
     this.userService.getLoggedInUser().subscribe((user) => {
       this.user = user
 
@@ -67,6 +69,7 @@ export class GridDestacadasComponent implements OnInit {
       
   }
 
+ 
   ngOnDestroy() {
     this.sharedPopupService.closePopup();
   }
@@ -83,7 +86,7 @@ export class GridDestacadasComponent implements OnInit {
 
 
   openPopup(noticia: Noticia) {
-    console.log("aaa");
+    
     // Realiza una solicitud GET al servidor JSON para obtener todos los comentarios de la noticia por su URL
     this.http.get<Comentario[]>(`http://localhost:3000/comentarios?urlNoticia=${encodeURIComponent(noticia.url)}`).subscribe((comentarios) => {
       // Almacena los comentarios en la propiedad comentario de la noticia seleccionada
