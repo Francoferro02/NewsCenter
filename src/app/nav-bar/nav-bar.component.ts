@@ -6,6 +6,7 @@ import { Noticia } from '../models/noticia.model';
 import { LastNewsService } from '../components/Services/last-news.service';
 import { SharedPopupService } from '../components/Services/sharedPopup';
 import { AuthServiceService } from '../components/Services/auth-service.service';
+import { ElementRef } from '@angular/core';
 
 
 @Component({
@@ -28,7 +29,12 @@ export class NavBarComponent implements OnInit {
   searchResults: Noticia[] = [];
   showDropdown: boolean = false;
 
-  constructor(private userService: UserService, private lastNewsService: LastNewsService, private sharedPopupService: SharedPopupService, private http: HttpClient, private authService: AuthServiceService) {
+  constructor(private userService: UserService,
+              private lastNewsService: LastNewsService,
+              private sharedPopupService: SharedPopupService,
+              private http: HttpClient,
+              private authService: AuthServiceService,
+              private el: ElementRef) {
     this.user = null;
   }
 
@@ -39,12 +45,14 @@ export class NavBarComponent implements OnInit {
       // Update the value of loggedIn
     });
 
+    document.addEventListener('click', this.onDocumentClick.bind(this));
   }
  
   ngOnDestroy(){
     this.searchResults = [];
     this.closePopup();
     
+    document.removeEventListener('click', this.onDocumentClick);
   }
 
   search() {
@@ -74,12 +82,18 @@ export class NavBarComponent implements OnInit {
 
 
   selectResult(result: Noticia) {
-    this.searchResultSelected.emit(result);
-    
-    this.sharedPopupService.openPopup(result);
     this.sharedPopupService.setBusquedaDesdeNavBar(true);
-    this.searchTerm = ''; // Limpia el campo de búsqueda
-    this.searchResults = []; // Limpia los resultados
+
+  // Emitir la noticia seleccionada antes de abrir el popup
+  this.searchResultSelected.emit(result);
+
+  // Abrir el popup después de emitir la noticia seleccionada
+  this.sharedPopupService.openPopup(result);
+
+  // Limpiar el campo de búsqueda y los resultados
+  this.searchTerm = '';
+  this.searchResults = [];
+  this.toggleDropdown()
   }
 
   openLoginPopup() {
@@ -118,8 +132,12 @@ export class NavBarComponent implements OnInit {
   }
 
   toggleDropdown() {
-    console.log(this.showDropdown);
     this.showDropdown = !this.showDropdown;
+
+    if (!this.showDropdown) {
+      this.searchTerm = '';
+      this.searchResults = [];
+    }
   }
 
   onEnterKeyPress(event: Event) {
@@ -128,5 +146,19 @@ export class NavBarComponent implements OnInit {
       this.toggleDropdown();
     }
   }
+
+  onDocumentClick(event: MouseEvent) {
+    const clickedElement = event.target as HTMLElement;
+    const isInsideSearchContainer = this.el.nativeElement.contains(clickedElement);
+
+    if (!isInsideSearchContainer) {
+      this.toggleDropdown(); // Cierra la lista de resultados si el clic fue fuera del área de búsqueda
+    }
+  }
+
+
+
+
+
 
 }

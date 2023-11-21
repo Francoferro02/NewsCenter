@@ -1,6 +1,6 @@
 <div class="container">
   <div class="search-container">
-    <input type="text" [(ngModel)]="searchTerm" (keyup.enter)="onEnterKeyPress($event)" placeholder="Search by title..."
+    <input type="text" [(ngModel)]="searchTerm" (keydown.enter)="onEnterKeyPress($event)" placeholder="Search by title..."
       class="search-bar">
     <ul class="search-results" *ngIf="searchResults.length > 0 && showDropdown">
       <li *ngFor="let result of searchResults" (click)="selectResult(result)">{{ result.title }}</li>

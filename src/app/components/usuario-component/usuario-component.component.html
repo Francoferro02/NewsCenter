@@ -1,77 +1,91 @@
 <div class="seccion-nombre-container">
-    <h2 class="seccion-nombre">PROFILE</h2>
+  <h2 class="seccion-nombre">PROFILE</h2>
 </div>
 <div class="center-container">
-    <div class="user-profile-card">
-        <div class="user-avatar">
-            <img [src]="selectedImageURL || '../../../assets/21104.png'" alt="User Avatar">
-          </div>
-        <h2 class="user-name">{{editingUser ? (editingUser.name || 'No name') : (user?.name || 'No name')}}</h2>
-        <h2 class="user-surname">{{editingUser ? (editingUser.surname || 'No surname') : (user?.surname  || 'No surname')}}</h2>
-        <p class="user-bio">{{user?.rolbio}}</p>
-        <div class="user-info">
-            <p><strong>Email:</strong> {{user?.email}}</p>
-            <p><strong>Location:</strong> {{user?.location}}</p>
-            <p><strong>Joined:</strong> {{user?.join}}</p>
-        </div>
-        <button id="edit-profile-button" class="btn btn-primary" (click)="openModal()">Edit Profile</button>
-        <div class="modal" *ngIf="showModal">
-            <div class="modal-content">
-                <h2 class="edit-profile-title">Edit Profile Data</h2>
-                <form class="modal-submit" (submit)="updateField('image')">
-                    <label for="name">Avatar Image</label>
-                    <span class="button-space"></span> 
-                    <label for="imageInput" class="custom-image-button">Select Image</label>
-                    <input type="file" id="imageInput" (change)="onImageChange($event)" class="image-input" accept="image/*">
-                    <span class="button-space"></span> 
-                  </form>
-                    <form class="modal-submit" (submit)="updateField('name')">
-                     <label for="name">Name</label>
-                      <input class="input-edit" [ngModel]="editingUser?.name" (ngModelChange)="onNameChange($event)" name="name" required>
-                    </form>
-                    <form class="modal-submit" (submit)="updateField('surname')">
-                        <label for="surname">Surname</label>
-                        <input class="input-edit"  [ngModel]="editingUser?.surname" (ngModelChange)="onSurnameChange($event)" name="surname" required>
-                      </form>
-                      <form class="modal-submit" (submit)="updateField('email')">
-                        <label for="email">Email</label>
-                        <input class="input-edit"  [ngModel]="editingUser?.email" (ngModelChange)="onEmailChange($event)" name="email" required>
-                      </form>
-                      <form class="modal-submit" (submit)="updateField('location')">
-                        <label for="location">Location</label>
-                        <input class="input-edit"  [ngModel]="editingUser?.location" (ngModelChange)="onLocationChange($event)" name="location" required>
-                      </form>
-                      <form class="modal-submit" (submit)="updateField('rolbio')">
-                        <label for="rolbio">Tech Rol</label>
-                        <input class="input-edit"  [ngModel]="editingUser?.rolbio" (ngModelChange)="onInfoBioChange($event)" name="rolbio" required>
-                      </form>
-                      <form class="modal-submit" (submit)="updateField('password')">
-                        <label for="password">Password</label>
-                        <input class="input-edit"  [ngModel]="editingUser?.password" (ngModelChange)="onPasswordChange($event)" name="password" required>
-                      </form>
-                    <button class="btn btn-primary" (click)="closeModal()">Close</button>
-            </div>
-        </div>
-        <ul>
-            <li *ngFor="let user of users">
-              {{user.name}}
-              <button (click)="deleteUser(user.id)">Eliminar</button>
-            </li>
-          </ul>
+  <div class="user-profile-card">
+    <div class="user-avatar">
+      <img [src]="selectedImageURL || '../../../assets/21104.png'" alt="User Avatar">
     </div>
+    <h2 class="user-name">{{editingUser ? (editingUser.name || 'No name') : (user?.name || 'No name')}}</h2>
+    <h2 class="user-surname">{{editingUser ? (editingUser.surname || 'No surname') : (user?.surname || 'No surname')}}
+    </h2>
+    <p class="user-bio">{{user?.rolbio}}</p>
+    <div class="user-info">
+      <p><strong>Email:</strong> {{user?.email}}</p>
+      <p><strong>Location:</strong> {{user?.location}}</p>
+      <p><strong>Joined:</strong> {{user?.join}}</p>
+    </div>
+    <button id="edit-profile-button" class="btn btn-primary" (click)="openModal()">Edit Profile</button>
+    <div class="modal" *ngIf="showModal">
+      <div class="modal-content">
+        <h2 class="edit-profile-title">Edit Profile Data</h2>
+        <form class="modal-submit" (submit)="updateField('image')">
+          <label for="name">Avatar Image</label>
+          <span class="button-space"></span>
+          <label for="imageInput" class="custom-image-button">Select Image</label>
+          <input type="file" id="imageInput" (change)="onImageChange($event)" class="image-input" accept="image/*">
+          <span class="button-space"></span>
+        </form>
+        <form class="modal-submit" (submit)="updateField('name')">
+          <label for="name">Name</label>
+          <input class="input-edit" [ngModel]="editingUser?.name" (ngModelChange)="onNameChange($event)" name="name"
+            required>
+          <button type="submit" class="btn btn-primary">Save</button>
+        </form>
+        <form class="modal-submit" (submit)="updateField('surname')">
+          <label for="surname">Surname</label>
+          <input class="input-edit" [ngModel]="editingUser?.surname" (ngModelChange)="onSurnameChange($event)" name="surname"
+            name="surname" required>
+          <button type="submit" class="btn btn-primary">Save</button>
+        </form>
+        <form class="modal-submit" (submit)="updateField('email')">
+          <label for="email">Email</label>
+          <input class="input-edit" [ngModel]="editingUser?.email" (ngModelChange)="onEmailChange($event)" name="email"
+            required>
+          <button type="submit" class="btn btn-primary">Save</button>
+        </form>
+        <form class="modal-submit" (submit)="updateField('location')">
+          <label for="location">Location</label>
+          <input class="input-edit" [ngModel]="editingUser?.location" (ngModelChange)="onLocationChange($event)" name="location"
+            name="location" required>
+          <button type="submit" class="btn btn-primary">Save</button>
+        </form>
+        <form class="modal-submit" (submit)="updateField('rolbio')">
+          <label for="rolbio">Tech Rol</label>
+          <input class="input-edit" [ngModel]="editingUser?.rolbio" (ngModelChange)="onInfoBioChange($event)" name="rolbio"
+            name="rolbio" required>
+          <button type="submit" class="btn btn-primary">Save</button>
+        </form>
+        <form class="modal-submit" (submit)="updateField('password')">
+          <label for="password">Password</label>
+          <input class="input-edit" [ngModel]="editingUser?.password" (ngModelChange)="onPasswordChange($event)" name="password"
+            name="password" required>
+          <button type="submit" class="btn btn-primary">Save</button>
+        </form>
+        <button class="btn btn-primary" (click)="closeModal()">Close</button>
+      </div>
+    </div>
+    <ul>
+      <li *ngFor="let user of users">
+        {{user.name}}
+        <button (click)="deleteUser(user.id)">Eliminar</button>
+      </li>
+    </ul>
+  </div>
 
-    <div class="saved-news">
-      <h3>Saved News</h3>
-      <ul>
-        <li *ngFor="let newsUrl of savedNews" class="saved-links">
-          <a [href]="newsUrl" target="_blank" (mouseenter)="startPopupTimer(newsUrl)" (mouseleave)="clearPopupTimer()"> {{ newsUrl }}</a>
-        </li>
-      </ul>
-    </div>
-    
-    <!-- Div para mostrar el contenido de la noticia -->
-    <div id="newsPopup" class="news-popup">
-      <iframe id="newsFrame" class="news-frame"></iframe>
-      <button (click)="closePopup()" class="close-button">Close</button>
-    </div>
+  <div class="saved-news">
+    <h3>Saved News</h3>
+    <ul>
+      <li *ngFor="let newsUrl of savedNews" class="saved-links">
+        <a [href]="newsUrl" target="_blank" (mouseenter)="startPopupTimer(newsUrl)" (mouseleave)="clearPopupTimer()"> {{
+          newsUrl }}</a>
+      </li>
+    </ul>
+  </div>
+
+  <!-- Div para mostrar el contenido de la noticia -->
+  <div id="newsPopup" class="news-popup">
+    <iframe id="newsFrame" class="news-frame"></iframe>
+    <button (click)="closePopup()" class="close-button">Close</button>
+  </div>
 </div>

@@ -62,6 +62,9 @@
             <div class="alert alert-danger" role="alert" *ngIf="email?.errors?.['required']">
               Email is required
             </div>
+            <div *ngIf="email?.hasError('emailExists')" class="alert alert-danger" role="alert">
+             Email already in Use. Please try another.
+            </div>
           </div>
         </div>
         <label style="float: left">Password</label>

@@ -33,7 +33,9 @@ export class UsuarioComponentComponent implements OnInit {
     this.user = null;
   }
   ngOnInit(){
+    
     this.userService.getLoggedInUser().subscribe((user) => {
+      this.changeDetectorRef.detectChanges();
       this.user = user
       this.users = this.users;
       this.editingUser = { ...user };
@@ -70,6 +72,7 @@ export class UsuarioComponentComponent implements OnInit {
   startEditing(field: string): void {
     this.editedField = field;
   }
+  
   async updateUser() {
     if (this.editingUser) {
       try {
@@ -85,10 +88,14 @@ export class UsuarioComponentComponent implements OnInit {
         } else {
           this.selectedImageURL = null; 
         }
+        this.editedUser = { ...this.editingUser };
+        this.changeDetectorRef.detectChanges();
       } catch (error) {
         console.error("Error al actualizar el usuario: " + error);
       }
+     
     }
+    
   }
   updateField(field: string): void {
     if (this.editingUser) {
@@ -123,6 +130,7 @@ export class UsuarioComponentComponent implements OnInit {
   onLocationChange(newLocation: string) {
     if (this.editingUser) {
       this.editingUser.location = newLocation;
+      
     }
   }
   onInfoBioChange(newInfoBio: string) {
@@ -191,6 +199,7 @@ export class UsuarioComponentComponent implements OnInit {
         console.error("Error al cargar la imagen: " + error);
       }
     }
+   
   }
 
 

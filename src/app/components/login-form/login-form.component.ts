@@ -1,8 +1,11 @@
 import { Component, EventEmitter, Input, Output, OnInit, SimpleChanges  } from '@angular/core';
-import { FormControl, FormGroup, Validators, FormBuilder} from '@angular/forms';
+import { FormControl, FormGroup, Validators, FormBuilder, AsyncValidatorFn, AbstractControl, ValidationErrors } from '@angular/forms';
 import { UserService } from '../Services/user.service';
 import { AuthServiceService } from '../Services/auth-service.service';
-import { Router } from '@angular/router';
+import { HttpClient } from '@angular/common/http';
+import { map,switchMap, debounceTime, catchError } from 'rxjs/operators';
+import { Observable, of , timer} from 'rxjs';
+
 @Component({
   selector: 'app-login-form',
   templateUrl: './login-form.component.html',
@@ -12,12 +15,16 @@ export class LoginFormComponent implements OnInit {
   @Input() showPopup: boolean = true;
   @Output() closePopupEvent = new EventEmitter<void>();
   loginForm: FormGroup;
+  
 
-  constructor(private formBuilder: FormBuilder, private userService: UserService, private authService: AuthServiceService) {
+  constructor(private formBuilder: FormBuilder,
+              private userService: UserService,
+              private authService: AuthServiceService,
+              private http: HttpClient) {
     this.loginForm = this.formBuilder.group({
       name: ['', Validators.required],
       surname: ['', Validators.required],
-      email: ['', Validators.required],
+      email: ['', [Validators.required], [this.emailExistsValidator()]],
       password: ['', Validators.required],
       location: ['', Validators.required],
       rolbio: ['', Validators.required],
@@ -27,7 +34,7 @@ export class LoginFormComponent implements OnInit {
       
     });
   }
-
+  
   ngOnInit(){
 
   }
@@ -53,6 +60,8 @@ export class LoginFormComponent implements OnInit {
 
 
   onSubmit() {
+    
+    this.loginForm.markAllAsTouched();
     if (this.loginForm.valid) {
       const user = this.loginForm.value;
       this.userService.createUser(user).subscribe((response: any) => {
@@ -72,6 +81,28 @@ export class LoginFormComponent implements OnInit {
   closePopup() {
     this.closePopupEvent.emit();
   }
+
+
+  emailExistsValidator(): AsyncValidatorFn {
+    return (control: AbstractControl): Observable<ValidationErrors | null> => {
+      const email = control.value;
+      console.log(email);
+      if (!email) {
+        return of(null);
+      }
+
+      return this.http.get<any[]>(`http://localhost:3000/users?email=${email}`).pipe(
+        debounceTime(300),
+        map(response => {
+          
+          return response && response.length > 0 ? { 'emailExists': true } : null;
+          
+        }),
+        catchError(() => of(null))
+      );
+    };
+  }
+
 
 
 }
