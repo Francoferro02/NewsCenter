@@ -37,7 +37,15 @@ export class SignUpFormComponent implements OnInit {
   get signUpPassword(){return this.signUpForm.get('signUpPassword')}
 
   onSubmit() {
-    if (this.signUpForm.valid) {
+    this.signUpForm.markAllAsTouched();
+
+    // Verificar si todos los campos están vacíos
+    const allFieldsEmpty = Object.keys(this.signUpForm.value).every(key => {
+      const value = this.signUpForm.value[key];
+      return value === null || value === '' || (Array.isArray(value) && value.length === 0);
+    });
+
+    if (this.signUpForm.valid && !allFieldsEmpty) {
       const user = {
         signUpEmail: this.signUpEmail?.value || '',
         signUpPassword: this.signUpPassword?.value || '',
@@ -54,11 +62,12 @@ export class SignUpFormComponent implements OnInit {
             this.showFailMessage();
           }
         );
-       this.authService.autenticarUsuario();
-       console.log(this.authService.isUsuarioAutenticado);
+      this.authService.autenticarUsuario();
+      console.log(this.authService.isUsuarioAutenticado);
+    } else {
+      alert('Todos los campos son obligatorios. Por favor, completa todos los campos.');
     }
   }
-  
   
 
   showSuccessMessage(){

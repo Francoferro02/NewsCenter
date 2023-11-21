@@ -60,17 +60,24 @@ export class LoginFormComponent implements OnInit {
 
 
   onSubmit() {
-    
     this.loginForm.markAllAsTouched();
-    if (this.loginForm.valid) {
+  
+    // Verificar si todos los campos están vacíos
+    const allFieldsEmpty = Object.keys(this.loginForm.value).every(key => {
+      const value = this.loginForm.value[key];
+      return value === null || value === '' || (Array.isArray(value) && value.length === 0);
+    });
+  
+    if (this.loginForm.valid && !allFieldsEmpty) {
       const user = this.loginForm.value;
       this.userService.createUser(user).subscribe((response: any) => {
         if (response) {
           this.showSuccessMessage();
-        
           this.closePopup();
         }
       });
+    } else {
+      alert('Todos los campos son obligatorios. Por favor, completa todos los campos.');
     }
   }
   

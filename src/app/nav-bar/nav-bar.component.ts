@@ -7,7 +7,7 @@ import { LastNewsService } from '../components/Services/last-news.service';
 import { SharedPopupService } from '../components/Services/sharedPopup';
 import { AuthServiceService } from '../components/Services/auth-service.service';
 import { ElementRef } from '@angular/core';
-
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-nav-bar',
@@ -34,7 +34,8 @@ export class NavBarComponent implements OnInit {
               private sharedPopupService: SharedPopupService,
               private http: HttpClient,
               private authService: AuthServiceService,
-              private el: ElementRef) {
+              private el: ElementRef,
+              private router: Router) {
     this.user = null;
   }
 
@@ -117,6 +118,8 @@ export class NavBarComponent implements OnInit {
   logout() {
     this.userService.logoutUser();
     this.authService.desAutenticar();
+
+    this.router.navigate(['/']); 
   }
 
   updateLoggedInValue(loggedIn: boolean) {

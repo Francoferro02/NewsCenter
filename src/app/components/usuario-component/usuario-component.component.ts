@@ -3,6 +3,8 @@ import { User } from 'src/app/models/user.model';
 import { UserService } from '../Services/user.service';
 import { HttpClient } from '@angular/common/http';
 import { ChangeDetectorRef } from '@angular/core';
+import { UserStateService } from '../Services/user-state.service';
+import { take } from 'rxjs';
 
 @Component({
   selector: 'app-usuario-component',
@@ -29,37 +31,40 @@ export class UsuarioComponentComponent implements OnInit {
 
   popupTimer: any;
 
-  constructor(private userService: UserService,private changeDetectorRef: ChangeDetectorRef){
+  constructor(private userService: UserService,private changeDetectorRef: ChangeDetectorRef, private userStateService: UserStateService){
     this.user = null;
   }
-  ngOnInit(){
-    
+  ngOnInit() {
     this.userService.getLoggedInUser().subscribe((user) => {
-      this.changeDetectorRef.detectChanges();
-      this.user = user
-      this.users = this.users;
+      this.user = user;
       this.editingUser = { ...user };
-      this.editedUser = { ...user };
       this.savedNews = user.savedNews || [];
-      this.selectedImageURL = user.img
+      this.selectedImageURL = user.img;
 
       if (this.selectedImageURL) {
         const imgElement = document.getElementById('imagenUsuario'); // Asegúrate de que tengas un elemento <img> con un id="imagenUsuario"
         if (imgElement) {
           imgElement.setAttribute('src', this.selectedImageURL);
         }
-      }
-      else{
+      } else {
         console.log('no hay imagen de perfil');
       }
-  })}
+    });
+    this.userStateService.users$.subscribe((users) => {
+      this.users = users.filter(u => u.id !== this.user?.id); // Filtra el usuario actual
+    });
+   
+  }
   
   deleteUser(userId: number) {
     this.userService.deleteUser(userId).subscribe(() => {
       // Actualizar la lista de usuarios después de la eliminación
-      this.users = this.users.filter((user) => user.id !== userId);
+      this.userStateService.users$.subscribe((users) => {
+        this.users = users.filter(u => u.id !== this.user?.id); // Filtra el usuario actual
+      });
     });
   }
+
 
   editUser(user: User) {
     this.editingUser = { ...user }; // Clonar el usuario para la edición
@@ -72,45 +77,51 @@ export class UsuarioComponentComponent implements OnInit {
   startEditing(field: string): void {
     this.editedField = field;
   }
-  
   async updateUser() {
     if (this.editingUser) {
       try {
-        await this.userService.updateUser(this.editingUser).toPromise(); 
-        const updatedUser = await this.userService.getUserById(this.editingUser.id).toPromise();
-        if (updatedUser) {
-          this.editingUser = { ...updatedUser };
-        } else {
-          this.editingUser = { ...this.editingUser }; 
+        // Realizar la actualización del usuario en el servidor
+        await this.userService.updateUser(this.editingUser).toPromise();
+
+        // Actualizar el usuario localmente
+        this.user = { ...this.editingUser };
+
+        // Actualizar la imagen
+        if (this.selectedImageURL) {
+          this.user.img = this.selectedImageURL;
         }
-        if (this.editingUser && this.editingUser.img) {
-          this.selectedImageURL = this.editingUser.img;
-        } else {
-          this.selectedImageURL = null; 
-        }
-        this.editedUser = { ...this.editingUser };
-        this.changeDetectorRef.detectChanges();
+
+        // ... (resto del código)
       } catch (error) {
         console.error("Error al actualizar el usuario: " + error);
       }
-     
     }
-    
   }
   updateField(field: string): void {
     if (this.editingUser) {
-      this.userService.updateUser(this.editingUser).subscribe(() => {
-        this.user = this.editingUser;
+      this.userService.updateUser(this.editingUser).subscribe(updatedUser => {
+        // Actualizar el usuario localmente
+        this.user = { ...updatedUser };
+        
+        // Actualizar el usuario en userStateService
+        this.userStateService.users$.pipe(take(1)).subscribe(users => {
+          const updatedUsers = users.map(user => user.id === this.user?.id ? this.user! : user);
+          this.userStateService.setUsers(updatedUsers);
+        });
       });
     }
+  
     if (this.editedUser) {
       this.user = { ...this.editedUser };
       if (field === 'image' && this.selectedImageURL) {
         this.user.img = this.selectedImageURL;
       }
     }
+  
     this.editedField = null;
   }
+  
+  
 
   onNameChange(newName: string) {
     if (this.editingUser) {

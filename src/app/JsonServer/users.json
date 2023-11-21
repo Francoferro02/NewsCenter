@@ -1,24 +1,6 @@
 {
   "users": [
     {
-      "name": "Franco",
-      "surname": "Ferro",
-      "email": "francoandresferro@gmail.com",
-      "password": "1234",
-      "location": "Mar del Plata",
-      "rolbio": "Web Developer",
-      "join": "7/11/2023",
-      "img": "https://i.ibb.co/KsS7v40/6a951ba11e7094537e234a5ffb6b3f62.jpg",
-      "savedNews": [
-        "https://apnews.com/article/israel-hamas-war-news-11-6-2023-51286d15dddd77ae0dd7ea76ee52bc71",
-        "https://deadline.com/2023/11/legend-of-zelda-movie-wes-ball-1235596216/",
-        "https://www.eurogamer.net/bioware-teases-mass-effect-5-title-plus-answers-to-trilogy-ending-questions",
-        "https://www.cnn.com/2023/11/07/politics/cnn-poll-trump-biden-matchup/index.html",
-        "https://time.com/6330031/messi-ballon-d-or-2023/"
-      ],
-      "id": 1
-    },
-    {
       "name": "axel",
       "surname": "do",
       "email": "axeldominguez@gmail.com",
@@ -80,6 +62,18 @@
       "join": "21/11/2023",
       "img": "",
       "id": 6
+    },
+    {
+      "name": "Franco",
+      "surname": "Ferro",
+      "email": "francoandresferro@gmail.com",
+      "password": "1234",
+      "location": "Mar del Plata",
+      "rolbio": "Web Developer",
+      "savedNews": [],
+      "join": "21/11/2023",
+      "img": "",
+      "id": 7
     }
   ],
   "comentarios": [

@@ -22,7 +22,7 @@ const routes: Routes = [
   {path:'Sports', component:SportsComponent },
   {path: 'Tech', component:TechnologyComponent},
   {path: 'Health', component:HealthComponent},
-  {path: 'Profile', component:UsuarioComponentComponent},
+  {path: 'Profile',component: UsuarioComponentComponent,canActivate: [AuthGuard],},
   {path: 'Destacadas', canActivate: [AuthGuard], component: GridDestacadasComponent},
   {path: 'login', component: LoginFormComponent},
   {path: 'signup', component: SignUpFormComponent}

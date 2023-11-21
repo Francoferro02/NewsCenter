@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable, map, of, switchMap, tap, throwError } from 'rxjs';
 import { User } from 'src/app/models/user.model';
 import { AuthServiceService } from './auth-service.service';
+import { UserStateService } from './user-state.service';
 
 @Injectable({
   providedIn: 'root'
@@ -13,17 +14,26 @@ export class UserService {
  private url = 'http://localhost:3000'
  private users: any[] = [];
  private loggedInUserSubject: BehaviorSubject<any> = new BehaviorSubject(null);
- constructor(private http: HttpClient, private authService: AuthServiceService) {
-    this.http.get<any[]>('http://localhost:3000/users').subscribe(users => {
+ constructor(private http: HttpClient, private authService: AuthServiceService, private userStateService: UserStateService) {
+  this.http.get<any[]>('http://localhost:3000/users').subscribe(users => {
     this.users = users;
+    this.userStateService.setUsers(users); // Actualiza el estado local al obtener los usuarios
   });
-  }
+}
 
-  createUser(user: any): Observable<any> {
-    user.join = new Date().toLocaleDateString();
-    user.img = new String
-    return this.http.post(`${this.url}/users`, user);
-  }
+createUser(user: any): Observable<any> {
+  user.join = new Date().toLocaleDateString();
+  user.img = new String;
+  return this.http.post(`${this.url}/users`, user).pipe(
+    tap((createdUser) => {
+      const currentUsers = this.users.slice(); // Copia los usuarios actuales
+      currentUsers.push(createdUser);
+      this.users = currentUsers;
+      this.userStateService.setUsers(currentUsers); // Actualiza el estado local al crear un nuevo usuario
+    })
+  );
+}
+
 
   
   loginUser(email: string, password: string): Observable<any> {
@@ -55,11 +65,20 @@ export class UserService {
      return this.http.delete<any[]>(`${this.url}/users/${id}`);
   }
 
-  updateUser(user:any): Observable<any>{
-    const userId = user.id; // Asume que el usuario tiene un campo 'id'
-    return this.http.put(`${this.url}/users/${userId}`, user);
+  updateUser(user: any): Observable<any> {
+    const userId = user.id;
+    return this.http.put(`${this.url}/users/${userId}`, user).pipe(
+      tap(() => {
+        const currentUsers = this.users.slice(); // Copia los usuarios actuales
+        const userIndex = currentUsers.findIndex(u => u.id === userId);
+        if (userIndex !== -1) {
+          currentUsers[userIndex] = user;
+          this.users = currentUsers;
+          this.userStateService.setUsers(currentUsers); // Actualiza el estado local al modificar un usuario
+        }
+      })
+    );
   }
-
   getUserById(id: number): Observable<User> {
     return this.http.get<User>(`${this.url}/users/${id}`);
   }
