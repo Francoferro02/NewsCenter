@@ -29,22 +29,23 @@ export class LastNewsService implements OnInit {
     if (this.categoria === 'general') {
       // Si hay una categoría general y se ha seleccionado un país, incluye el parámetro country
       if (this.pais && this.pais !== 'wd') {
-        url = `https://newsapi.org/v2/top-headlines?category=${this.categoria}&country=${this.pais}&apiKey=12c5c9726e834cbbbaf33d1e05ae1efc`;
+        url = `https://newsapi.org/v2/top-headlines?category=${this.categoria}&country=${this.pais}&apiKey=506f9030df57473095658d41f2da32f2`;
+        /* otra apikey 506f9030df57473095658d41f2da32f2 */
       } 
       else if(this.pais === 'wd'){
-        url = `https://newsapi.org/v2/top-headlines?language=en&apiKey=12c5c9726e834cbbbaf33d1e05ae1efc`;
+        url = `https://newsapi.org/v2/top-headlines?language=en&apiKey=506f9030df57473095658d41f2da32f2`;
       }
       else if(this.pais === ' '){
         // Si no se ha seleccionado un país, excluye el parámetro country
-        url = `https://newsapi.org/v2/top-headlines?category=general&language=en&apiKey=12c5c9726e834cbbbaf33d1e05ae1efc`;
+        url = `https://newsapi.org/v2/top-headlines?category=general&language=en&apiKey=506f9030df57473095658d41f2da32f2`;
 
       }
       else{
-        url = `https://newsapi.org/v2/top-headlines?category=general&language=en&apiKey=12c5c9726e834cbbbaf33d1e05ae1efc`;
+        url = `https://newsapi.org/v2/top-headlines?category=general&language=en&apiKey=506f9030df57473095658d41f2da32f2`;
       }
     } else {
       // Si hay una categoría específica, incluye el parámetro category y, si aplica, country
-      url = `https://newsapi.org/v2/top-headlines?category=general&language=en&apiKey=12c5c9726e834cbbbaf33d1e05ae1efc`;
+      url = `https://newsapi.org/v2/top-headlines?category=general&language=en&apiKey=506f9030df57473095658d41f2da32f2`;
     }
     
     console.log(url);

@@ -22,7 +22,7 @@
         <form class="modal-submit" (submit)="updateField('image')">
           <label for="name">Avatar Image</label>
           <span class="button-space"></span>
-          <label for="imageInput" class="custom-image-button">Select Image</label>
+          <label for="imageInput" class="btn btn-primary">Select Image</label>
           <input type="file" id="imageInput" (change)="onImageChange($event)" class="image-input" accept="image/*">
           <span class="button-space"></span>
         </form>
@@ -38,12 +38,12 @@
             name="surname" required>
           <button type="submit" class="btn btn-primary">Save</button>
         </form>
-        <form class="modal-submit" (submit)="updateField('email')">
+       <!--  <form class="modal-submit" (submit)="updateField('email')">
           <label for="email">Email</label>
           <input class="input-edit" [ngModel]="editingUser?.email" (ngModelChange)="onEmailChange($event)" name="email"
             required>
           <button type="submit" class="btn btn-primary">Save</button>
-        </form>
+        </form> -->
         <form class="modal-submit" (submit)="updateField('location')">
           <label for="location">Location</label>
           <input class="input-edit" [ngModel]="editingUser?.location" (ngModelChange)="onLocationChange($event)" name="location"

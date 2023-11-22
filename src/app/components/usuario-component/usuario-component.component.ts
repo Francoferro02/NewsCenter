@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { User } from 'src/app/models/user.model';
 import { UserService } from '../Services/user.service';
-import { HttpClient } from '@angular/common/http';
+import { Router } from '@angular/router';
 import { ChangeDetectorRef } from '@angular/core';
 import { UserStateService } from '../Services/user-state.service';
 import { take } from 'rxjs';
@@ -13,7 +13,7 @@ import { take } from 'rxjs';
 })
 export class UsuarioComponentComponent implements OnInit {
 
-  user : User |null ;
+  user: User | null;
 
   users: User[] = [];
 
@@ -31,11 +31,17 @@ export class UsuarioComponentComponent implements OnInit {
 
   popupTimer: any;
 
-  constructor(private userService: UserService,private changeDetectorRef: ChangeDetectorRef, private userStateService: UserStateService){
+  constructor(private userService: UserService,
+    private changeDetectorRef: ChangeDetectorRef,
+    private userStateService: UserStateService,
+    private router: Router) {
     this.user = null;
   }
   ngOnInit() {
+
+   
     this.userService.getLoggedInUser().subscribe((user) => {
+      
       this.user = user;
       this.editingUser = { ...user };
       this.savedNews = user.savedNews || [];
@@ -50,12 +56,16 @@ export class UsuarioComponentComponent implements OnInit {
         console.log('no hay imagen de perfil');
       }
     });
+
+
     this.userStateService.users$.subscribe((users) => {
       this.users = users.filter(u => u.id !== this.user?.id); // Filtra el usuario actual
     });
-   
+
+    
+
   }
-  
+
   deleteUser(userId: number) {
     this.userService.deleteUser(userId).subscribe(() => {
       // Actualizar la lista de usuarios después de la eliminación
@@ -77,11 +87,12 @@ export class UsuarioComponentComponent implements OnInit {
   startEditing(field: string): void {
     this.editedField = field;
   }
+
   async updateUser() {
     if (this.editingUser) {
       try {
         // Realizar la actualización del usuario en el servidor
-        await this.userService.updateUser(this.editingUser).toPromise();
+        await this.userService.updateUser(this.editingUser);
 
         // Actualizar el usuario localmente
         this.user = { ...this.editingUser };
@@ -102,26 +113,27 @@ export class UsuarioComponentComponent implements OnInit {
       this.userService.updateUser(this.editingUser).subscribe(updatedUser => {
         // Actualizar el usuario localmente
         this.user = { ...updatedUser };
-        
+
         // Actualizar el usuario en userStateService
+    
         this.userStateService.users$.pipe(take(1)).subscribe(users => {
           const updatedUsers = users.map(user => user.id === this.user?.id ? this.user! : user);
           this.userStateService.setUsers(updatedUsers);
         });
       });
     }
-  
+
     if (this.editedUser) {
       this.user = { ...this.editedUser };
       if (field === 'image' && this.selectedImageURL) {
         this.user.img = this.selectedImageURL;
       }
     }
-  
+
     this.editedField = null;
   }
-  
-  
+
+
 
   onNameChange(newName: string) {
     if (this.editingUser) {
@@ -141,7 +153,7 @@ export class UsuarioComponentComponent implements OnInit {
   onLocationChange(newLocation: string) {
     if (this.editingUser) {
       this.editingUser.location = newLocation;
-      
+
     }
   }
   onInfoBioChange(newInfoBio: string) {
@@ -155,38 +167,39 @@ export class UsuarioComponentComponent implements OnInit {
     }
   }
 
- 
+
 
   async onImageChange(event: any) {
     const fileList: FileList = event.target.files;
     if (fileList.length > 0) {
       const selectedImage = fileList[0];
-  
+
       // Configura la información del formulario que se enviará a ImgBB
       const formData = new FormData();
       formData.append("image", selectedImage);
-  
+
       try {
         // Realiza la solicitud POST a la API de ImgBB para cargar la imagen
         const response = await fetch("https://api.imgbb.com/1/upload?key=c3224f0dab590826bdda5e40ba14114c", {
           method: "POST",
           body: formData,
         });
-  
+
         if (response.ok) {
           const data = await response.json();
           if (data && data.data && data.data.url) {
             // Obtén la URL de la imagen subida
+            
             const selectedImageURL = data.data.url;
-  
+
             console.log("imagen link: " + selectedImageURL);
-  
+
             // Update the user object with the selectedImageURL
             const userId = this.editingUser?.id; // Change this to the appropriate user ID
             const userToUpdate = await fetch(`http://localhost:3000/users/${userId}`);
             const userData = await userToUpdate.json();
             userData.img = selectedImageURL;
-  
+
             // Update the user data on the JSON Server
             await fetch(`http://localhost:3000/users/${userId}`, {
               method: "PUT",
@@ -195,11 +208,11 @@ export class UsuarioComponentComponent implements OnInit {
               },
               body: JSON.stringify(userData),
             });
-  
+
             console.log("User data updated with image URL.");
 
             this.selectedImageURL = selectedImageURL;
-
+            console.log("a", this.selectedImageURL);
             // Forzar la actualización de la vista
             this.changeDetectorRef.detectChanges();
           }
@@ -209,8 +222,9 @@ export class UsuarioComponentComponent implements OnInit {
       } catch (error) {
         console.error("Error al cargar la imagen: " + error);
       }
+      
     }
-   
+    
   }
 
 
@@ -222,7 +236,7 @@ export class UsuarioComponentComponent implements OnInit {
     this.showModal = false;
     if (this.editedUser) {
       this.user = {
-        id: this.editedUser.id || 0, 
+        id: this.editedUser.id || 0,
         name: this.editedUser.name || '',
         surname: this.editedUser.surname || '',
         email: this.editedUser.email || '',
@@ -239,14 +253,14 @@ export class UsuarioComponentComponent implements OnInit {
     event.preventDefault();
     const newsPopup = document.getElementById('newsPopup');
     const newsFrame = document.getElementById('newsFrame');
-  
+
     if (newsPopup) {
       // Comprobar si newsPopup no es nulo antes de acceder a su propiedad style
       if (newsFrame) {
         // Cargar el contenido de la noticia en el iframe
         newsFrame.setAttribute('src', newsUrl);
       }
-  
+
       // Mostrar el popup
       newsPopup.style.display = 'block';
     }
@@ -256,24 +270,24 @@ export class UsuarioComponentComponent implements OnInit {
     this.popupTimer = setTimeout(() => {
       const newsPopup = document.getElementById('newsPopup');
       const newsFrame = document.getElementById('newsFrame');
-  
+
       if (newsPopup && newsFrame) {
         // Cargar el contenido de la noticia en el iframe
         newsFrame.setAttribute('src', newsUrl);
-  
+
         // Mostrar el popup
         newsPopup.style.display = 'block';
       }
     }, 4000);
   }
-  
+
   clearPopupTimer() {
     clearTimeout(this.popupTimer);
   }
-  
+
   closePopup() {
     const newsPopup = document.getElementById('newsPopup');
-  
+
     if (newsPopup) {
       // Ocultar el popup
       newsPopup.style.display = 'none';

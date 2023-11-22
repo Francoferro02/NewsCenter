@@ -52,15 +52,18 @@
       "id": 5
     },
     {
-      "name": "Axelon",
+      "name": "Axel",
       "surname": "Dominguez",
       "email": "axel.do@live.com.ar",
       "password": "1234",
-      "location": "MDQ",
+      "location": "MDQ1",
       "rolbio": "Developer",
-      "savedNews": [],
+      "savedNews": [
+        "https://www.huffpost.com/entry/lionel-messi-ballon-dor-soccer-award_n_653fe729e4b032ae1c9c1a81",
+        "https://www.cnbc.com/2023/11/21/best-buy-bby-earnings-q3-2024.html"
+      ],
       "join": "21/11/2023",
-      "img": "",
+      "img": "https://i.ibb.co/R7K91mg/Whats-App-Image-2023-10-13-at-13-44-11.jpg",
       "id": 6
     },
     {
@@ -209,6 +212,20 @@
       "editing": false,
       "urlNoticia": "https://www.investors.com/market-trend/stock-market-today/dow-jones-futures-key-inflation-data-targets-surges-on-earnings/",
       "id": "1700153542167"
+    },
+    {
+      "text": "a",
+      "usuario": "Axel",
+      "editing": false,
+      "urlNoticia": "https://time.com/6330031/messi-ballon-d-or-2023/",
+      "id": "1700658047871"
+    },
+    {
+      "text": "messi",
+      "usuario": "Axel",
+      "editing": false,
+      "urlNoticia": "https://www.huffpost.com/entry/lionel-messi-ballon-dor-soccer-award_n_653fe729e4b032ae1c9c1a81",
+      "id": "1700658059863"
     }
   ],
   "news": [
@@ -319,6 +336,12 @@
       "rating": 4,
       "CantidadCalificaciones": 1,
       "id": 18
+    },
+    {
+      "urlNoticia": "https://www.huffpost.com/entry/lionel-messi-ballon-dor-soccer-award_n_653fe729e4b032ae1c9c1a81",
+      "rating": 5,
+      "CantidadCalificaciones": 1,
+      "id": 19
     }
   ]
 }

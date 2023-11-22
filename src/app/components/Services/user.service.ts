@@ -69,12 +69,15 @@ createUser(user: any): Observable<any> {
     const userId = user.id;
     return this.http.put(`${this.url}/users/${userId}`, user).pipe(
       tap(() => {
-        const currentUsers = this.users.slice(); // Copia los usuarios actuales
+        const currentUsers = this.users.slice();
         const userIndex = currentUsers.findIndex(u => u.id === userId);
         if (userIndex !== -1) {
           currentUsers[userIndex] = user;
           this.users = currentUsers;
-          this.userStateService.setUsers(currentUsers); // Actualiza el estado local al modificar un usuario
+          this.userStateService.setUsers(currentUsers);
+          // Emitir el nuevo usuario autenticado
+           this.loggedInUserSubject.next(user); 
+          /* this.loggedInUserSubject.next({ ...this.loggedInUserSubject.value, img: user.img }); */
         }
       })
     );

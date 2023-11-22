@@ -58,7 +58,8 @@ export class NavBarComponent implements OnInit {
 
   search() {
     const searchTermLowerCase = this.searchTerm.toLowerCase();
-    const url = `https://newsapi.org/v2/everything?q=${searchTermLowerCase}&language=en&apiKey=12c5c9726e834cbbbaf33d1e05ae1efc`;
+    const url = `https://newsapi.org/v2/everything?q=${searchTermLowerCase}&language=en&apiKey=506f9030df57473095658d41f2da32f2`;
+    /* 506f9030df57473095658d41f2da32f2 */
   
     this.http.get(url).subscribe(
       (response: any) => {
