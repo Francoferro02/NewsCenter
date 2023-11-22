@@ -111,15 +111,22 @@
 
 @media only screen and (max-width: 768px) {
   .sidenav {
-    height: 0; /* Inicialmente oculta la barra lateral al colapsarla */
-    overflow: hidden; /* Oculta el contenido que desborda */
-    position: fixed; /* Fija la posición para que la barra lateral no afecte el flujo normal */
+    height: auto; /* Establece la altura automática por defecto */
+    overflow: hidden;
+    position: fixed;
     width: 100%;
-    transition: height 0.3s; /* Agrega una transición suave para la altura */
+    transition: height 0.3s;
   }
 
   .sidenav-collapsed {
-    height: auto; /* Establece la altura automática cuando la barra lateral está expandida */
+    height: 0; /* Colapsada por defecto */
+  }
+
+  /* ... (otras reglas de estilo para pantallas pequeñas) */
+
+  /* Estilo para emerger desde arriba */
+  .sidenav.emerge {
+    height: 100vh;
   }
 
   .sidenav-nav {

@@ -98,6 +98,7 @@
   display: flex;
   justify-content: flex-start;
   margin: 3rem;
+
 }
 
 .comentarios {
@@ -505,5 +506,113 @@ h4 {
   
   .app-nav-bar {
     margin: 0;
+  }
+
+  .modal-content {
+     
+    max-width: 90%; /* Reduce el ancho máximo del modal */
+    margin: 1rem; /* Ajusta el margen para pantallas más pequeñas */
+    padding: 1.5rem; /* Ajusta el relleno para pantallas más pequeñas */
+  }
+
+  .modal img {
+    width: 100%; /* Hace que la imagen del modal ocupe el ancho completo */
+    max-height: 80vh; /* Limita la altura máxima de la imagen del modal */
+  }
+
+  .modal h2 {
+    margin: 1rem; /* Ajusta el margen para pantallas más pequeñas */
+    font-size: large; /* Ajusta el tamaño de fuente para pantallas más pequeñas */
+  }
+
+  .comentarios-guardados {
+    margin: 1rem 0; /* Ajusta el margen para pantallas más pequeñas */
+    padding: 0.5rem; /* Ajusta el relleno para pantallas más pequeñas */
+  }
+
+  .social-media-icons i {
+    display: flex;
+    flex-direction: column;
+    font-size: 2rem; /* Ajusta el tamaño de los iconos para pantallas más pequeñas */
+  }
+
+  .caja-de-comentarios-input {
+    height: 10vh; /* Ajusta la altura del área de comentarios para pantallas más pequeñas */
+    font-size: small; /* Ajusta el tamaño de fuente para pantallas más pequeñas */
+  }
+
+  .tabla-comentarios th {
+    font-size: medium; /* Ajusta el tamaño de fuente para pantallas más pequeñas */
+    padding-right: 2rem; /* Ajusta el relleno derecho para pantallas más pequeñas */
+  }
+
+  .tabla-comentarios td {
+    font-size: small; /* Ajusta el tamaño de fuente para pantallas más pequeñas */
+    padding: 1rem; /* Ajusta el relleno para pantallas más pequeñas */
+  }
+
+  .rating {
+    font-size: 1.5rem; /* Ajusta el tamaño de fuente para pantallas más pequeñas */
+  }
+
+  .rated-span {
+    font-size: x-small; /* Ajusta el tamaño de fuente para pantallas más pequeñas */
+    padding-top: 0.5rem; /* Ajusta el relleno superior para pantallas más pequeñas */
+  }
+
+  .botones-comentarios h3 {
+    font-size: x-small; /* Ajusta el tamaño de fuente para pantallas más pequeñas */
+  }
+
+  .botones-comentarios {
+    margin-top: 1rem; /* Ajusta el margen superior para pantallas más pequeñas */
+  }
+
+  .botones {
+    margin-top: 1rem; /* Ajusta el margen superior para pantallas más pequeñas */
+  }
+
+  .contenido-y-botones {
+    display: flex;
+    flex-direction: column;
+    max-width: 100%;
+    margin: 0.5rem; /* Ajusta el margen para pantallas más pequeñas */
+  }
+
+  .botones-nuevo-comentario {
+    margin-top: 1rem; /* Ajusta el margen superior para pantallas más pequeñas */
+  }
+
+  .resumen-noticia {
+    padding-left: 5rem; /* Ajusta el relleno para pantallas más pequeñas */
+    font-size: small;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    max-width: 5rem;
+  }
+
+  .noticia-title {
+    font-size: 1.5rem; /* Ajusta el tamaño de fuente para pantallas más pequeñas */
+    margin: 1rem 0; /* Ajusta el margen para pantallas más pequeñas */
+  }
+
+  .noticia-text {
+    font-size: 1rem; /* Ajusta el tamaño de fuente para pantallas más pequeñas */
+    line-height: 1.3; /* Ajusta el espaciado de línea para pantallas más pequeñas */
+  }
+
+  h4 {
+    margin: 1rem 0 0 2rem; /* Ajusta el margen para pantallas más pequeñas */
+    font-size: small; /* Ajusta el tamaño de fuente para pantallas más pequeñas */
+  }
+
+
+  .botones{
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    max-width: 5rem;
   }
 }
