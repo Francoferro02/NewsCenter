@@ -147,7 +147,10 @@ export class NavBarComponent implements OnInit {
   onEnterKeyPress(event: Event) {
     if (event instanceof KeyboardEvent && event.key === 'Enter') {
       this.performSearch();
-      this.toggleDropdown();
+      if(!this.showDropdown){
+        this.toggleDropdown();
+      }
+      
     }
   }
 
@@ -155,7 +158,7 @@ export class NavBarComponent implements OnInit {
     const clickedElement = event.target as HTMLElement;
     const isInsideSearchContainer = this.el.nativeElement.contains(clickedElement);
 
-    if (!isInsideSearchContainer) {
+    if (!isInsideSearchContainer && this.showDropdown) {
       this.toggleDropdown(); // Cierra la lista de resultados si el clic fue fuera del área de búsqueda
     }
   }
