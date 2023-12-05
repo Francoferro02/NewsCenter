@@ -126,7 +126,7 @@
                 </div>
               </td>
               <td class="botones-editar-coment">
-                <button (click)="editAndSaveComentario(comentario)">
+                <button (click)="editAndSaveComentario(comentario)" *ngIf="comentario?.usuario === user?.name">
                   {{ comentario.editing ? 'Save' : 'Edit' }}
                 </button>
                 <button (click)="eliminarComentario(comentario.id)" *ngIf="comentario?.usuario === user?.name">Delete</button>

@@ -63,7 +63,7 @@
         "https://www.cnbc.com/2023/11/21/best-buy-bby-earnings-q3-2024.html"
       ],
       "join": "21/11/2023",
-      "img": "https://i.ibb.co/R7K91mg/Whats-App-Image-2023-10-13-at-13-44-11.jpg",
+      "img": "https://i.ibb.co/tqFqvMb/Whats-App-Image-2023-10-13-at-13-44-11-1.jpg",
       "id": 6
     },
     {
@@ -77,6 +77,20 @@
       "join": "21/11/2023",
       "img": "",
       "id": 7
+    },
+    {
+      "name": "Axel",
+      "surname": "Dominguez Dominguez",
+      "email": "axel.do@live.com.ar.2",
+      "password": "1234",
+      "location": "Batán",
+      "rolbio": "Developer",
+      "savedNews": [
+        "https://news.google.com/rss/articles/CBMilgFodHRwczovL3d3dy5sYW5hY2lvbi5jb20uYXIvc2VndXJpZGFkL3JldW5pb24tY2xhdmUtdW4tY2FuZGlkYXRvLWEtamVmZS1kZS1sYS1wb2xpY2lhLWZlZGVyYWwtZW4tdW5hLXJldW5pb24tZW50cmUtYW5pYmFsLWZlcm5hbmRlei15LWRvcy1uaWQyMTExMjAyMy_SAQA?oc=5"
+      ],
+      "join": "22/11/2023",
+      "img": "",
+      "id": 8
     }
   ],
   "comentarios": [
@@ -226,6 +240,20 @@
       "editing": false,
       "urlNoticia": "https://www.huffpost.com/entry/lionel-messi-ballon-dor-soccer-award_n_653fe729e4b032ae1c9c1a81",
       "id": "1700658059863"
+    },
+    {
+      "text": "aabb",
+      "usuario": "Axel",
+      "editing": false,
+      "urlNoticia": "https://news.google.com/rss/articles/CBMilgFodHRwczovL3d3dy5sYW5hY2lvbi5jb20uYXIvc2VndXJpZGFkL3JldW5pb24tY2xhdmUtdW4tY2FuZGlkYXRvLWEtamVmZS1kZS1sYS1wb2xpY2lhLWZlZGVyYWwtZW4tdW5hLXJldW5pb24tZW50cmUtYW5pYmFsLWZlcm5hbmRlei15LWRvcy1uaWQyMTExMjAyMy_SAQA?oc=5",
+      "id": "1700693655087"
+    },
+    {
+      "text": "aaaa",
+      "usuario": "Axel",
+      "editing": false,
+      "urlNoticia": "https://www.reuters.com/technology/spotify-reduce-staff-by-17-second-layoff-this-year-2023-12-04/",
+      "id": "1701779848601"
     }
   ],
   "news": [
@@ -342,6 +370,12 @@
       "rating": 5,
       "CantidadCalificaciones": 1,
       "id": 19
+    },
+    {
+      "urlNoticia": "https://news.google.com/rss/articles/CBMilgFodHRwczovL3d3dy5sYW5hY2lvbi5jb20uYXIvc2VndXJpZGFkL3JldW5pb24tY2xhdmUtdW4tY2FuZGlkYXRvLWEtamVmZS1kZS1sYS1wb2xpY2lhLWZlZGVyYWwtZW4tdW5hLXJldW5pb24tZW50cmUtYW5pYmFsLWZlcm5hbmRlei15LWRvcy1uaWQyMTExMjAyMy_SAQA?oc=5",
+      "rating": 5,
+      "CantidadCalificaciones": 1,
+      "id": 20
     }
   ]
 }
