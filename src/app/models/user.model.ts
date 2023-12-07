@@ -1,3 +1,5 @@
+import { Noticia } from "./noticia.model";
+
 export class User  {
     id!: number;
     name!:  string;
@@ -7,6 +9,6 @@ export class User  {
     location!: string;
     join!: Date;
     rolbio! : string;
-    savedNews! : string[];
+    savedNews! : Noticia[];
     img!: string;
 }

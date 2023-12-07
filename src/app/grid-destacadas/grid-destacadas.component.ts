@@ -155,12 +155,12 @@ export class GridDestacadasComponent implements OnInit {
     return Date.now().toString();
   }
 
-  guardarNoticiaEnPerfil() {
+/*   guardarNoticiaEnPerfil() {
     if (this.authService.isUsuarioAutenticado()) {
       // Lógica para el evento de clic cuando el usuario está autenticado
       if (this.user && this.selectedNoticia) {
-        const newsUrl = this.selectedNoticia.url;
-  
+        const newsUrl = this.selectedNoticia;
+        
         if (!this.user.savedNews.includes(newsUrl)) {
           this.user.savedNews.push(newsUrl);
   
@@ -190,7 +190,43 @@ export class GridDestacadasComponent implements OnInit {
     
     
   }
-
+ */
+  guardarNoticiaEnPerfil() {
+    if (this.authService.isUsuarioAutenticado()) {  
+      if (this.user && this.selectedNoticia) {
+        const newsUrl = this.selectedNoticia.url; // Obtén la URL de la noticia
+  
+        // Verifica si la noticia ya existe en la lista de noticias guardadas
+        const alreadySaved = this.user.savedNews.some(noticia => noticia.url === newsUrl);
+  
+        if (!alreadySaved) {
+          // La noticia no está en la lista, así que agrégala
+          this.user.savedNews.push(this.selectedNoticia);
+  
+          this.userService.updateUser(this.user).subscribe((response: any) => {
+            this.savedSuccessfully = true;
+            this.alreadySaved = false;
+            console.log('Noticia guardada en el perfil del usuario', response);
+  
+            setTimeout(() => {
+              this.savedSuccessfully = false;
+            }, 3000);
+          });
+        } else {
+          // La noticia ya está en la lista de noticias guardadas
+          this.alreadySaved = true;
+          this.savedSuccessfully = false;
+          console.log('La noticia ya está en la lista de noticias guardadas');
+  
+          setTimeout(() => {
+            this.alreadySaved = false;
+          }, 3000);
+        }
+      }
+    } else {
+      this.authGuard.canActivate();
+    }
+  }
 
   editAndSaveComentario(comentario: Comentario) {
 

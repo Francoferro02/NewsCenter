@@ -165,10 +165,14 @@ export class GridSeccionComponent implements OnInit {
   guardarNoticiaEnPerfil() {
     if (this.authService.isUsuarioAutenticado()) {  
       if (this.user && this.selectedNoticia) {
-        const newsUrl = this.selectedNoticia.url;
+        const newsUrl = this.selectedNoticia.url; // Obtén la URL de la noticia
   
-        if (!this.user.savedNews.includes(newsUrl)) {
-          this.user.savedNews.push(newsUrl);
+        // Verifica si la noticia ya existe en la lista de noticias guardadas
+        const alreadySaved = this.user.savedNews.some(noticia => noticia.url === newsUrl);
+  
+        if (!alreadySaved) {
+          // La noticia no está en la lista, así que agrégala
+          this.user.savedNews.push(this.selectedNoticia);
   
           this.userService.updateUser(this.user).subscribe((response: any) => {
             this.savedSuccessfully = true;
@@ -180,6 +184,7 @@ export class GridSeccionComponent implements OnInit {
             }, 3000);
           });
         } else {
+          // La noticia ya está en la lista de noticias guardadas
           this.alreadySaved = true;
           this.savedSuccessfully = false;
           console.log('La noticia ya está en la lista de noticias guardadas');

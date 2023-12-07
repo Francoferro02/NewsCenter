@@ -5,6 +5,7 @@ import { Router } from '@angular/router';
 import { ChangeDetectorRef } from '@angular/core';
 import { UserStateService } from '../Services/user-state.service';
 import { take } from 'rxjs';
+import { Noticia } from 'src/app/models/noticia.model';
 
 @Component({
   selector: 'app-usuario-component',
@@ -27,7 +28,7 @@ export class UsuarioComponentComponent implements OnInit {
 
   editedUser: User | null = null;
 
-  savedNews: string[] = [];
+  savedNews: Noticia[] = [];
 
   popupTimer: any;
 
@@ -46,9 +47,9 @@ export class UsuarioComponentComponent implements OnInit {
       this.editingUser = { ...user };
       this.savedNews = user.savedNews || [];
       this.selectedImageURL = user.img;
-
+      console.log(user.savedNews);
       if (this.selectedImageURL) {
-        const imgElement = document.getElementById('imagenUsuario'); // Asegúrate de que tengas un elemento <img> con un id="imagenUsuario"
+        const imgElement = document.getElementById('imagenUsuario'); 
         if (imgElement) {
           imgElement.setAttribute('src', this.selectedImageURL);
         }
@@ -174,12 +175,12 @@ export class UsuarioComponentComponent implements OnInit {
     if (fileList.length > 0) {
       const selectedImage = fileList[0];
 
-      // Configura la información del formulario que se enviará a ImgBB
+      
       const formData = new FormData();
       formData.append("image", selectedImage);
 
       try {
-        // Realiza la solicitud POST a la API de ImgBB para cargar la imagen
+       
         const response = await fetch("https://api.imgbb.com/1/upload?key=c3224f0dab590826bdda5e40ba14114c", {
           method: "POST",
           body: formData,

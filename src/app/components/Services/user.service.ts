@@ -75,7 +75,7 @@ createUser(user: any): Observable<any> {
           currentUsers[userIndex] = user;
           this.users = currentUsers;
           this.userStateService.setUsers(currentUsers);
-          // Emitir el nuevo usuario autenticado
+        
            this.loggedInUserSubject.next(user); 
           /* this.loggedInUserSubject.next({ ...this.loggedInUserSubject.value, img: user.img }); */
         }
