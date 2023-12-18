@@ -74,7 +74,9 @@
       <li *ngFor="let news of savedNews" >
         <a class="saved-links" [href]="news.url" target="_blank" (mouseenter)="startPopupTimer(news.url)" (mouseleave)="clearPopupTimer()"> 
           <img class="saved-img" [src]="news.urlToImage || '../../../assets/Logo/pngworld.jpg' " >
-          {{news.title }}</a>
+          {{news.title }}
+        </a>
+        
       </li>
     </ul>
   </div>

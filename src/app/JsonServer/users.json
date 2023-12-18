@@ -56,14 +56,14 @@
       "surname": "Dominguez",
       "email": "axel.do@live.com.ar",
       "password": "1234",
-      "location": "MDQ1",
+      "location": "MDQ",
       "rolbio": "Developer",
       "savedNews": [
         {
-          "urlToImage": null,
-          "title": "Latest Israel-Hamas war news and hostage updates: IDF in ‘heart’ of southern Gaza’s Khan Younis - The Washington Post",
-          "content": null,
-          "url": "https://news.google.com/rss/articles/CBMiXGh0dHBzOi8vd3d3Lndhc2hpbmd0b25wb3N0LmNvbS93b3JsZC8yMDIzLzEyLzA2L2lzcmFlbC1oYW1hcy13YXItbmV3cy1nYXphLXBhbGVzdGluZS11cGRhdGUv0gEA?oc=5",
+          "urlToImage": "https://www.outsourcing-pharma.com/var/wrbm_gb_food_pharma/storage/images/publications/pharmaceutical-science/outsourcing-pharma.com/headlines/clinical-development/up-in-space-how-microgravity-could-transform-pharma-manufacturing/16994274-1-eng-GB/Up-in-space-How-microgravity-could-transform-pharma-manufacturing.jpg",
+          "title": "Up in space: How microgravity could transform pharma manufacturing - OutSourcing-Pharma.com",
+          "content": "The California-based start-up claims that, by removing gravity, they are able to make medicines that are not viable on earth.\r\nProcessing in a microgravity environment dramatically alters buoyancy, n… [+3689 chars]",
+          "url": "https://www.outsourcing-pharma.com/Article/2023/12/06/up-in-space-how-microgravity-could-transform-pharma-manufacturing",
           "comentario": [],
           "rating": 0,
           "CantidadCalificaciones": 0
@@ -73,48 +73,6 @@
           "title": "GTA 6: Streams soar for 70s rocker Tom Petty thanks to trailer - BBC.com",
           "content": "Watch: What have we learnt from the GTA VI trailer?\r\nIf you're a gaming fan, you definitely won't have missed the long-awaited trailer for Grand Theft Auto 6.\r\nBut you might not have recognised the t… [+3088 chars]",
           "url": "https://www.bbc.com/news/newsbeat-67635381",
-          "comentario": [],
-          "rating": 0,
-          "CantidadCalificaciones": 0
-        },
-        {
-          "urlToImage": "https://image.cnbcfm.com/api/v1/image/107311258-1696420005841-2023-10-03T233909Z_734971832_RC2BL3A90F94_RTRMADP_3_USA-CONGRESS-MCCARTHY-1.JPG?v=1696420016&w=1920&h=1080",
-          "title": "Former Speaker Kevin McCarthy to resign from Congress at year end - CNBC",
-          "content": "Former House Speaker Kevin McCarthy said Wednesday he will resign from Congress at the end of the year.\r\nMcCarthy, the California Republican who was ousted as speaker by a faction of his own party tw… [+2477 chars]",
-          "url": "https://www.cnbc.com/2023/12/06/former-speaker-kevin-mccarthy-to-resign-from-congress-at-year-end.html",
-          "comentario": [],
-          "rating": 0,
-          "CantidadCalificaciones": 0
-        },
-        {
-          "urlToImage": "https://static.toiimg.com/thumb/msid-47529300,width-1070,height-580,imgsize-110164,resizemode-75,overlay-toi_sw,pt-32,y_pad-40/photo.jpg",
-          "title": "Another technology milestone achieved: PM Modi on Chandrayaan-3 feat - Times of India - IndiaTimes",
-          "content": "48-year-old Sonali Bendre dresses better than any 30-year-old actress in Bollywood",
-          "url": "https://timesofindia.indiatimes.com/india/another-technology-milestone-achieved-pm-modi-on-chandrayaan-3-feat/articleshow/105790919.cms",
-          "comentario": [],
-          "rating": 0,
-          "CantidadCalificaciones": 0
-        },
-        {
-          "source": {
-            "id": null,
-            "name": "ScienceAlert"
-          },
-          "author": "Universe Today",
-          "title": "China's Lander Detects Giant Polygonal Structures Buried Beneath Mars - ScienceAlert",
-          "description": "China's Zhurong rover was equipped with a ground-penetrating radar system, allowing it to peer beneath Mars's surface.",
-          "url": "https://www.sciencealert.com/chinas-mars-lander-detects-subsurface-geometrical-shapes-in-scientific-first",
-          "urlToImage": "https://www.sciencealert.com/images/2023/11/zhurong_rover.jpg",
-          "publishedAt": "2023-12-06T12:13:50Z",
-          "content": "China's Zhurong rover was equipped with a ground-penetrating radar system, allowing it to peer beneath Mars's surface.\r\nResearchers have announced new results from the scans of Zhurong's landing site… [+4595 chars]",
-          "comentario": [],
-          "rating": 0
-        },
-        {
-          "urlToImage": "https://i.ytimg.com/vi/3xt8hgeTlWg/maxresdefault.jpg?sqp=-oaymwEmCIAKENAF8quKqQMa8AEB-AH-CYAC0AWKAgwIABABGGUgRihLMA8=&rs=AOn4CLBT9asMMj7Rw4zCL4dANI1-ibXAEg",
-          "title": "Fly through James Webb Space Telescope's view of 5000 galaxies in amazing 3D visualization - VideoFromSpace",
-          "content": null,
-          "url": "https://www.youtube.com/watch?v=3xt8hgeTlWg",
           "comentario": [],
           "rating": 0,
           "CantidadCalificaciones": 0

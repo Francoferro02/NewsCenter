@@ -21,6 +21,12 @@ export class UserService {
   });
 }
 
+deleteNewsFromUser(userId: number, newsId: string) {
+  // Realiza la lógica para eliminar la noticia del usuario en el servidor
+  // Utiliza el userId y el newsId para identificar la noticia específica
+  const url = `http://localhost:3000/users/${userId}/news/${newsId}`;
+  return this.http.delete(url);
+}
 createUser(user: any): Observable<any> {
   user.join = new Date().toLocaleDateString();
   user.img = new String;

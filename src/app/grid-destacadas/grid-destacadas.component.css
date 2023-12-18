@@ -83,7 +83,8 @@
   width: 100%;
   height: 100%;
   background: rgba(0, 0, 0, 0.7);
-  z-index: 1;
+  z-index: 4;
+  overflow-y: auto;
 }
 
 .modal-content {
@@ -94,7 +95,7 @@
   text-align: center;
   max-width: 80%;
   /* Limitar el ancho del modal */
-  z-index: 1;
+  z-index: 4;
   display: flex;
   justify-content: flex-start;
   margin: 3rem;
@@ -447,14 +448,37 @@ h4 {
 }
 
 @media only screen and (max-width: 768px) {
+
+
   .container {
+    display: flex;
     flex-direction: column;
     align-items: center;
+    justify-content: center;
     width: 100%;
     left: 0;
     padding: 2rem 1rem;
+    margin-top: 5rem;
+    
   }
 
+  .modal{
+    /* display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    z-index: 4; */
+    
+    max-width: 100%;
+    overflow: auto;
+  }
+
+  .modal .noticia-img {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+  }
+  
   .search-bar {
     width: 100%;
     margin-bottom: 1rem;
@@ -470,18 +494,25 @@ h4 {
   }
 
   .modal-content {
-    max-width: 80%;
-    margin: 3rem;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    max-height: 90%;
+    max-width: 100%;
+    overflow: auto;
+   
   }
 
   .noticia img {
     height: auto;
   }
 
-  .modal img {
-    width: 100%;
-    height: 50vh;
-    object-fit: cover;
+  .noticia-img{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 2rem 0; 
+    
   }
 
   .filtrado-options {
@@ -510,18 +541,6 @@ h4 {
   
   .app-nav-bar {
     margin: 0;
-  }
-
-  .modal-content {
-     
-    max-width: 90%; /* Reduce el ancho máximo del modal */
-    margin: 1rem; /* Ajusta el margen para pantallas más pequeñas */
-    padding: 1.5rem; /* Ajusta el relleno para pantallas más pequeñas */
-  }
-
-  .modal img {
-    width: 100%; /* Hace que la imagen del modal ocupe el ancho completo */
-    max-height: 80vh; /* Limita la altura máxima de la imagen del modal */
   }
 
   .modal h2 {
@@ -579,8 +598,6 @@ h4 {
   .contenido-y-botones {
     display: flex;
     flex-direction: column;
-    max-width: 100%;
-    margin: 0.5rem; /* Ajusta el margen para pantallas más pequeñas */
   }
 
   .botones-nuevo-comentario {
@@ -588,12 +605,11 @@ h4 {
   }
 
   .resumen-noticia {
-    padding-left: 5rem; /* Ajusta el relleno para pantallas más pequeñas */
     font-size: small;
     display: flex;
     flex-direction: column;
     align-items: center;
-    max-width: 5rem;
+    padding: 0;
   }
 
   .noticia-title {
@@ -614,9 +630,18 @@ h4 {
 
   .botones{
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     justify-content: flex-start;
-    align-items: flex-start;
+    align-items: center;
     max-width: 5rem;
   }
+ 
+
+  .imagen-y-contenido{
+    display: flex;
+    flex-direction: column;
+   
+  }
+  
+  
 }

@@ -1,5 +1,5 @@
 .sidenav {
-  
+
   transition: all 0.5s ease;
   position: fixed;
   z-index: 0;
@@ -110,6 +110,10 @@
 
 
 @media only screen and (max-width: 768px) {
+  .sidenav-collapsed {
+    height: 0; /* Colapsada por defecto */
+  }
+
   .sidenav {
     height: auto; /* Establece la altura automática por defecto */
     overflow: hidden;
@@ -118,15 +122,19 @@
     transition: height 0.3s;
   }
 
-  .sidenav-collapsed {
-    height: 0; /* Colapsada por defecto */
+  /* Mostrar el icono de hamburguesa siempre */
+  .logo {
+    display: flex;
   }
 
-  /* ... (otras reglas de estilo para pantallas pequeñas) */
+  .logo-text {
+    display: none; /* Ocultar el texto del logo por defecto */
+  }
 
-  /* Estilo para emerger desde arriba */
+  /* Cambiar la orientación de la barra lateral emergente desde arriba */
   .sidenav.emerge {
-    height: 100vh;
+    height: 100vh; /* Establece la altura al 100% de la altura de la pantalla */
+    transform: translateY(0); /* Desplaza la barra lateral desde arriba hacia abajo */
   }
 
   .sidenav-nav {

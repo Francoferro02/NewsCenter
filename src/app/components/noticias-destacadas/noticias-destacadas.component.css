@@ -21,6 +21,12 @@
   
     .logo-container {
       padding-bottom: 1rem;
+      margin-top: 15rem;
+     
       /* Ajusta el relleno inferior para pantallas más pequeñas */
+    }
+
+    #logo-principal{
+      height: 4rem;
     }
   }

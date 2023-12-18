@@ -6,6 +6,8 @@ import { ChangeDetectorRef } from '@angular/core';
 import { UserStateService } from '../Services/user-state.service';
 import { take } from 'rxjs';
 import { Noticia } from 'src/app/models/noticia.model';
+import { AuthGuard } from 'src/app/auth.guard';
+import { AuthServiceService } from '../Services/auth-service.service';
 
 @Component({
   selector: 'app-usuario-component',
@@ -35,7 +37,9 @@ export class UsuarioComponentComponent implements OnInit {
   constructor(private userService: UserService,
     private changeDetectorRef: ChangeDetectorRef,
     private userStateService: UserStateService,
-    private router: Router) {
+    private router: Router,
+    private authService : AuthServiceService,
+    private authGuard : AuthGuard) {
     this.user = null;
   }
   ngOnInit() {
@@ -58,6 +62,7 @@ export class UsuarioComponentComponent implements OnInit {
       }
     });
 
+    
 
     this.userStateService.users$.subscribe((users) => {
       this.users = users.filter(u => u.id !== this.user?.id); // Filtra el usuario actual
@@ -67,6 +72,24 @@ export class UsuarioComponentComponent implements OnInit {
 
   }
 
+borrarNoticia(news: Noticia) {
+  if (this.authService.isUsuarioAutenticado()) {
+    if (this.user && news) {
+      const userId = this.user.id;
+      const newsId = news.title;
+
+      // Llama al servicio para borrar la noticia del servidor
+      this.userService.deleteNewsFromUser(userId, newsId).subscribe(() => {
+        // Filtra las noticias que no coincidan con la que se va a borrar en el array local
+        this.savedNews = this.savedNews.filter(n => n !== news);
+      });
+    }
+  } else {
+    this.authGuard.canActivate();
+  }
+}
+
+  
   deleteUser(userId: number) {
     this.userService.deleteUser(userId).subscribe(() => {
       // Actualizar la lista de usuarios después de la eliminación

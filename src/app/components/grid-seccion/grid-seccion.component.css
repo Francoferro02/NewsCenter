@@ -411,6 +411,7 @@ gap: 1rem;
   }
 
   @media only screen and (max-width: 768px) {
+
     .container-main {
       display: flex;
       justify-content: center;
@@ -419,6 +420,27 @@ gap: 1rem;
       
     }
   
+    .modal{
+      /* display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      z-index: 4; */
+      
+      max-width: 100%;
+      overflow: auto;
+    }
+  
+    .logo-chico{
+      margin-top: 10rem;
+    }
+
+    .modal .noticia-img {
+      width: 100%;
+      height: auto;
+      object-fit: cover;
+    }
+
     .lista-noticias .noticia-ppal:first-child {
       /* Estilos para la primera noticia, con la clase noticia-ppal */
       display: flex;
@@ -444,7 +466,8 @@ gap: 1rem;
   
     .noticia-ppal {
       height: auto;
-      
+      margin-bottom: 5rem;
+      border-bottom: none;
     }
   
     .lista-noticias .noticia-ppal img {
@@ -459,20 +482,26 @@ gap: 1rem;
     .lista-noticias .noticia-ppal .texto-noticia-ppal {
       padding: 0.5rem; 
       display: flex;
-      flex-direction: column;/* Ajusta el relleno del texto para pantallas más pequeñas */
+      flex-direction: column;
+      
     }
   
  
     .modal-content {
+      margin: 0;
+      display: flex;
+      flex-direction: column;
+      max-height: 90%;
+      max-width: 100%;
+      overflow: auto;
      
-      max-width: 90%; /* Reduce el ancho máximo del modal */
-      margin: 1rem; /* Ajusta el margen para pantallas más pequeñas */
-      padding: 1.5rem; /* Ajusta el relleno para pantallas más pequeñas */
     }
   
-    .modal img {
-      width: 100%; /* Hace que la imagen del modal ocupe el ancho completo */
-      max-height: 80vh; /* Limita la altura máxima de la imagen del modal */
+    .noticia-img{
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin: 2rem 0; 
     }
   
     .modal h2 {
@@ -523,8 +552,9 @@ gap: 1rem;
       margin-top: 1rem; /* Ajusta el margen superior para pantallas más pequeñas */
     }
   
-    .botones {
-      margin-top: 1rem; /* Ajusta el margen superior para pantallas más pequeñas */
+    button {
+      width: 100%;
+      padding: 1.3rem 2rem;
     }
   
     .contenido-y-botones {
@@ -537,24 +567,19 @@ gap: 1rem;
     .botones-nuevo-comentario {
       margin-top: 1rem; /* Ajusta el margen superior para pantallas más pequeñas */
     }
-  
+
+
     .resumen-noticia {
-      padding-left: 5rem; /* Ajusta el relleno para pantallas más pequeñas */
       font-size: small;
       display: flex;
       flex-direction: column;
       align-items: center;
-      max-width: 5rem;
+      padding: 0;
+     
     }
-  
     .noticia-title {
       font-size: 1.5rem; /* Ajusta el tamaño de fuente para pantallas más pequeñas */
       margin: 1rem 0; /* Ajusta el margen para pantallas más pequeñas */
-    }
-  
-    .noticia-text {
-      font-size: 1rem; /* Ajusta el tamaño de fuente para pantallas más pequeñas */
-      line-height: 1.3; /* Ajusta el espaciado de línea para pantallas más pequeñas */
     }
   
     h4 {
@@ -565,9 +590,18 @@ gap: 1rem;
 
     .botones{
       display: flex;
-      flex-direction: column;
+      flex-direction: row;
       justify-content: flex-start;
-      align-items: flex-start;
+      align-items: center;
       max-width: 5rem;
     }
+
+    .imagen-y-contenido{
+      display: flex;
+      flex-direction: column;
+     
+    }
+    
+    
+ 
   }

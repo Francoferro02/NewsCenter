@@ -21,10 +21,16 @@
   @media only screen and (max-width: 768px) {
     .nav-menu {
       flex-direction: column; /* Cambia la dirección del flex a columna para apilar los elementos */
-      align-items: center; /* Centra los elementos en el eje transversal */
+      align-items: center;
+      justify-content: center; /* Centra los elementos en el eje transversal */
+      
     }
   
-    .nav-menu-option {
+
+    .nav-menu span {
+      display: flex;
+      justify-content: center;
+      border-bottom: 0.1rem solid rgba(173, 173, 173, 0.155);
       width: 100%; /* Ocupa el ancho completo del contenedor */
       margin-bottom: 0.313rem; /* Reduce el margen inferior */
     }
