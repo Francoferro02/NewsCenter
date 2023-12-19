@@ -11,58 +11,56 @@
     </button>
   </div>
   <ul class="sidenav-nav">
-    
-    <li class="sidenav-nav-item" (click)="navegateTo('LastNews')">
-    <!--   <a class="sidenav-nav-link" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}"> -->
-        <span class="sidenav-complexIcon" *ngIf="collapsed">
-          <img class="icon" src="../../assets/newspaper_FILL0_wght400_GRAD0_opsz24.png">
-          <span class="sidenav-nav-text">FEATURED NEWS</span>
-        </span>
-    <!--   </a> -->
+    <li class="sidenav-nav-item" [class.disabled]="!collapsed" (click)="navegateTo('LastNews')">
+      <span class="sidenav-complexIcon" *ngIf="collapsed">
+        <img class="icon" src="../../assets/newspaper_FILL0_wght400_GRAD0_opsz24.png">
+        <span class="sidenav-nav-text">FEATURED NEWS</span>
+      </span>
     </li>
-    <li class="sidenav-nav-item"(click)="navegateTo('Sports')">
-      <span class="sidenav-complexIcon"*ngIf="collapsed" >
+    <li class="sidenav-nav-item" [class.disabled]="!collapsed" (click)="navegateTo('Sports')">
+      <span class="sidenav-complexIcon" *ngIf="collapsed">
         <img class="icon" src="../../assets/sports_soccer_FILL0_wght400_GRAD0_opsz24.png">
         <span class="sidenav-nav-text">SPORTS</span>
       </span>
-  </li>
-  <li class="sidenav-nav-item" (click)="navegateTo('Science')">
-    <span class="sidenav-complexIcon"*ngIf="collapsed" >
-      <img class="icon" src="../../assets/public_FILL0_wght400_GRAD0_opsz24.png">
-      <span class="sidenav-nav-text">SCIENCE</span>
-    </span>
-</li>
-<li class="sidenav-nav-item" (click)="navegateTo('Bussiness')" >
-    <span class="sidenav-complexIcon"*ngIf="collapsed" >
-      <img class="icon" src="../../assets/monitoring_FILL0_wght400_GRAD0_opsz24.png">
-      <span class="sidenav-nav-text">BUSSINESS</span>
-    </span>
-</li>
-<li class="sidenav-nav-item" (click)="navegateTo('Tech')">
-<span class="sidenav-complexIcon"*ngIf="collapsed" >
-  <img class="icon" src="../../assets/computer_FILL0_wght400_GRAD0_opsz24.png">
-  <span class="sidenav-nav-text">TECH</span>
-</span>
-</li>
-<li class="sidenav-nav-item" (click)="navegateTo('Entertainment')">
-<span class="sidenav-complexIcon"*ngIf="collapsed" >
-  <img class="icon" src="../../assets/movie_FILL0_wght400_GRAD0_opsz24.png">
-  <span class="sidenav-nav-text">ENTERTAINMENT</span>
-</span>
-</li>
-<li class="sidenav-nav-item" (click)="navegateTo('Health')">
-  <span class="sidenav-complexIcon"*ngIf="collapsed" >
-    <img class="icon" src="../../assets/emergency_FILL0_wght400_GRAD0_opsz24.png">
-    <span class="sidenav-nav-text">HEALTH</span>
-  </span>
-  </li>
-<li class="sidenav-nav-item"(click)="navegateTo('Profile')">
-<span class="sidenav-complexIcon"*ngIf="collapsed">
-  <div *ngIf="loggedIn">
-    <img class="icon" src="../../assets/badge_FILL0_wght400_GRAD0_opsz24.png">
-    <span class="sidenav-nav-text">PROFILE</span>
-  </div>
-</span>
-</li>
-</ul>
+    </li>
+    <li class="sidenav-nav-item" [class.disabled]="!collapsed" (click)="navegateTo('Science')">
+      <span class="sidenav-complexIcon" *ngIf="collapsed">
+        <img class="icon" src="../../assets/public_FILL0_wght400_GRAD0_opsz24.png">
+        <span class="sidenav-nav-text">SCIENCE</span>
+      </span>
+    </li>
+    <li class="sidenav-nav-item" [class.disabled]="!collapsed" (click)="navegateTo('Bussiness')">
+      <span class="sidenav-complexIcon" *ngIf="collapsed">
+        <img class="icon" src="../../assets/monitoring_FILL0_wght400_GRAD0_opsz24.png">
+        <span class="sidenav-nav-text">BUSSINESS</span>
+      </span>
+    </li>
+    <li class="sidenav-nav-item" [class.disabled]="!collapsed" (click)="navegateTo('Tech')">
+      <span class="sidenav-complexIcon" *ngIf="collapsed">
+        <img class="icon" src="../../assets/computer_FILL0_wght400_GRAD0_opsz24.png">
+        <span class="sidenav-nav-text">TECH</span>
+      </span>
+    </li>
+    <li class="sidenav-nav-item" [class.disabled]="!collapsed" (click)="navegateTo('Entertainment')">
+      <span class="sidenav-complexIcon" *ngIf="collapsed">
+        <img class="icon" src="../../assets/movie_FILL0_wght400_GRAD0_opsz24.png">
+        <span class="sidenav-nav-text">ENTERTAINMENT</span>
+      </span>
+    </li>
+    <li class="sidenav-nav-item" [class.disabled]="!collapsed" (click)="navegateTo('Health')">
+      <span class="sidenav-complexIcon" *ngIf="collapsed">
+        <img class="icon" src="../../assets/emergency_FILL0_wght400_GRAD0_opsz24.png">
+        <span class="sidenav-nav-text">HEALTH</span>
+      </span>
+    </li>
+    <li class="sidenav-nav-item" [class.disabled]="!collapsed" (click)="navegateTo('Profile')">
+      <span class="sidenav-complexIcon" *ngIf="collapsed">
+        <div *ngIf="loggedIn">
+          <img class="icon" src="../../assets/badge_FILL0_wght400_GRAD0_opsz24.png">
+          <span class="sidenav-nav-text">PROFILE</span>
+        </div>
+      </span>
+    </li>
+  </ul>
+</div>
 

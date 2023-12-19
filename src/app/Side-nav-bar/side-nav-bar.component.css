@@ -59,7 +59,10 @@
   /* Transformación para expandir la barra hacia la derecha */
   transform: translateX(0);
 }
-
+.sidenav-nav-item.disabled {
+  pointer-events: none;
+  cursor: not-allowed;
+}
 .sidenav-nav {
   list-style: none;
   padding: 0.938rem;
@@ -110,33 +113,34 @@
 
 
 @media only screen and (max-width: 768px) {
-  .sidenav-collapsed {
-    height: 0; /* Colapsada por defecto */
-  }
+ .logo-container{
+  display: flex;
+  justify-content: flex-start;
 
+  
+ }
   .sidenav {
     height: auto; /* Establece la altura automática por defecto */
-    overflow: hidden;
     position: fixed;
     width: 100%;
-    transition: height 0.3s;
+    transition:  0.3s ease;
+    z-index: 1999;
+    background-color:none;
+    transform: translateX(0);
   }
 
-  /* Mostrar el icono de hamburguesa siempre */
+  .sidenav-collapsed {
+    width: 100%; /* Ancho expandido de la barra */
+    /* Transformación para expandir la barra hacia la derecha */
+    transform: translateX(0);
+    background-color: #ffffff;
+  }
   .logo {
     display: flex;
   }
-
   .logo-text {
     display: none; /* Ocultar el texto del logo por defecto */
   }
-
-  /* Cambiar la orientación de la barra lateral emergente desde arriba */
-  .sidenav.emerge {
-    height: 100vh; /* Establece la altura al 100% de la altura de la pantalla */
-    transform: translateY(0); /* Desplaza la barra lateral desde arriba hacia abajo */
-  }
-
   .sidenav-nav {
     height: auto;
   }
