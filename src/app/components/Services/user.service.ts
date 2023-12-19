@@ -4,6 +4,7 @@ import { BehaviorSubject, Observable, map, of, switchMap, tap, throwError } from
 import { User } from 'src/app/models/user.model';
 import { AuthServiceService } from './auth-service.service';
 import { UserStateService } from './user-state.service';
+import { Noticia } from 'src/app/models/noticia.model';
 
 @Injectable({
   providedIn: 'root'
@@ -21,12 +22,27 @@ export class UserService {
   });
 }
 
-deleteNewsFromUser(userId: number, newsId: string) {
-  // Realiza la lógica para eliminar la noticia del usuario en el servidor
-  // Utiliza el userId y el newsId para identificar la noticia específica
-  const url = `http://localhost:3000/users/${userId}/news/${newsId}`;
-  return this.http.delete(url);
+deleteNewsFromUser(userId: number, newsId: string): Observable<void>  {
+  const user = this.users.find(u => u.id === userId);
+
+  if (user && user.savedNews) {
+    // Filtrar las noticias que no coincidan con la que se va a borrar en el array local
+    const updatedNews = user.savedNews.filter((news: Noticia) => news.title !== newsId);
+
+    // Actualizar el usuario localmente
+    const updatedUser = { ...user, savedNews: updatedNews };
+    const updatedUsers = this.users.map(u => (u.id === userId ? updatedUser : u));
+
+    this.users = updatedUsers;
+    this.userStateService.setUsers(updatedUsers);
+  }
+
+  const url = `${this.url}/users/${userId}/savedNews/${newsId}`;
+
+  // Realizar la solicitud DELETE al servidor
+  return this.http.delete<void>(url);
 }
+
 createUser(user: any): Observable<any> {
   user.join = new Date().toLocaleDateString();
   user.img = new String;

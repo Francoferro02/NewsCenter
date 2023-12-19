@@ -38,12 +38,6 @@
             name="surname" required>
           <button type="submit" class="btn btn-primary">Save</button>
         </form>
-       <!--  <form class="modal-submit" (submit)="updateField('email')">
-          <label for="email">Email</label>
-          <input class="input-edit" [ngModel]="editingUser?.email" (ngModelChange)="onEmailChange($event)" name="email"
-            required>
-          <button type="submit" class="btn btn-primary">Save</button>
-        </form> -->
         <form class="modal-submit" (submit)="updateField('location')">
           <label for="location">Location</label>
           <input class="input-edit" [ngModel]="editingUser?.location" (ngModelChange)="onLocationChange($event)" name="location"

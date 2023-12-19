@@ -317,4 +317,23 @@ borrarNoticia(news: Noticia) {
       newsPopup.style.display = 'none';
     }
   }
+
+  deleteNews(news: Noticia){
+    if (this.authService.isUsuarioAutenticado()) {
+      if (this.user && news) {
+        const userId = this.user.id;
+        const newsId = news.title; 
+        console.log(newsId);
+        
+        this.userService.deleteNewsFromUser(userId, newsId).subscribe(() => {
+          
+          this.savedNews = this.savedNews.filter(n => n.title !== news.title);
+       
+          this.changeDetectorRef.detectChanges();
+        });
+      }
+    } else {
+      this.authGuard.canActivate();
+    }
+  }
 }

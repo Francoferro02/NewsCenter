@@ -17,7 +17,7 @@
   display: flex;
   flex-direction: column;
   background-color: #f4f4f4;
-  padding: 3rem;
+  padding: 1rem;
   border-radius: 1rem;
 }
 
@@ -35,13 +35,14 @@
   padding: 10px;
   display: flex;
   flex-direction: column;
-  gap: 2rem;
+  gap: 0.7rem;
 }
 
 .form-control {
   border: 1px solid #ced4da;
   border-radius: 4px;
   padding: 6px 12px;
+  font-size: medium;
 }
 
 .btn-primary {
@@ -51,7 +52,7 @@
   border-radius: 5rem;
   border: none;
   font-weight: 800;
-  padding: 2rem;
+  padding: 1rem;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -68,6 +69,7 @@
 
 label {
   font-weight: bold;
+  font-size: large;
 }
 
 .close-button {
@@ -76,18 +78,31 @@ label {
   font-weight: 800;
   display: flex;
   justify-content: flex-end;
-  padding: 0;
+  padding: 1rem;
   cursor: pointer;
 }
 
 @media only screen and (max-width: 768px) {
-  .card-text-center {
-    padding: 1.5rem;
-    /* Ajusta el relleno para pantallas más pequeñas */
+ 
+
+  .popup-container {
+    width:100%;
+    overflow-y: auto;
   }
 
-  .btn-primary {
-    padding: 1.5rem;
-    /* Ajusta el relleno del botón para pantallas más pequeñas */
+  .card-body {
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0;
   }
+
+  .card-text-center {
+    display: flex;
+    flex-direction: column;
+    background-color: #f4f4f4;
+    padding: 0rem;
+    border-radius: 1rem;
+  }
+
 }

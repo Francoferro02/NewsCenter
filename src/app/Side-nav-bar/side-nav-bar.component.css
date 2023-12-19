@@ -58,6 +58,7 @@
   width: 28rem; /* Ancho expandido de la barra */
   /* Transformación para expandir la barra hacia la derecha */
   transform: translateX(0);
+  
 }
 .sidenav-nav-item.disabled {
   pointer-events: none;
@@ -113,40 +114,60 @@
 
 
 @media only screen and (max-width: 768px) {
- .logo-container{
-  display: flex;
-  justify-content: flex-start;
+  .sidenav-container {
+    display: flex;
+  }
 
-  
- }
   .sidenav {
-    height: auto; /* Establece la altura automática por defecto */
+    height: 100vh;
     position: fixed;
-    width: 100%;
-    transition:  0.3s ease;
+    width: 0;
+    transition: width 0.3s ease;
     z-index: 1999;
-    background-color:none;
-    transform: translateX(0);
+    background-color: none;
   }
 
   .sidenav-collapsed {
-    width: 100%; /* Ancho expandido de la barra */
-    /* Transformación para expandir la barra hacia la derecha */
-    transform: translateX(0);
+    width: 95%;
     background-color: #ffffff;
   }
+
+  .main-content {
+    flex-grow: 1;
+    overflow: hidden; /* Evita que el contenido se extienda más allá de la pantalla */
+  }
+
+  .logo-container {
+    display: flex;
+    justify-content: flex-start;
+    padding: 1rem;
+    width: 5rem;
+  }
+
   .logo {
     display: flex;
+    align-items: center;
+    cursor: pointer;
   }
+
   .logo-text {
-    display: none; /* Ocultar el texto del logo por defecto */
+    display: none;
+    padding-left: 1rem;
   }
+
+  .btn-close {
+    display: none;
+    cursor: pointer;
+  }
+
   .sidenav-nav {
     height: auto;
+    z-index: 1;
+    margin-top: 1rem;
   }
 
   .sidenav-nav-item {
-    width: 100%; /* Ocupa el ancho completo de la barra lateral */
+    width: 100%;
     margin-bottom: 0.313rem;
   }
 
@@ -155,8 +176,7 @@
     padding: 0.5rem;
   }
 
-  /* Estilo para emerger desde arriba */
   .sidenav.emerge {
-    height: 100vh; /* Establece la altura al 100% de la altura de la pantalla */
+    height: 100vh;
   }
 }
