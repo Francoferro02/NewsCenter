@@ -69,8 +69,11 @@
         <a class="saved-links" [href]="news.url" target="_blank" (mouseenter)="startPopupTimer(news.url)" (mouseleave)="clearPopupTimer()"> 
           <img class="saved-img" [src]="news.urlToImage || '../../../assets/Logo/pngworld.jpg' " >
           {{news.title }}
-        </a>
-        
+        </a>    
+          
+        <button class="btn-primary custom-delete-button" (click)="borrarNoticia(news)">Borrar Noticia</button>
+
+
       </li>
     </ul>
   </div>

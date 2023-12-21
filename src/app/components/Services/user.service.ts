@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, Observable, map, of, switchMap, tap, throwError } from 'rxjs';
+import { BehaviorSubject, Observable, catchError, map, of, switchMap, tap, throwError } from 'rxjs';
 import { User } from 'src/app/models/user.model';
 import { AuthServiceService } from './auth-service.service';
 import { UserStateService } from './user-state.service';
@@ -23,24 +23,25 @@ export class UserService {
 }
 
 deleteNewsFromUser(userId: number, newsId: string): Observable<void>  {
-  const user = this.users.find(u => u.id === userId);
+  const url = `${this.url}/users/${userId}`;
+  
+  return this.http.get<any>(url).pipe(
+    switchMap(user => {
+      if (user && user.savedNews) {
+        // Filtrar las noticias que no coincidan con la que se va a borrar en el array local
+        const updatedNews = user.savedNews.filter((news: Noticia) => news.title !== newsId);
 
-  if (user && user.savedNews) {
-    // Filtrar las noticias que no coincidan con la que se va a borrar en el array local
-    const updatedNews = user.savedNews.filter((news: Noticia) => news.title !== newsId);
+        // Actualizar el usuario localmente
+        const updatedUser = { ...user, savedNews: updatedNews };
 
-    // Actualizar el usuario localmente
-    const updatedUser = { ...user, savedNews: updatedNews };
-    const updatedUsers = this.users.map(u => (u.id === userId ? updatedUser : u));
-
-    this.users = updatedUsers;
-    this.userStateService.setUsers(updatedUsers);
-  }
-
-  const url = `${this.url}/users/${userId}/savedNews/${newsId}`;
-
-  // Realizar la solicitud DELETE al servidor
-  return this.http.delete<void>(url);
+        // Realizar la solicitud PUT al servidor para actualizar las noticias
+        return this.http.put<void>(url, updatedUser);
+      } else {
+        return throwError('Usuario no encontrado o sin noticias guardadas.');
+      }
+    }),
+    catchError(error => throwError('Error al obtener el usuario: ' + error))
+  );
 }
 
 createUser(user: any): Observable<any> {

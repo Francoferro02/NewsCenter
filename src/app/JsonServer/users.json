@@ -89,9 +89,54 @@
       "password": "1234",
       "location": "Mar del Plata",
       "rolbio": "Web Developer",
-      "savedNews": [],
+      "savedNews": [
+        {
+          "urlToImage": "https://cdn.mos.cms.futurecdn.net/7VSZgXEXZnMuERGzvU4Sxi-1200-80.jpg",
+          "title": "Finding life on Saturn's moon Enceladus might be easier than we thought - Space.com",
+          "content": "Space is part of Future US Inc, an international media group and leading digital publisher. Visit our corporate site.\r\n©\r\nFuture US, Inc. Full 7th Floor, 130 West 42nd Street,\r\nNew York,\r\nNY 10036.",
+          "url": "https://www.space.com/life-saturn-moon-enceladus-easier-than-expected-ice-plumes",
+          "comentario": [],
+          "rating": 0,
+          "CantidadCalificaciones": 0
+        },
+        {
+          "urlToImage": "https://i.ytimg.com/vi/lZMCbLVUuLc/maxresdefault.jpg",
+          "title": "NASA Telescope illuminates 'Christmas Tree' - WATE 6 On Your Side",
+          "content": null,
+          "url": "https://www.youtube.com/watch?v=lZMCbLVUuLc",
+          "comentario": [],
+          "rating": 0,
+          "CantidadCalificaciones": 0
+        },
+        {
+          "urlToImage": "https://assets2.cbsnewsstatic.com/hub/i/r/2023/12/20/ae6c07cb-bfee-4ce5-b925-4f45b7e86adf/thumbnail/1200x630/9465f7dc9d69b5dffdf9d27369ce47d4/screen-shot-2023-12-20-at-3-25-08-pm.png?v=5382e209c94ee904b3a96a69f8ca0ce0",
+          "title": "Remains of Green River Killer victim identified as runaway 15-year-old Lori Anne Ratzpotnik - CBS News",
+          "content": "A victim of the Green River Killer was identified nearly four decades after her body was found. \r\nTwo sets of human remains were found in Auburn, Washington, along a steep embankment in 1985, accordi… [+3039 chars]",
+          "url": "https://www.cbsnews.com/news/green-river-killer-gary-ridgway-victim-lori-anne-ratzpotnik-bones-17/",
+          "comentario": [],
+          "rating": 0,
+          "CantidadCalificaciones": 0
+        },
+        {
+          "urlToImage": "https://www3.nhk.or.jp/news/html/20231221/K10014294641_2312210856_1221091747_01_02.jpg",
+          "title": "北朝鮮キム総書記「核の挑発には核攻撃辞さず」発射部隊激励で - nhk.or.jp",
+          "content": "ICBM18\r\n2118ICBM1820",
+          "url": "https://www3.nhk.or.jp/news/html/20231221/k10014294641000.html",
+          "comentario": [
+            {
+              "text": "Wow amazin",
+              "usuario": "Franco",
+              "editing": false,
+              "urlNoticia": "https://www3.nhk.or.jp/news/html/20231221/k10014294641000.html",
+              "id": "1703202955553"
+            }
+          ],
+          "rating": 4,
+          "CantidadCalificaciones": 0
+        }
+      ],
       "join": "21/11/2023",
-      "img": "",
+      "img": "https://i.ibb.co/gZjBmwY/515f61b9-3bc9-417b-81cd-4cfca7c243a2.jpg",
       "id": 7
     },
     {
@@ -270,6 +315,13 @@
       "editing": false,
       "urlNoticia": "https://www.reuters.com/technology/spotify-reduce-staff-by-17-second-layoff-this-year-2023-12-04/",
       "id": "1701779848601"
+    },
+    {
+      "text": "Wow amazin",
+      "usuario": "Franco",
+      "editing": false,
+      "urlNoticia": "https://www3.nhk.or.jp/news/html/20231221/k10014294641000.html",
+      "id": "1703202955553"
     }
   ],
   "news": [
@@ -392,6 +444,12 @@
       "rating": 5,
       "CantidadCalificaciones": 1,
       "id": 20
+    },
+    {
+      "urlNoticia": "https://www3.nhk.or.jp/news/html/20231221/k10014294641000.html",
+      "rating": 4,
+      "CantidadCalificaciones": 1,
+      "id": 21
     }
   ]
 }

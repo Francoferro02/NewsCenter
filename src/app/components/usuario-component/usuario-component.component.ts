@@ -71,24 +71,29 @@ export class UsuarioComponentComponent implements OnInit {
     
 
   }
-
-borrarNoticia(news: Noticia) {
-  if (this.authService.isUsuarioAutenticado()) {
-    if (this.user && news) {
-      const userId = this.user.id;
-      const newsId = news.title;
-
-      // Llama al servicio para borrar la noticia del servidor
-      this.userService.deleteNewsFromUser(userId, newsId).subscribe(() => {
-        // Filtra las noticias que no coincidan con la que se va a borrar en el array local
-        this.savedNews = this.savedNews.filter(n => n !== news);
-      });
+  borrarNoticia(news: Noticia) {
+    if (this.authService.isUsuarioAutenticado()) {
+      if (this.user && news) {
+        const userId = this.user.id;
+  
+        // Llama al servicio para borrar la noticia del servidor
+        this.userService.deleteNewsFromUser(userId, news.title).subscribe(() => {
+          const index = this.savedNews.findIndex(n => n.title === news.title);
+          if (index !== -1) {
+            // Elimina el elemento del array por índice
+            this.savedNews.splice(index, 1);
+          }
+        }, error => {
+          console.error('Error al borrar la noticia del servidor:', error);
+        });
+      }
+    } else {
+      this.authGuard.canActivate();
     }
-  } else {
-    this.authGuard.canActivate();
   }
-}
-
+  
+  
+  
   
   deleteUser(userId: number) {
     this.userService.deleteUser(userId).subscribe(() => {
